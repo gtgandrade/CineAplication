@@ -16,6 +16,7 @@ import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class SessaoActivity extends AppCompatActivity {
@@ -45,8 +46,6 @@ public class SessaoActivity extends AppCompatActivity {
         filme.setCodigo(paramentros.getInt("codigo"));
         filme.setNome(paramentros.getString("nome"));
         lblFilmeEscolhido.setText(filme.getNome());
-        sessaoBD = new SessaoBD(this);
-        List<Sessao> sessoes = sessaoBD.findSessoes(filme);
 
         String horarios[] = {"15:00", "18:30", "19:10", "22:00"};
         ArrayAdapter<String> adapterSpinnerHorarios = new ArrayAdapter<String>(this,
@@ -55,7 +54,6 @@ public class SessaoActivity extends AppCompatActivity {
         adapterSpinnerHorarios.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spnHorarios.setAdapter(adapterSpinnerHorarios);
     }
-
     public void incrementarInteira(View view){
         qtdInteira = Integer.parseInt(edtQtdInteira.getText().toString());
         edtQtdInteira.setText(String.valueOf(++qtdInteira));
