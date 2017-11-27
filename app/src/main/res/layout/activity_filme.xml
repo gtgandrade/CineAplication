@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.gtg.cineaplication.FilmeActivity">
+
+
+    <Button
+        android:id="@+id/btnComprarIngresso"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="irParaSessao"
+        android:text="Comprar Ingresso" />
+
+    <ImageView
+        android:id="@+id/imgFilme"
+        android:layout_width="match_parent"
+        android:layout_height="364dp"
+        android:onClick="irParaSessao" />
+
+    <TextView
+        android:id="@+id/lblTituloFilme"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:textAlignment="center"
+        android:textSize="24sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnFilmeAnterior"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="irParaFilmeAnterior"
+            android:text="Anterior" />
+
+        <Button
+            android:id="@+id/btnFilmeProximo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:onClick="irParaFilmeProximo"
+            android:text="Próximo" />
+    </LinearLayout>
+
+</LinearLayout>
