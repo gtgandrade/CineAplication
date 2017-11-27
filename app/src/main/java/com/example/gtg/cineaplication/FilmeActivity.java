@@ -33,18 +33,18 @@ public class FilmeActivity extends AppCompatActivity {
     }
 
     public void irParaFilmeProximo(View view){
-        if(indiceFilme < filmes.size() - 1) {
-            filme = filmes.get(++indiceFilme);
-            imgFilme.setImageResource(filme.getCodigo());
-            lblTituloFilme.setText(filme.getNome());
-        }
+        indiceFilme = (indiceFilme+1)%filmes.size();
+        filme = filmes.get(indiceFilme);
+        imgFilme.setImageResource(filme.getCodigo());
+        lblTituloFilme.setText(filme.getNome());
     }
     public void irParaFilmeAnterior(View view){
-        if(indiceFilme > 0) {
-            filme = filmes.get(--indiceFilme);
-            imgFilme.setImageResource(filme.getCodigo());
-            lblTituloFilme.setText(filme.getNome());
-        }
+        if(indiceFilme == 0)
+            indiceFilme = filmes.size();
+        indiceFilme = (indiceFilme-1)%filmes.size();
+        filme = filmes.get(indiceFilme);
+        imgFilme.setImageResource(filme.getCodigo());
+        lblTituloFilme.setText(filme.getNome());
     }
     public void irParaSessao(View view){
         Intent intentSessao = new Intent(this, SessaoActivity.class);
