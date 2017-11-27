@@ -78,4 +78,16 @@ public class SessaoActivity extends AppCompatActivity {
         if(qtdMeia == 0)
             chkMeia.setChecked(false);
     }
+    public void verificarMaracacaoInteira(View view){
+        if(!chkInteira.isChecked())
+            edtQtdInteira.setText("0");
+        else
+            edtQtdInteira.setText("1");
+    }
+    public void verificarMaracacaoMeia(View view){
+        if(!chkMeia.isChecked())
+            edtQtdMeia.setText("0");
+        else
+            edtQtdMeia.setText("1");
+    }
 }
