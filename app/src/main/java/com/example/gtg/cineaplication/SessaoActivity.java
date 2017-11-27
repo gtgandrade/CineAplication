@@ -10,6 +10,14 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.gtg.cineaplication.DB.HorarioBD;
+import com.example.gtg.cineaplication.DB.SessaoBD;
+import com.example.gtg.cineaplication.modelo.Filme;
+import com.example.gtg.cineaplication.modelo.Horario;
+import com.example.gtg.cineaplication.modelo.Sessao;
+
+import java.util.List;
+
 public class SessaoActivity extends AppCompatActivity {
     private TextView lblFilmeEscolhido;
     private Spinner spnHorarios;
@@ -19,6 +27,7 @@ public class SessaoActivity extends AppCompatActivity {
     private CheckBox chkMeia;
     private int qtdInteira;
     private int qtdMeia;
+    private SessaoBD sessaoBD;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +40,13 @@ public class SessaoActivity extends AppCompatActivity {
         chkMeia = findViewById(R.id.chkMeia);
 
         Bundle paramentros = getIntent().getExtras();
-        lblFilmeEscolhido.setText(paramentros.getString("nome"));
+        Filme filme = new Filme();
+        filme.setCodigo(paramentros.getInt("idfilme"));
+        filme.setCodigo(paramentros.getInt("codigo"));
+        filme.setNome(paramentros.getString("nome"));
+        lblFilmeEscolhido.setText(filme.getNome());
+        sessaoBD = new SessaoBD(this);
+        List<Sessao> sessoes = sessaoBD.findSessoes(filme);
 
         String horarios[] = {"15:00", "18:30", "19:10", "22:00"};
         ArrayAdapter<String> adapterSpinnerHorarios = new ArrayAdapter<String>(this,
