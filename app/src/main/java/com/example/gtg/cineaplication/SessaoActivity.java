@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gtg.cineaplication.DB.HorarioBD;
 import com.example.gtg.cineaplication.DB.SessaoBD;
@@ -26,9 +28,13 @@ public class SessaoActivity extends AppCompatActivity {
     private EditText edtQtdMeia;
     private CheckBox chkInteira;
     private CheckBox chkMeia;
+    private RadioGroup rgPipocaRefri;
     private int qtdInteira;
     private int qtdMeia;
+    private HorarioBD horarioBD;
     private SessaoBD sessaoBD;
+    private Filme filme;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,15 +45,25 @@ public class SessaoActivity extends AppCompatActivity {
         edtQtdMeia = findViewById(R.id.edtQtdMeia);
         chkInteira = findViewById(R.id.chkInteira);
         chkMeia = findViewById(R.id.chkMeia);
-
+        rgPipocaRefri = findViewById(R.id.rgPipocaRefrigerante);
         Bundle paramentros = getIntent().getExtras();
-        Filme filme = new Filme();
-        filme.setCodigo(paramentros.getInt("idfilme"));
+        filme = new Filme();
+        filme.setIdfilme(paramentros.getInt("idfilme"));
         filme.setCodigo(paramentros.getInt("codigo"));
         filme.setNome(paramentros.getString("nome"));
         lblFilmeEscolhido.setText(filme.getNome());
+        sessaoBD = new SessaoBD(this);
+        List<Sessao> sessoes = sessaoBD.findSessoes(filme);
+        Iterator<Sessao> iteratorSessoes = sessoes.iterator();
+        String horarios[] = new String[sessoes.size()+1];
+        int contador = 1;
+        horarios[0] = "-----";
+        while (iteratorSessoes.hasNext()){
+            Sessao s = iteratorSessoes.next();
+            horarios[contador] = s.getHorario().getDescricao();
+            contador++;
+        }
 
-        String horarios[] = {"15:00", "18:30", "19:10", "22:00"};
         ArrayAdapter<String> adapterSpinnerHorarios = new ArrayAdapter<String>(this,
                                                                               R.layout.support_simple_spinner_dropdown_item,
                                                                               horarios);
@@ -89,5 +105,30 @@ public class SessaoActivity extends AppCompatActivity {
             edtQtdMeia.setText("0");
         else
             edtQtdMeia.setText("1");
+    }
+    public void irParaTelaResumo(View view){
+        if(validaEntradaDeDados()){
+            Intent intentResumo = new Intent(this, ResumoActivity.class);
+            Bundle parametros = new Bundle();
+            parametros.putInt("idfilme", filme.getIdfilme());
+            parametros.putString("nome", filme.getNome());
+            parametros.putInt("qtdInteira", Integer.parseInt(edtQtdInteira.getText().toString()));
+            parametros.putInt("qtdMeia", Integer.parseInt(edtQtdMeia.getText().toString()));
+            int selecaoPipocaRefri = rgPipocaRefri.getCheckedRadioButtonId();
+            parametros.putInt("pipocaRefri", selecaoPipocaRefri);
+
+            startActivity(intentResumo);
+        }else {
+            Toast.makeText(this,"Escolha o tipo de ingresso",Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean validaEntradaDeDados(){
+        if((chkInteira.isChecked() && !edtQtdInteira.getText().equals("0")) ||
+                (chkMeia.isChecked() && !edtQtdMeia.getText().equals("0"))){
+         return true;
+        }else{
+            return false;
+        }
     }
 }
