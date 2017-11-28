@@ -10,6 +10,7 @@ public class Ingresso {
     private int qtdmeia;
     private double precoingresso;
     private int pipocarefrigerante;
+    private double precopipocarefrigerante;
     private Sessao sessao;
 
     public int getIdingresso() {
@@ -50,6 +51,14 @@ public class Ingresso {
 
     public void setPipocarefrigerante(int pipocarefrigerante) {
         this.pipocarefrigerante = pipocarefrigerante;
+    }
+
+    public double getPrecopipocarefrigerante() {
+        return precopipocarefrigerante;
+    }
+
+    public void setPrecopipocarefrigerante(double precopipocarefrigerante) {
+        this.precopipocarefrigerante = precopipocarefrigerante;
     }
 
     public Sessao getSessao() {

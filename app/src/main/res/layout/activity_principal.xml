@@ -9,22 +9,29 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="51dp"
         android:text="CINE INGRESSOS"
         android:textAlignment="center"
         android:textSize="30sp"
         android:textStyle="bold" />
 
-    <TextView
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="__________________________________"
-        android:textAlignment="center"/>
+        android:layout_height="207dp"
+        app:srcCompat="@drawable/cinema" />
 
     <Button
         android:id="@+id/btnFilmesCartaz"
         android:layout_width="match_parent"
         android:layout_height="81dp"
+        android:layout_marginTop="10dp"
         android:onClick="irParaActivityFilme"
         android:text="Filmes em Cartaz" />
+
+    <Button
+        android:id="@+id/btnMeusIngressos"
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:onClick="irParaActivityIngressos"
+        android:text="Meus Ingressos" />
 </LinearLayout>

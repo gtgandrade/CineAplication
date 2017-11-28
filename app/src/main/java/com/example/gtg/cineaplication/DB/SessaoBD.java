@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.gtg.cineaplication.modelo.Filme;
+import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
 
 import java.util.ArrayList;
@@ -20,58 +21,30 @@ public class SessaoBD extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private String comandosql;
     private HorarioBD horarioBD;
+    private FilmeBD filmeBD;
+    private Context context;
+
     public SessaoBD(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
-        horarioBD = new HorarioBD(context);
+        this.context = context;
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        comandosql = "CREATE TABLE sessao (idsessao INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, sala INTEGER, filme_idfilme INTEGER REFERENCES filme (idfilme) NOT NULL, horario_idhorario INTEGER REFERENCES horario (idhorario) NOT NULL)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (1, 10, 1, 1)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (2, 10, 1, 5)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (3, 10, 1, 9)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (4, 10, 1, 13)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (5, 7, 3, 12)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (6, 6, 4, 7)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (7, 6, 4, 14)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (8, 4, 5, 2)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (9, 4, 5, 4)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (10, 4, 5, 8)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (11, 4, 5, 10)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (12, 2, 6, 3)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (13, 2, 6, 6)";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (14, 2, 2, 11)";
-        db.execSQL(comandosql);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        comandosql = "DROP TABLE IF EXISTS sessao";
-        db.execSQL(comandosql);
-        onCreate(db);
+
     }
     public List<Sessao> findSessoes(Filme filme){
         SQLiteDatabase sessaoBD = getReadableDatabase();
         List<Sessao> sessoes = new ArrayList<Sessao>();
+        horarioBD = new HorarioBD(this.context);
         try{
-            String condicao = "filme_idfilme = ?";
-            String[] argumento = {String.valueOf(filme.getIdfilme())};
-            Cursor cursor = sessaoBD.query(false,"sessao",null, condicao, argumento,
+            String condicao = "filme_idfilme= '"+filme.getIdfilme()+"'";
+            Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
                     null, null, null, null);
             if(cursor.moveToFirst()){
                 do{
@@ -79,11 +52,54 @@ public class SessaoBD extends SQLiteOpenHelper {
                     sessao.setIdsessao(cursor.getInt(0));
                     sessao.setSala(cursor.getInt(1));
                     sessao.setFilme(filme);
-                    sessao.setHorario(horarioBD.findHorarioBy(cursor.getInt(3)));
+                    Horario h = horarioBD.findHorarioBy(cursor.getInt(3));
+                    sessao.setHorario(h);
                     sessoes.add(sessao);
                 }while(cursor.moveToNext());
             }
             return  sessoes;
+        }finally {
+            sessaoBD.close();
+        }
+    }
+    public Sessao findSessaBy(Filme filme, Horario horario){
+        SQLiteDatabase sessaoBD = getReadableDatabase();
+        Sessao sessao;
+        horarioBD = new HorarioBD(this.context);
+        try{
+            String condicao = "filme_idfilme= '"+filme.getIdfilme()+"' AND "+ "horario_idhorario = '"+horario.getIdhorario()+"'";
+            Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
+                    null, null, null, null);
+            sessao = new Sessao();
+            if(cursor.moveToFirst()){
+                sessao.setIdsessao(cursor.getInt(0));
+                sessao.setSala(cursor.getInt(1));
+                sessao.setFilme(filme);
+                sessao.setHorario(horario);
+           }
+           return  sessao;
+        }finally {
+            sessaoBD.close();
+        }
+    }
+    public Sessao findSessaBy(int idsessao){
+        SQLiteDatabase sessaoBD = getReadableDatabase();
+        Sessao sessao;
+        horarioBD = new HorarioBD(this.context);
+        filmeBD = new FilmeBD(this.context);
+        try{
+            String condicao = "idsessao = '"+idsessao+"'";
+            Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
+                    null, null, null, null);
+            sessao = new Sessao();
+            if(cursor.moveToFirst()){
+                sessao.setIdsessao(cursor.getInt(0));
+                sessao.setSala(cursor.getInt(1));
+                sessao.setFilme(filmeBD.findFilmeBy(cursor.getInt(2)));
+                sessao.setHorario(horarioBD.findHorarioBy(cursor.getInt(3)));
+
+            }
+            return  sessao;
         }finally {
             sessaoBD.close();
         }

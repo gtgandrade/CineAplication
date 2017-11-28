@@ -77,6 +77,9 @@ public class ResumoActivity extends AppCompatActivity {
         ingressoBD = new IngressoBD(this);
     }
 
+    protected void onRestart() {
+        super.onRestart();
+    }
     public void confirmarCompraIngresso(View view){
          ingressoBD.saveIngresso(ingresso);
         Intent intentPrincipal= new Intent(this, PrincipalActivity.class);

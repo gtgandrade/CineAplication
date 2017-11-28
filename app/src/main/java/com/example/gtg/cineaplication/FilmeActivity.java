@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gtg.cineaplication.DB.CinemaBD;
 import com.example.gtg.cineaplication.DB.FilmeBD;
 import com.example.gtg.cineaplication.modelo.Filme;
 

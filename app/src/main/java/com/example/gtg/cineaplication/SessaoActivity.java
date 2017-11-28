@@ -33,6 +33,7 @@ public class SessaoActivity extends AppCompatActivity {
     private int qtdMeia;
     private HorarioBD horarioBD;
     private SessaoBD sessaoBD;
+    private Sessao sessao;
     private Filme filme;
 
     @Override
@@ -47,6 +48,7 @@ public class SessaoActivity extends AppCompatActivity {
         chkMeia = findViewById(R.id.chkMeia);
         rgPipocaRefri = findViewById(R.id.rgPipocaRefrigerante);
         Bundle paramentros = getIntent().getExtras();
+        horarioBD = new HorarioBD(this );
         filme = new Filme();
         filme.setIdfilme(paramentros.getInt("idfilme"));
         filme.setCodigo(paramentros.getInt("codigo"));
@@ -110,22 +112,31 @@ public class SessaoActivity extends AppCompatActivity {
         if(validaEntradaDeDados()){
             Intent intentResumo = new Intent(this, ResumoActivity.class);
             Bundle parametros = new Bundle();
+            Horario h = horarioBD.findHorarioBy(spnHorarios.getSelectedItem().toString());
+            sessao = new Sessao();
+            sessao = sessaoBD.findSessaBy(filme, h);
             parametros.putInt("idfilme", filme.getIdfilme());
             parametros.putString("nome", filme.getNome());
-            parametros.putInt("qtdInteira", Integer.parseInt(edtQtdInteira.getText().toString()));
-            parametros.putInt("qtdMeia", Integer.parseInt(edtQtdMeia.getText().toString()));
-            int selecaoPipocaRefri = rgPipocaRefri.getCheckedRadioButtonId();
-            parametros.putInt("pipocaRefri", selecaoPipocaRefri);
+            parametros.putInt("numeroSala", sessao.getSala());
+            parametros.putString("horario",h.getDescricao());
+            parametros.putInt("idsessao", sessao.getIdsessao());
+            parametros.putString("qtdInteira", edtQtdInteira.getText().toString());
+            parametros.putString("qtdMeia", edtQtdMeia.getText().toString());
+            int opcaoSim = R.id.rbPipocaRefrigeranteSim;
+            parametros.putInt("qtdLanche", (rgPipocaRefri.getCheckedRadioButtonId()==opcaoSim?1:0));
+            parametros.putDouble("precoInteira", 22.00);
+            parametros.putDouble("precoLanche", 18.00);
 
+            intentResumo.putExtras(parametros);
             startActivity(intentResumo);
         }else {
-            Toast.makeText(this,"Escolha o tipo de ingresso",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Escolha a sessão e o tipo de ingresso.",Toast.LENGTH_SHORT).show();
         }
     }
 
     private boolean validaEntradaDeDados(){
-        if((chkInteira.isChecked() && !edtQtdInteira.getText().equals("0")) ||
-                (chkMeia.isChecked() && !edtQtdMeia.getText().equals("0"))){
+        if(((chkInteira.isChecked() && !edtQtdInteira.getText().equals("0")) ||
+                (chkMeia.isChecked() && !edtQtdMeia.getText().equals("0"))) && spnHorarios.getSelectedItemId()!= 0){
          return true;
         }else{
             return false;

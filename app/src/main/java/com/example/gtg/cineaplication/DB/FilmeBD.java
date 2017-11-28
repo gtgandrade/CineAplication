@@ -27,31 +27,12 @@ public class FilmeBD extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        comandosql = "CREATE TABLE filme (idfilme   INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL,codigo    INTEGER,nome     VARCHAR (50))";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (1, "+ R.drawable.liga_justica+", 'Liga da Justiça')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (2, "+ R.drawable.depois_montanha+", 'Depois Daquela Montanha')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (3, "+ R.drawable.pai_dose_dupla2+", 'Pai em Dose Dupla 2')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (4, "+ R.drawable.thor_hagnarok+", 'Thor Hagnarok')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (5, "+ R.drawable.gosto_discute+", 'Gosto se Discute')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (6, "+ R.drawable.dona_flor+", 'Dona Flor')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (7, "+ R.drawable.estrela_belem+", 'A Estrela de Belém')";
-        db.execSQL(comandosql);
-        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (8, "+ R.drawable.mark_felt+", 'Mark Felt')";
-        db.execSQL(comandosql);
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        comandosql = "DROP TABLE IF EXISTS filme";
-        db.execSQL(comandosql);
-        onCreate(db);
+
     }
 
 
@@ -63,6 +44,23 @@ public class FilmeBD extends SQLiteOpenHelper {
             valores.put("nome", filme.getNome());
 
             return cineBD.insert("filme","", valores);
+        }finally {
+            cineBD.close();
+        }
+    }
+    public Filme findFilmeBy(int idfilme){
+        SQLiteDatabase cineBD = getReadableDatabase();
+        Filme filme = new Filme();
+        try{
+            String condicao = "idfilme = '"+idfilme+"'";
+            Cursor cursor = cineBD.query("filme",null,condicao,null,
+                    null, null, null, null);
+            if(cursor.moveToFirst()){
+                     filme.setIdfilme(cursor.getInt(0));
+                    filme.setCodigo(cursor.getInt(1));
+                    filme.setNome(cursor.getString(2));
+             }
+            return  filme;
         }finally {
             cineBD.close();
         }
