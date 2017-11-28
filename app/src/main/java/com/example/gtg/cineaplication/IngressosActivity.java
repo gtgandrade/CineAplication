@@ -45,7 +45,7 @@ public class IngressosActivity extends AppCompatActivity {
         lblQtdInteira.setText(String.valueOf(ingresso.getQtdinteira()));
         lblPrecoInteira.setText(String.valueOf(ingresso.getQtdinteira()*ingresso.getPrecoingresso()));
         lblQtdMeia.setText(String.valueOf(ingresso.getQtdmeia()));
-        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdinteira()*(ingresso.getPrecoingresso()/2)));
+        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdmeia()*(ingresso.getPrecoingresso()/2)));
         lblQtdPipocaRefri.setText(String.valueOf(ingresso.getPipocarefrigerante()));
         lblPrecoPipocaRefri.setText(String.valueOf(ingresso.getPrecopipocarefrigerante()*ingresso.getPipocarefrigerante()));
     }
@@ -57,7 +57,7 @@ public class IngressosActivity extends AppCompatActivity {
         lblQtdInteira.setText(String.valueOf(ingresso.getQtdinteira()));
         lblPrecoInteira.setText(String.valueOf(ingresso.getQtdinteira()*ingresso.getPrecoingresso()));
         lblQtdMeia.setText(String.valueOf(ingresso.getQtdmeia()));
-        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdinteira()*(ingresso.getPrecoingresso()/2)));
+        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdmeia()*(ingresso.getPrecoingresso()/2)));
         lblQtdPipocaRefri.setText(String.valueOf(ingresso.getPipocarefrigerante()));
         lblPrecoPipocaRefri.setText(String.valueOf(ingresso.getPrecopipocarefrigerante()*ingresso.getPipocarefrigerante()));
     }
@@ -70,7 +70,7 @@ public class IngressosActivity extends AppCompatActivity {
         lblQtdInteira.setText(String.valueOf(ingresso.getQtdinteira()));
         lblPrecoInteira.setText(String.valueOf(ingresso.getQtdinteira()*ingresso.getPrecoingresso()));
         lblQtdMeia.setText(String.valueOf(ingresso.getQtdmeia()));
-        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdinteira()*(ingresso.getPrecoingresso()/2)));
+        lblPrecoMeia.setText(String.valueOf(ingresso.getQtdmeia()*(ingresso.getPrecoingresso()/2)));
         lblQtdPipocaRefri.setText(String.valueOf(ingresso.getPipocarefrigerante()));
         lblPrecoPipocaRefri.setText(String.valueOf(ingresso.getPrecopipocarefrigerante()*ingresso.getPipocarefrigerante()));
     }
