@@ -15,7 +15,6 @@ import java.util.List;
  * Created by gtg on 27/12/17.
  */
 
-
 public class IngressosAdapter extends RecyclerView.Adapter{
    private Context context;
    private List<Ingresso> ingressos;
@@ -40,9 +39,13 @@ public class IngressosAdapter extends RecyclerView.Adapter{
         ivh.lblQtdInteiraM.setText(String.valueOf(ingresso.getQtdinteira()));
         ivh.lblQtdMeiaM.setText(String.valueOf(ingresso.getQtdmeia()));
         ivh.lblQtdPipocaRefriM.setText(String.valueOf(ingresso.getPipocarefrigerante()));
-        ivh.lblPrecoInteiraM.setText(String.valueOf(ingresso.getQtdinteira()*ingresso.getPrecoingresso()));
-        ivh.lblPrecoMeiaM.setText(String.valueOf(ingresso.getQtdmeia()*(ingresso.getPrecoingresso()/2)));
-        ivh.lblPrecoPipocaRefriM.setText(String.valueOf(ingresso.getPipocarefrigerante()*ingresso.getPrecopipocarefrigerante()));
+        double totalInteiras = ingresso.getQtdinteira()*ingresso.getPrecoingresso();
+        double totalMeias = ingresso.getQtdmeia()*(ingresso.getPrecoingresso()/2);
+        double totalLanche = ingresso.getPipocarefrigerante()*ingresso.getPrecopipocarefrigerante();
+        ivh.lblPrecoInteiraM.setText("R$ "+String.valueOf(totalInteiras));
+        ivh.lblPrecoMeiaM.setText("R$ "+String.valueOf(totalMeias));
+        ivh.lblPrecoPipocaRefriM.setText("R$ "+String.valueOf(totalLanche));
+        ivh.lblValorTotalM.setText("R$ "+String.valueOf(totalInteiras+totalMeias+totalLanche));
     }
 
     @Override

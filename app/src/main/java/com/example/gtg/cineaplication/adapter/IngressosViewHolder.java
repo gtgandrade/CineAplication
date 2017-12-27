@@ -19,7 +19,7 @@ public class IngressosViewHolder extends RecyclerView.ViewHolder {
     final TextView lblPrecoInteiraM;
     final TextView lblPrecoMeiaM;
     final TextView lblPrecoPipocaRefriM;
-
+    final TextView lblValorTotalM;
     public IngressosViewHolder(View itemView) {
         super(itemView);
         lblTituloFilmeM = (TextView) itemView.findViewById(R.id.lblTituloFilmeM);
@@ -29,5 +29,6 @@ public class IngressosViewHolder extends RecyclerView.ViewHolder {
         lblPrecoInteiraM = (TextView) itemView.findViewById(R.id.lblPrecoInteiraM);
         lblPrecoMeiaM = (TextView) itemView.findViewById(R.id.lblPrecoMeiaM);
         lblPrecoPipocaRefriM = (TextView) itemView.findViewById(R.id.lblPrecoPipocaRefriM);
+        lblValorTotalM = (TextView) itemView.findViewById(R.id.lblValorTotalM);
     }
 }
