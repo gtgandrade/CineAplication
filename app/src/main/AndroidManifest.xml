@@ -19,7 +19,7 @@
         <activity android:name=".FilmeActivity" />
         <activity android:name=".SessaoActivity" />
         <activity android:name=".ResumoActivity" />
-        <activity android:name=".IngressosActivity"></activity>
+        <activity android:name=".IngressosActivity" />
     </application>
 
 </manifest>
