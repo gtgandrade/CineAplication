@@ -53,7 +53,7 @@ public class ResumoActivity extends AppCompatActivity {
         int qtdMeia = Integer.parseInt(parametros.getString("qtdMeia"));
         lblQtdInteira.setText(String.valueOf(qtdInteira));
         lblQtdMeia.setText(String.valueOf(qtdMeia));
-        lblQtdPipocaRefri.setText(String.valueOf(parametros.getInt("lanche")));
+        lblQtdPipocaRefri.setText(String.valueOf(parametros.getInt("qtdLanche")));
         double precoInteira = parametros.getDouble("precoInteira");
         double precoLanche = parametros.getDouble("precoLanche");
         int qtdLanche = parametros.getInt("qtdLanche");
@@ -81,8 +81,8 @@ public class ResumoActivity extends AppCompatActivity {
         super.onRestart();
     }
     public void confirmarCompraIngresso(View view){
-         ingressoBD.saveIngresso(ingresso);
+        ingressoBD.saveIngresso(ingresso);
         Intent intentPrincipal= new Intent(this, PrincipalActivity.class);
-        startActivity(intentPrincipal);
+        navigateUpTo(intentPrincipal);
     }
 }

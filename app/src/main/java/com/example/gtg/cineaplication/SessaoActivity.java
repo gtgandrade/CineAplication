@@ -123,7 +123,7 @@ public class SessaoActivity extends AppCompatActivity {
             parametros.putString("qtdInteira", edtQtdInteira.getText().toString());
             parametros.putString("qtdMeia", edtQtdMeia.getText().toString());
             int opcaoSim = R.id.rbPipocaRefrigeranteSim;
-            parametros.putInt("qtdLanche", (rgPipocaRefri.getCheckedRadioButtonId()==opcaoSim?1:0));
+            parametros.putInt("qtdLanche", (rgPipocaRefri.getCheckedRadioButtonId() == opcaoSim?1:0));
             parametros.putDouble("precoInteira", 22.00);
             parametros.putDouble("precoLanche", 18.00);
 
