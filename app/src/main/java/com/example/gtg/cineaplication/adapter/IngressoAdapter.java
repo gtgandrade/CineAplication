@@ -15,11 +15,11 @@ import java.util.List;
  * Created by gtg on 27/12/17.
  */
 
-public class IngressosAdapter extends RecyclerView.Adapter{
+public class IngressoAdapter extends RecyclerView.Adapter{
    private Context context;
    private List<Ingresso> ingressos;
 
-    public IngressosAdapter(Context context, List<Ingresso> ingressos){
+    public IngressoAdapter(Context context, List<Ingresso> ingressos){
         this.context = context;
         this.ingressos = ingressos;
     }

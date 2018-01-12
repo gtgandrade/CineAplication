@@ -4,10 +4,9 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.gtg.cineaplication.DB.IngressoBD;
+import com.example.gtg.cineaplication.DAO.IngressoBD;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Ingresso;
 import com.example.gtg.cineaplication.modelo.Sessao;
@@ -31,16 +30,16 @@ public class ResumoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resumo);
-        lblFilmeComprado = findViewById(R.id.lblFilmeComprado);
-        lblNumeroSala = findViewById(R.id.lblNumeroSala);
-        lblDescricaoHora = findViewById(R.id.lblDescricaoHora);
-        lblQtdInteira = findViewById(R.id.lblQtdInteira);
-        lblPrecoInteira = findViewById(R.id.lblPrecoInteira);
-        lblQtdMeia = findViewById(R.id.lblQtdMeia);
-        lblPrecoMeia = findViewById(R.id.lblPrecoMeia);
-        lblQtdPipocaRefri = findViewById(R.id.lblQtdPipocaRefri);
-        lblPrecoPipocaRefri = findViewById(R.id.lblPrecoPipocaRefri);
-        lblValorTotal = findViewById(R.id.lblValorTotal);
+        lblFilmeComprado = findViewById(R.id.resumo_lblFilmeComprado);
+        lblNumeroSala = findViewById(R.id.resumo_lblNumeroSala);
+        lblDescricaoHora = findViewById(R.id.resumo_lblDescricaoHora);
+        lblQtdInteira = findViewById(R.id.resumo_lblQtdInteira);
+        lblPrecoInteira = findViewById(R.id.resumo_lblPrecoInteira);
+        lblQtdMeia = findViewById(R.id.resumo_lblQtdMeia);
+        lblPrecoMeia = findViewById(R.id.resumo_lblPrecoMeia);
+        lblQtdPipocaRefri = findViewById(R.id.resumo_lblQtdPipocaRefri);
+        lblPrecoPipocaRefri = findViewById(R.id.resumo_lblPrecoPipocaRefri);
+        lblValorTotal = findViewById(R.id.resumo_lblValorTotal);
 
         Bundle parametros = getIntent().getExtras();
         filme = new Filme();

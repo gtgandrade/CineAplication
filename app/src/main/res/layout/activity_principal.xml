@@ -21,17 +21,24 @@
         app:srcCompat="@drawable/cinema" />
 
     <Button
-        android:id="@+id/btnFilmesCartaz"
+        android:id="@+id/principal_btnFilmesCartaz"
         android:layout_width="match_parent"
-        android:layout_height="81dp"
+        android:layout_height="80dp"
         android:layout_marginTop="10dp"
         android:onClick="irParaActivityFilme"
         android:text="Filmes em Cartaz" />
 
     <Button
-        android:id="@+id/btnMeusIngressos"
+        android:id="@+id/principal_btnMeusIngressos"
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="80dp"
         android:onClick="irParaActivityIngressos"
         android:text="Meus Ingressos" />
+
+    <Button
+        android:id="@+id/principal_btnConfiguracoes"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:onClick="irParaActivityConfiguracoes"
+        android:text="Configurações" />
 </LinearLayout>

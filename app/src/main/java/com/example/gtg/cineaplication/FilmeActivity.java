@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gtg.cineaplication.DB.FilmeBD;
+import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 import java.util.List;
@@ -22,11 +22,11 @@ public class FilmeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filme);
-        lblTituloFilme = findViewById(R.id.lblTituloFilme);
-        FilmeBD fimeBD = new FilmeBD(this);
+        lblTituloFilme = findViewById(R.id.filme_lblTituloFilme);
+        FilmeDAO fimeBD = new FilmeDAO(this);
         filmes = fimeBD.findAll();
         filme = filmes.get(++indiceFilme);
-        imgFilme = findViewById(R.id.imgFilme);
+        imgFilme = findViewById(R.id.filme_imgFilme);
         imgFilme.setImageResource(filme.getCodigo());
         lblTituloFilme.setText(filme.getNome());
     }

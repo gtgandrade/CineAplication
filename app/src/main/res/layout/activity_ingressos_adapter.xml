@@ -17,7 +17,7 @@
             android:background="#FFFFFF" />
 
         <TextView
-            android:id="@+id/lblTituloFilmeM"
+            android:id="@+id/ingresssos_adapter_lblTituloFilme"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Filme"
@@ -38,14 +38,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/lblItemM"
+                    android:id="@+id/ingresssos_adapter_lblItem"
                     android:layout_width="174dp"
                     android:layout_height="wrap_content"
                     android:text="Descrição"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/lblQuantidadeM"
+                    android:id="@+id/ingresssos_adapter_lblQuantidadeM"
                     android:layout_width="59dp"
                     android:layout_height="wrap_content"
                     android:text="Quant"
@@ -53,7 +53,7 @@
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/lblPrecoUnidadeM"
+                    android:id="@+id/ingresssos_adapter_lblPrecoUnidade"
                     android:layout_width="86dp"
                     android:layout_height="wrap_content"
                     android:text="Preço"
@@ -66,14 +66,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/lblInteiraM"
+                    android:id="@+id/ingresssos_adapter_lblInteira"
                     android:layout_width="126dp"
                     android:layout_height="wrap_content"
                     android:text="Entrada Inteira"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/lblQtdInteiraM"
+                    android:id="@+id/ingresssos_adapter_lblQtdInteira"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:text="1"
@@ -81,7 +81,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/lblPrecoInteiraM"
+                    android:id="@+id/ingresssos_adapter_lblPrecoInteira"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:text="R$ 22,00"
@@ -94,14 +94,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/lblMeia"
+                    android:id="@+id/ingresssos_adapter_lblMeia"
                     android:layout_width="126dp"
                     android:layout_height="wrap_content"
                     android:text="Meia Entrada"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/lblQtdMeiaM"
+                    android:id="@+id/ingresssos_adapter_lblQtdMeia"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:text="1"
@@ -109,7 +109,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/lblPrecoMeiaM"
+                    android:id="@+id/ingresssos_adapter_lblPrecoMeia"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:text="R$ 22,00"
@@ -122,14 +122,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/lblPipocaRefriM"
+                    android:id="@+id/ingresssos_adapter_lblPipocaRefri"
                     android:layout_width="126dp"
                     android:layout_height="wrap_content"
                     android:text="Pipoca + Refrigerante"
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/lblQtdPipocaRefriM"
+                    android:id="@+id/ingresssos_adapter_lblQtdPipocaRefri"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:text="1"
@@ -137,7 +137,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/lblPrecoPipocaRefriM"
+                    android:id="@+id/ingresssos_adapter_lblPrecoPipocaRefri"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:text="R$ 22,00"
@@ -150,14 +150,14 @@
                 android:layout_height="wrap_content">
 
                 <TextView
-                    android:id="@+id/lblTotal"
+                    android:id="@+id/ingresssos_adapter_lblTotal"
                     android:layout_width="126dp"
                     android:layout_height="wrap_content"
                     android:text="TOTAL"
                     android:textSize="18sp" />
 
                 <TextView
-                    android:id="@+id/lblEspaco"
+                    android:id="@+id/ingresssos_adapter_lblEspaco"
                     android:layout_width="50dp"
                     android:layout_height="wrap_content"
                     android:textAlignment="center"
@@ -165,7 +165,7 @@
                     android:textSize="14sp" />
 
                 <TextView
-                    android:id="@+id/lblValorTotalM"
+                    android:id="@+id/ingresssos_adapter_lblValorTotal"
                     android:layout_width="77dp"
                     android:layout_height="wrap_content"
                     android:text="R$ 0.00"

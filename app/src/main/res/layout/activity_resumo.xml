@@ -8,7 +8,7 @@
     tools:context="com.example.gtg.cineaplication.ResumoActivity">
 
     <TextView
-        android:id="@+id/lblFilmeComprado"
+        android:id="@+id/resumo_lblFilmeComprado"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:text="Filme Escolhido"
@@ -29,28 +29,28 @@
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/lblSala"
+                android:id="@+id/resumo_lblSala"
                 android:layout_width="55dp"
                 android:layout_height="wrap_content"
                 android:text="Sala:"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblNumeroSala"
+                android:id="@+id/resumo_lblNumeroSala"
                 android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:text="1"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblHorario"
+                android:id="@+id/resumo_lblHorario"
                 android:layout_width="76dp"
                 android:layout_height="wrap_content"
                 android:text="Horário:"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblDescricaoHora"
+                android:id="@+id/resumo_lblDescricaoHora"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="10:00"
@@ -74,14 +74,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lblItem"
+                android:id="@+id/resumo_lblItem"
                 android:layout_width="174dp"
                 android:layout_height="wrap_content"
                 android:text="Descrição"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblQuantidade"
+                android:id="@+id/resumo_lblQuantidade"
                 android:layout_width="59dp"
                 android:layout_height="wrap_content"
                 android:text="Quant"
@@ -89,7 +89,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblPrecoUnidade"
+                android:id="@+id/resumo_lblPrecoUnidade"
                 android:layout_width="86dp"
                 android:layout_height="wrap_content"
                 android:text="Preço"
@@ -101,14 +101,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lblInteira"
+                android:id="@+id/resumo_lblInteira"
                 android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:text="Entrada Inteira"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblQtdInteira"
+                android:id="@+id/resumo_lblQtdInteira"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -116,7 +116,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblPrecoInteira"
+                android:id="@+id/resumo_lblPrecoInteira"
                 android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:text="R$ 22,00"
@@ -128,14 +128,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lblMeia"
+                android:id="@+id/resumo_lblMeia"
                 android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:text="Meia Entrada"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblQtdMeia"
+                android:id="@+id/resumo_lblQtdMeia"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -143,7 +143,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblPrecoMeia"
+                android:id="@+id/resumo_lblPrecoMeia"
                 android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:text="R$ 22,00"
@@ -155,14 +155,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lblPipocaRefri"
+                android:id="@+id/resumo_lblPipocaRefri"
                 android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:text="Pipoca + Refrigerante"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblQtdPipocaRefri"
+                android:id="@+id/resumo_lblQtdPipocaRefri"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="1"
@@ -170,7 +170,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblPrecoPipocaRefri"
+                android:id="@+id/resumo_lblPrecoPipocaRefri"
                 android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:text="R$ 22,00"
@@ -187,14 +187,14 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/lblToal"
+                android:id="@+id/resumo_lblToal"
                 android:layout_width="126dp"
                 android:layout_height="wrap_content"
                 android:text="Total"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/lblQtd"
+                android:id="@+id/resumo_lblQtd"
                 android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -202,7 +202,7 @@
                 android:textSize="14sp" />
 
             <TextView
-                android:id="@+id/lblValorTotal"
+                android:id="@+id/resumo_lblValorTotal"
                 android:layout_width="77dp"
                 android:layout_height="wrap_content"
                 android:text="R$ 22,00"
@@ -212,7 +212,7 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/resumo_btnConfirmarCompraIngresso"
         android:layout_width="match_parent"
         android:layout_height="53dp"
         android:onClick="confirmarCompraIngresso"

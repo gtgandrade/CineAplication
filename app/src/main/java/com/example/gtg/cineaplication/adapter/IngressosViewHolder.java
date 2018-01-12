@@ -22,13 +22,13 @@ public class IngressosViewHolder extends RecyclerView.ViewHolder {
     final TextView lblValorTotalM;
     public IngressosViewHolder(View itemView) {
         super(itemView);
-        lblTituloFilmeM = (TextView) itemView.findViewById(R.id.lblTituloFilmeM);
-        lblQtdInteiraM = (TextView) itemView.findViewById(R.id.lblQtdInteiraM);
-        lblQtdMeiaM = (TextView) itemView.findViewById(R.id.lblQtdMeiaM);
-        lblQtdPipocaRefriM = (TextView) itemView.findViewById(R.id.lblQtdPipocaRefriM);
-        lblPrecoInteiraM = (TextView) itemView.findViewById(R.id.lblPrecoInteiraM);
-        lblPrecoMeiaM = (TextView) itemView.findViewById(R.id.lblPrecoMeiaM);
-        lblPrecoPipocaRefriM = (TextView) itemView.findViewById(R.id.lblPrecoPipocaRefriM);
-        lblValorTotalM = (TextView) itemView.findViewById(R.id.lblValorTotalM);
+        lblTituloFilmeM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblTituloFilme);
+        lblQtdInteiraM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblQtdInteira);
+        lblQtdMeiaM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblQtdMeia);
+        lblQtdPipocaRefriM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblQtdPipocaRefri);
+        lblPrecoInteiraM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblPrecoInteira);
+        lblPrecoMeiaM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblPrecoMeia);
+        lblPrecoPipocaRefriM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblPrecoPipocaRefri);
+        lblValorTotalM = (TextView) itemView.findViewById(R.id.ingresssos_adapter_lblValorTotal);
     }
 }

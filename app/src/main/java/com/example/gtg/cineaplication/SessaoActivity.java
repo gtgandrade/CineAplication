@@ -12,8 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DB.HorarioBD;
-import com.example.gtg.cineaplication.DB.SessaoBD;
+import com.example.gtg.cineaplication.DAO.HorarioBD;
+import com.example.gtg.cineaplication.DAO.SessaoBD;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
@@ -40,13 +40,13 @@ public class SessaoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sessao);
-        lblFilmeEscolhido = findViewById(R.id.lblFilmeEscolhido);
-        spnHorarios = findViewById(R.id.spnHorarios);
-        edtQtdInteira = findViewById(R.id.edtQtdInteira);
-        edtQtdMeia = findViewById(R.id.edtQtdMeia);
-        chkInteira = findViewById(R.id.chkInteira);
-        chkMeia = findViewById(R.id.chkMeia);
-        rgPipocaRefri = findViewById(R.id.rgPipocaRefrigerante);
+        lblFilmeEscolhido = findViewById(R.id.sessao_lblFilmeEscolhido);
+        spnHorarios = findViewById(R.id.sessao_spnHorarios);
+        edtQtdInteira = findViewById(R.id.sessao_edtQtdInteira);
+        edtQtdMeia = findViewById(R.id.sessao_edtQtdMeia);
+        chkInteira = findViewById(R.id.sessao_chkInteira);
+        chkMeia = findViewById(R.id.sessao_chkMeia);
+        rgPipocaRefri = findViewById(R.id.sessao_rgPipocaRefrigerante);
         Bundle paramentros = getIntent().getExtras();
         horarioBD = new HorarioBD(this );
         filme = new Filme();
@@ -122,7 +122,7 @@ public class SessaoActivity extends AppCompatActivity {
             parametros.putInt("idsessao", sessao.getIdsessao());
             parametros.putString("qtdInteira", edtQtdInteira.getText().toString());
             parametros.putString("qtdMeia", edtQtdMeia.getText().toString());
-            int opcaoSim = R.id.rbPipocaRefrigeranteSim;
+            int opcaoSim = R.id.sessao_rbPipocaRefrigeranteSim;
             parametros.putInt("qtdLanche", (rgPipocaRefri.getCheckedRadioButtonId() == opcaoSim?1:0));
             parametros.putDouble("precoInteira", 22.00);
             parametros.putDouble("precoLanche", 18.00);

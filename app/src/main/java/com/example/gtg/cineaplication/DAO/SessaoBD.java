@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication.DB;
+package com.example.gtg.cineaplication.DAO;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -21,7 +21,7 @@ public class SessaoBD extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private String comandosql;
     private HorarioBD horarioBD;
-    private FilmeBD filmeBD;
+    private FilmeDAO filmeBD;
     private Context context;
 
     public SessaoBD(Context context) {
@@ -86,7 +86,7 @@ public class SessaoBD extends SQLiteOpenHelper {
         SQLiteDatabase sessaoBD = getReadableDatabase();
         Sessao sessao;
         horarioBD = new HorarioBD(this.context);
-        filmeBD = new FilmeBD(this.context);
+        filmeBD = new FilmeDAO(this.context);
         try{
             String condicao = "idsessao = '"+idsessao+"'";
             Cursor cursor = sessaoBD.query("sessao",null,condicao,null,

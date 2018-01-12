@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication.DB;
+package com.example.gtg.cineaplication.DAO;
 
 import android.content.Context;
 import android.database.Cursor;

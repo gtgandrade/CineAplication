@@ -1,16 +1,10 @@
-package com.example.gtg.cineaplication.DB;
+package com.example.gtg.cineaplication.DAO;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.gtg.cineaplication.R;
-import com.example.gtg.cineaplication.modelo.Filme;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by gutemberg on 26/11/17.
