@@ -22,15 +22,15 @@ public class FilmeDAO{
     public boolean salvar(Filme filme){
         long salvo;
 
-        ContentValues campos = new ContentValues();
-        campos.put("nome", filme.getCodigo());
-        campos.put("codigo", filme.getCodigo());
-        campos.put("nome", filme.getNome());
-        campos.put("pais", filme.getPais());
-        campos.put("versao", filme.getVersao());
-        campos.put("duracao", filme.getDuracao());
-        campos.put("habilitado", filme.getHabilitado());
-        salvo = conexao.getDatabase().insert("filme",null, campos);
+        ContentValues valoresCampos = new ContentValues();
+        valoresCampos.put("nome", filme.getCodigo());
+        valoresCampos.put("codigo", filme.getCodigo());
+        valoresCampos.put("nome", filme.getNome());
+        valoresCampos.put("pais", filme.getPais());
+        valoresCampos.put("versao", filme.getVersao());
+        valoresCampos.put("duracao", filme.getDuracao());
+        valoresCampos.put("habilitado", filme.getHabilitado());
+        salvo = conexao.getDatabase().insert("filme",null, valoresCampos);
 
         return salvo > 0? true : false;
     }
@@ -38,33 +38,33 @@ public class FilmeDAO{
     public boolean atualizar(Filme filme){
         long salvo;
 
-        ContentValues valores = new ContentValues();
-        valores.put("nome", filme.getCodigo());
-        valores.put("codigo", filme.getCodigo());
-        valores.put("nome", filme.getNome());
-        valores.put("pais", filme.getPais());
-        valores.put("versao", filme.getVersao());
-        valores.put("duracao", filme.getDuracao());
-        valores.put("habilitado", filme.getHabilitado());
+        ContentValues valoresCampos = new ContentValues();
+        valoresCampos.put("nome", filme.getCodigo());
+        valoresCampos.put("codigo", filme.getCodigo());
+        valoresCampos.put("nome", filme.getNome());
+        valoresCampos.put("pais", filme.getPais());
+        valoresCampos.put("versao", filme.getVersao());
+        valoresCampos.put("duracao", filme.getDuracao());
+        valoresCampos.put("habilitado", filme.getHabilitado());
 
-        String condicao = "idfilme = '"+filme.getIdfilme()+"'";
-        salvo = conexao.getDatabase().update("filme", valores, condicao, null);
+        String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
+        salvo = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
 
         return salvo > 0? true : false;
     }
 
     public boolean excluir(Filme filme){
         int excluiu = 0;
-        String condicao = "idfilme = '"+filme.getIdfilme()+"'";
-        excluiu = conexao.getDatabase().delete("filme", condicao, null);
+        String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
+        excluiu = conexao.getDatabase().delete("filme", condicaoWhere, null);
 
         return excluiu > 0? true: false;
     }
 
     public Filme procurarPorId(int idfilme){
         Filme filme = new Filme();
-        String condicao = "idfilme = '"+idfilme+"'";
-        cursor = conexao.getDatabase().query("filme",null, condicao,null,
+        String condicaoWhere = "idfilme = '"+idfilme+"'";
+        cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
                     null, null, null, null);
         if(cursor.moveToFirst()){
             filme.setIdfilme(cursor.getInt(0));
