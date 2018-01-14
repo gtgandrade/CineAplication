@@ -24,34 +24,42 @@ public class FilmeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filme);
         lblTituloFilme = findViewById(R.id.filme_lblTituloFilme);
         FilmeDAO fimeBD = new FilmeDAO(this);
-        filmes = fimeBD.findAll();
-        filme = filmes.get(++indiceFilme);
-        imgFilme = findViewById(R.id.filme_imgFilme);
-        imgFilme.setImageResource(filme.getCodigo());
-        lblTituloFilme.setText(filme.getNome());
+        filmes = fimeBD.procurarTodos();
+        if(filmes.size() > 0) {
+            filme = filmes.get(++indiceFilme);
+            imgFilme = findViewById(R.id.filme_imgFilme);
+            imgFilme.setImageResource(filme.getCodigo());
+            lblTituloFilme.setText(filme.getNome());
+        }
     }
 
     public void irParaFilmeProximo(View view){
-        indiceFilme = (indiceFilme+1)%filmes.size();
-        filme = filmes.get(indiceFilme);
-        imgFilme.setImageResource(filme.getCodigo());
-        lblTituloFilme.setText(filme.getNome());
+        if(filmes.size() > 0) {
+            indiceFilme = (indiceFilme + 1) % filmes.size();
+            filme = filmes.get(indiceFilme);
+            imgFilme.setImageResource(filme.getCodigo());
+            lblTituloFilme.setText(filme.getNome());
+        }
     }
     public void irParaFilmeAnterior(View view){
-        if(indiceFilme == 0)
-            indiceFilme = filmes.size();
-        indiceFilme = (indiceFilme-1)%filmes.size();
-        filme = filmes.get(indiceFilme);
-        imgFilme.setImageResource(filme.getCodigo());
-        lblTituloFilme.setText(filme.getNome());
+        if(filmes.size() > 0) {
+            if (indiceFilme == 0)
+                indiceFilme = filmes.size();
+            indiceFilme = (indiceFilme - 1) % filmes.size();
+            filme = filmes.get(indiceFilme);
+            imgFilme.setImageResource(filme.getCodigo());
+            lblTituloFilme.setText(filme.getNome());
+        }
     }
     public void irParaSessao(View view){
-        Intent intentSessao = new Intent(this, SessaoActivity.class);
-        Bundle parametros = new Bundle();
-        parametros.putInt("idfilme", filme.getIdfilme());
-        parametros.putInt("codigo", filme.getCodigo());
-        parametros.putString("nome", filme.getNome());
-        intentSessao.putExtras(parametros);
-        startActivity(intentSessao);
+        if(filmes.size() > 0) {
+            Intent intentSessao = new Intent(this, SessaoActivity.class);
+            Bundle parametros = new Bundle();
+            parametros.putInt("idfilme", filme.getIdfilme());
+            parametros.putInt("codigo", filme.getCodigo());
+            parametros.putString("nome", filme.getNome());
+            intentSessao.putExtras(parametros);
+            startActivity(intentSessao);
+        }
     }
 }

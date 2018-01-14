@@ -95,7 +95,7 @@ public class SessaoBD extends SQLiteOpenHelper {
             if(cursor.moveToFirst()){
                 sessao.setIdsessao(cursor.getInt(0));
                 sessao.setSala(cursor.getInt(1));
-                sessao.setFilme(filmeBD.findFilmeBy(cursor.getInt(2)));
+                sessao.setFilme(filmeBD.procurarPorId(cursor.getInt(2)));
                 sessao.setHorario(horarioBD.findHorarioBy(cursor.getInt(3)));
 
             }

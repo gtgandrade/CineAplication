@@ -25,7 +25,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_configuracoes);
         recyclerView = (RecyclerView) findViewById(R.id.configuracoes_rvFilmes);
         fimeBD = new FilmeDAO(this);
-        FilmeAdapter filmeAdapter = new FilmeAdapter(this, fimeBD.findAll());
+        FilmeAdapter filmeAdapter = new FilmeAdapter(this, fimeBD.procurarTodos());
         GridLayoutManager glm = new GridLayoutManager(this,2);
         recyclerView.setLayoutManager(glm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -33,9 +33,7 @@ public class ConfiguracoesActivity extends AppCompatActivity {
     }
 
     public void carregarImagem(View view){
-        int SELECT_PICTURE = 1;
-        Intent intentCarregarImagem = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(Intent.createChooser(intentCarregarImagem, "Selecione uma imagem"), 1);
+        Intent intentCadastroFilme = new Intent(this, CadastroFilmeActivity.class);
+        startActivity(intentCadastroFilme);
     }
 }

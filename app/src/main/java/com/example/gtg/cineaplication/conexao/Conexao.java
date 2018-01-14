@@ -21,7 +21,7 @@ public class Conexao {
             conexao = new Conexao(ctx);
         return conexao;
     }
-
+    
     public SQLiteDatabase getDatabase(){
         return this.db;
     }

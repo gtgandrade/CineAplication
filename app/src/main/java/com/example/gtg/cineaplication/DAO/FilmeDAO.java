@@ -3,97 +3,92 @@ package com.example.gtg.cineaplication.DAO;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.gtg.cineaplication.conexao.Conexao;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gutemberg on 27/11/17.
- */
 
-public class FilmeDAO extends SQLiteOpenHelper {
-    private static final String DB_NAME = "bdcinema.db";
-    private static final int DB_VERSION = 1;
-    private String comandosql;
+public class FilmeDAO{
+    private Conexao conexao;
+    private Cursor cursor;
 
     public FilmeDAO(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
+        this.conexao = Conexao.getInstance(context);
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-        comandosql = "CREATE TABLE filme (idfilme   INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                                         "codigo    INTEGER," +
-                                         "nome     VARCHAR (50)," +
-                                         "pais     VARCHAR (30)," +
-                                         "versao   VARCHAR (20)," +
-                                         "habilitado INTEGER)";
-        db.execSQL(comandosql);
+    public boolean salvar(Filme filme){
+        long salvo;
+
+        ContentValues campos = new ContentValues();
+        campos.put("nome", filme.getCodigo());
+        campos.put("codigo", filme.getCodigo());
+        campos.put("nome", filme.getNome());
+        campos.put("pais", filme.getPais());
+        campos.put("versao", filme.getVersao());
+        campos.put("duracao", filme.getDuracao());
+        campos.put("habilitado", filme.getHabilitado());
+        salvo = conexao.getDatabase().insert("filme",null, campos);
+
+        return salvo > 0? true : false;
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        comandosql = "DROP TABLE IF EXISTS ingresso";
-        db.execSQL(comandosql);
-        comandosql = "DROP TABLE IF EXISTS sessao";
-        db.execSQL(comandosql);
-        comandosql = "DROP TABLE IF EXISTS filme";
-        db.execSQL(comandosql);
+    public boolean atualizar(Filme filme){
+        long salvo;
 
+        ContentValues valores = new ContentValues();
+        valores.put("nome", filme.getCodigo());
+        valores.put("codigo", filme.getCodigo());
+        valores.put("nome", filme.getNome());
+        valores.put("pais", filme.getPais());
+        valores.put("versao", filme.getVersao());
+        valores.put("duracao", filme.getDuracao());
+        valores.put("habilitado", filme.getHabilitado());
+
+        String condicao = "idfilme = '"+filme.getIdfilme()+"'";
+        salvo = conexao.getDatabase().update("filme", valores, condicao, null);
+
+        return salvo > 0? true : false;
     }
 
+    public boolean excluir(Filme filme){
+        int excluiu = 0;
+        String condicao = "idfilme = '"+filme.getIdfilme()+"'";
+        excluiu = conexao.getDatabase().delete("filme", condicao, null);
 
-    public long saveFilme(Filme filme){
-        SQLiteDatabase cineBD = getWritableDatabase();
-        try{
-            ContentValues valores = new ContentValues();
-            valores.put("codigo", filme.getCodigo());
-            valores.put("nome", filme.getNome());
-
-            return cineBD.insert("filme","", valores);
-        }finally {
-            cineBD.close();
-        }
+        return excluiu > 0? true: false;
     }
-    public Filme findFilmeBy(int idfilme){
-        SQLiteDatabase cineBD = getReadableDatabase();
+
+    public Filme procurarPorId(int idfilme){
         Filme filme = new Filme();
-        try{
-            String condicao = "idfilme = '"+idfilme+"'";
-            Cursor cursor = cineBD.query("filme",null,condicao,null,
+        String condicao = "idfilme = '"+idfilme+"'";
+        cursor = conexao.getDatabase().query("filme",null, condicao,null,
                     null, null, null, null);
-            if(cursor.moveToFirst()){
-                     filme.setIdfilme(cursor.getInt(0));
-                    filme.setCodigo(cursor.getInt(1));
-                    filme.setNome(cursor.getString(2));
-             }
-            return  filme;
-        }finally {
-            cineBD.close();
+        if(cursor.moveToFirst()){
+            filme.setIdfilme(cursor.getInt(0));
+            filme.setCodigo(cursor.getInt(1));
+            filme.setNome(cursor.getString(2));
         }
+
+        return  filme;
     }
-    public List<Filme> findAll(){
-        SQLiteDatabase cineBD = getReadableDatabase();
+
+    public List<Filme> procurarTodos(){
         List<Filme> filmes = new ArrayList<Filme>();
-        try{
-            Cursor cursor = cineBD.query(false,"filme",null,null,null,
+        cursor = conexao.getDatabase().query(false,"filme",null,null,null,
                     null, null, null, null);
-            if(cursor.moveToFirst()){
-                do{
-                    Filme filme = new Filme();
-                    filme.setIdfilme(cursor.getInt(0));
-                    filme.setCodigo(cursor.getInt(1));
-                    filme.setNome(cursor.getString(2));
-                    filmes.add(filme);
-                }while(cursor.moveToNext());
-            }
-            return  filmes;
-        }finally {
-            cineBD.close();
+        if(cursor.moveToFirst()){
+            do{
+                Filme filme = new Filme();
+                filme.setIdfilme(cursor.getInt(0));
+                filme.setCodigo(cursor.getInt(1));
+                filme.setNome(cursor.getString(2));
+                filmes.add(filme);
+            }while(cursor.moveToNext());
         }
+
+        return  filmes;
     }
 }

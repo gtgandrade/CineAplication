@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.gtg.cineaplication.DAO.CriaBD;
+import com.example.gtg.cineaplication.conexao.Conexao;
 
 public class PrincipalActivity extends AppCompatActivity {
     @Override
@@ -14,12 +15,7 @@ public class PrincipalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
         Button btnFilmesCartaz = findViewById(R.id.principal_btnFilmesCartaz);
-        CriaBD criaBD = new CriaBD(this);
-        try{
-            criaBD.getReadableDatabase();
-        }finally {
-            criaBD.close();
-        }
+        Conexao.getInstance(this);
     }
 
     public void irParaActivityFilme(View view){
