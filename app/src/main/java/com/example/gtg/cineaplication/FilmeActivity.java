@@ -15,6 +15,7 @@ import java.util.List;
 
 public class FilmeActivity extends AppCompatActivity {
     private TextView lblTituloFilme;
+    private TextView lblVersaoFilme;
     private ImageView imgFilme;
     private int indiceFilme = -1;
     private List<Filme> filmes;
@@ -24,6 +25,7 @@ public class FilmeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filme);
         lblTituloFilme = findViewById(R.id.filme_lblTituloFilme);
+        lblVersaoFilme = findViewById(R.id.filme_lblVersaoFilme);
         FilmeDAO fimeBD = new FilmeDAO(this);
         filmes = fimeBD.procurarHabilitados();
         if(filmes.size() > 0) {
@@ -31,6 +33,7 @@ public class FilmeActivity extends AppCompatActivity {
             imgFilme = findViewById(R.id.filme_imgFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
+            lblVersaoFilme.setText(filme.getVersao());
         }
     }
 
@@ -40,6 +43,7 @@ public class FilmeActivity extends AppCompatActivity {
             filme = filmes.get(indiceFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
+            lblVersaoFilme.setText(filme.getVersao());
         }
     }
     public void irParaFilmeAnterior(View view){
@@ -50,6 +54,7 @@ public class FilmeActivity extends AppCompatActivity {
             filme = filmes.get(indiceFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
+            lblVersaoFilme.setText(filme.getVersao());
         }
     }
     public void irParaSessao(View view){

@@ -14,17 +14,17 @@
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_gravity="bottom|right"
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
         android:clickable="true"
-        android:elevation="8dp"
         android:onClick="irParaCadastroFilmeActivity"
         app:backgroundTint="@android:color/background_dark"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="226dp" />
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="223dp"
+        tools:layout_editor_absoluteY="450dp" />
 
 </android.support.design.widget.CoordinatorLayout>

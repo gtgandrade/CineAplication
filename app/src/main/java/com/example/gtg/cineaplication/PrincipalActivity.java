@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-
-import com.example.gtg.cineaplication.DAO.CriaBD;
-import com.example.gtg.cineaplication.conexao.Conexao;
 
 public class PrincipalActivity extends AppCompatActivity {
     @Override

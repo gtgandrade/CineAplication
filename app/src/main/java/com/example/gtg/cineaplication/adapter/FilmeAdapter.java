@@ -36,6 +36,10 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         Filme filme = this.filmes.get(position);
         FilmesViewHolder filmesViewHolder = (FilmesViewHolder)holder;
         filmesViewHolder.imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
+        filmesViewHolder.lblTitulo.setText(filme.getNome());
+        filmesViewHolder.lblDuracao.setText(String.valueOf(filme.getDuracao())+" min");
+        filmesViewHolder.lblVersao.setText(filme.getVersao());
+        filmesViewHolder.lblHabilitado.setText(filme.getHabilitado() == 1?"Em exibição":"Indisponível");
         filmesViewHolder.imgFilme.setOnClickListener(new FilmeOnClickListener(context, this.filmes, position));
     }
 
