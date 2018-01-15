@@ -3,26 +3,26 @@ package com.example.gtg.cineaplication.conexao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by gtg on 31/12/17.
- */
-
+/** Created by gtg on 31/12/17. */
 public class Conexao {
-    private static Conexao conexao;
-    private SQLiteDatabase db;
+	private static Conexao conexao;
+	private BancoDados bancoDados;
 
-    public Conexao(Context ctx){
-        BancoDados bancoDados = new BancoDados(ctx);
-        this.db = bancoDados.getWritableDatabase();
-    }
+	public static Conexao getInstance(Context ctx) {
+		if (conexao == null)
+			conexao = new Conexao(ctx);
+		return conexao;
+	}
 
-    public static Conexao getInstance(Context ctx){
-         if (conexao == null)
-            conexao = new Conexao(ctx);
-        return conexao;
-    }
-    
-    public SQLiteDatabase getDatabase(){
-        return this.db;
-    }
+	private Conexao(Context ctx) {
+		bancoDados = new BancoDados(ctx);
+	}
+
+	public SQLiteDatabase getWritable() {
+		return (bancoDados.getWritableDatabase());
+	}
+
+	public SQLiteDatabase getReadable() {
+		return (bancoDados.getReadableDatabase());
+	}
 }

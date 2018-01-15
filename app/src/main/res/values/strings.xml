@@ -1,3 +1,14 @@
 <resources>
-    <string name="app_name">CineAplication</string>
+	<string name="app_name">CineAplication</string>
+
+	<!-- strings da tela cadastro de filme-->
+	<string name="poster_do_filme">poster do filme</string>
+	<string name="filme_nome">Nome:</string>
+	<string name="filme_pais">País:</string>
+	<string name="filme_versao">Versão:</string>
+	<string name="filme_duracao">Duração:</string>
+	<string name="filme_exibixao">Em exibição?</string>
+	<string name="yes">Sim</string>
+	<string name="no">Não</string>
+	<string name="filme_bt_salvar">Salvar</string>
 </resources>

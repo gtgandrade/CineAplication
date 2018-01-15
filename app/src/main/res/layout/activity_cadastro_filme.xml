@@ -1,108 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<ScrollView
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+   tools:context=".CadastroFilmeActivity"
+	>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		>
 
-            <ImageView
-                android:id="@+id/cadastroFilme_imgCartazFilme"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/depois_montanha" />
+		<ImageView
+			android:id="@+id/cadastroFilme_imgCartazFilme"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			app:srcCompat="@drawable/depois_montanha"
+			android:contentDescription="@string/poster_do_filme"
+		/>
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nome:" />
+		<TextView
+			android:id="@+id/textView"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/filme_nome"
+		/>
 
-            <EditText
-                android:id="@+id/cadastroFilme_edtNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+		<EditText
+			android:id="@+id/cadastroFilme_edtNome"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ems="10"
+			android:inputType="textPersonName"
+			/>
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="País:" />
+		<TextView
+			android:id="@+id/textView2"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/filme_pais"
+			/>
 
-            <EditText
-                android:id="@+id/cadastroFilme_edtPais"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"/>
+		<EditText
+			android:id="@+id/cadastroFilme_edtPais"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ems="10"
+			android:inputType="textPersonName"
+			/>
 
-            <TextView
-                android:id="@+id/textView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Versão:" />
+		<TextView
+			android:id="@+id/textView3"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/filme_versao"
+			/>
 
-            <Spinner
-                android:id="@+id/cadastroFilme_spnVersao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+		<Spinner
+			android:id="@+id/cadastroFilme_spnVersao"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			/>
 
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Duração:" />
+		<TextView
+			android:id="@+id/textView4"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/filme_duracao"
+			/>
 
-            <EditText
-                android:id="@+id/cadastroFilme_edtDuracao"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName"/>
+		<EditText
+			android:id="@+id/cadastroFilme_edtDuracao"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ems="10"
+			android:inputType="textPersonName"
+			/>
 
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Em exibição?" />
+		<TextView
+			android:id="@+id/textView5"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="@string/filme_exibixao"
+			/>
 
-            <RadioGroup
-                android:id="@+id/cadastroFilme_rgExibicao"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+		<RadioGroup
+			android:id="@+id/cadastroFilme_rgExibicao"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+			>
 
-                <RadioButton
-                    android:id="@+id/cadastroFilme_rbExibicaoSim"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sim" />
+			<RadioButton
+				android:id="@+id/cadastroFilme_rbExibicaoSim"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/yes"
+				/>
 
-                <RadioButton
-                    android:id="@+id/cadastroFilme_rbExibicaoNao"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Não" />
+			<RadioButton
+				android:id="@+id/cadastroFilme_rbExibicaoNao"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:text="@string/no"
+				/>
 
-            </RadioGroup>
+		</RadioGroup>
 
-            <Button
-                android:id="@+id/cadastroFilme_btCadastroFilme"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:text="Salvar" />
-        </LinearLayout>
-    </ScrollView>
-</LinearLayout>
+		<Button
+			android:id="@+id/cadastroFilme_btCadastroFilme"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_weight="1"
+			android:text="@string/filme_bt_salvar"
+			/>
+	</LinearLayout>
+</ScrollView>
