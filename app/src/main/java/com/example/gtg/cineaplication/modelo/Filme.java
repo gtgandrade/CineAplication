@@ -5,13 +5,13 @@ package com.example.gtg.cineaplication.modelo;
  */
 
 public class Filme {
-    private int idfilme;
-    private String nome;
-    private String cartaz;
-    private String pais;
-    private String versao;
-    private int duracao;
-    private int habilitado;
+    private int idfilme = 0;
+    private String nome = null;
+    private String cartaz = null;
+    private String pais = null;
+    private String versao = null;
+    private int duracao = 0;
+    private int habilitado = 0;
 
     public int getIdfilme() {
         return idfilme;

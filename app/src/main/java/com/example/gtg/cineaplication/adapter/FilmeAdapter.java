@@ -1,12 +1,15 @@
 package com.example.gtg.cineaplication.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.gtg.cineaplication.CadastroFilmeActivity;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 
@@ -33,10 +36,29 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         Filme filme = this.filmes.get(position);
         FilmesViewHolder filmesViewHolder = (FilmesViewHolder)holder;
         filmesViewHolder.imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
+        filmesViewHolder.imgFilme.setOnClickListener(new FilmeOnClickListener(context, this.filmes, position));
     }
 
     @Override
     public int getItemCount() {
         return this.filmes.size();
+    }
+
+    private class FilmeOnClickListener implements View.OnClickListener{
+        private List<Filme> filmes;
+        private int position;
+        public FilmeOnClickListener(Context context, List<Filme> filmes, int position){
+            this.filmes = filmes;
+            this.position = position;
+        }
+        @Override
+        public void onClick(View view) {
+           Filme filme = this.filmes.get(position);
+            Intent intentEditarFilme = new Intent(context, CadastroFilmeActivity.class);
+            Bundle parametros = new Bundle();
+            parametros.putInt("idFilme", filme.getIdfilme());
+            intentEditarFilme.putExtras(parametros);
+            context.startActivity(intentEditarFilme);
+        }
     }
 }

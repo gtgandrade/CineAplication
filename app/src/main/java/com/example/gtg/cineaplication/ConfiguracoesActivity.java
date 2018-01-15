@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -26,14 +27,17 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.configuracoes_rvFilmes);
         fimeBD = new FilmeDAO(this);
         FilmeAdapter filmeAdapter = new FilmeAdapter(this, fimeBD.procurarTodos());
-        GridLayoutManager glm = new GridLayoutManager(this,2);
+        LinearLayoutManager glm = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(glm);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(filmeAdapter);
     }
 
-    public void carregarImagem(View view){
+    public void irParaCadastroFilmeActivity(View view){
         Intent intentCadastroFilme = new Intent(this, CadastroFilmeActivity.class);
+        Bundle parametros = new Bundle();
+        parametros.putInt("idFilme", 0);
+        intentCadastroFilme.putExtras(parametros);
         startActivity(intentCadastroFilme);
     }
 }

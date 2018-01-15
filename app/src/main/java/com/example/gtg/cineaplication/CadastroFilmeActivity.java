@@ -12,19 +12,13 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.modelo.Filme;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
 
 public class CadastroFilmeActivity extends AppCompatActivity {
     private ImageView imgCartazFilme;
@@ -33,8 +27,13 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     private Spinner spnVersao;
     private EditText edtDuracao;
     private RadioGroup rgExibicao;
+    private RadioButton rbExibicaoSim;
+    private RadioButton rbExibicaoNao;
     private Uri uriImagemSelecionada;
+    private ArrayAdapter<String> adapterVersao;
 
+    private Filme filme;
+    private  FilmeDAO filmeDAO;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +45,19 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         edtPais = (EditText) findViewById(R.id.cadastroFilme_edtPais);
         edtDuracao = (EditText) findViewById(R.id.cadastroFilme_edtDuracao);
         rgExibicao = (RadioGroup) findViewById(R.id.cadastroFilme_rgExibicao);
+        rbExibicaoSim = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoSim);
+        rbExibicaoNao = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoNao);
 
-        ArrayAdapter<String> adapterVersao = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.versao));
+        adapterVersao = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.versao));
         spnVersao.setAdapter(adapterVersao);
+        Bundle parametrosEntrada = getIntent().getExtras();
+        int idFilme = parametrosEntrada.getInt("idFilme");
+        filme = new Filme();
+        filmeDAO = new FilmeDAO(this);
+        if(idFilme != 0){
+            filme = filmeDAO.procurarPorId(idFilme);
+            inserirDadosInterface(filme);
+        }
     }
 
     public void buscarImagemCartaz(View view){
@@ -57,7 +66,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     }
 
     public void salvarFilme(View view){
-        Filme filme = new Filme();
+        Toast.makeText(this,"Filme ID: "+filme.getIdfilme(),Toast.LENGTH_SHORT).show();
         filme.setNome(edtNome.getText().toString());
         filme.setCartaz(uriImagemSelecionada.toString());
         filme.setPais(edtPais.getText().toString());
@@ -65,10 +74,26 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         filme.setDuracao(Integer.parseInt(edtDuracao.getText().toString()));
         int opcaoSelecionada = rgExibicao.getCheckedRadioButtonId() == R.id.cadastroFilme_rbExibicaoSim?1:0;
         filme.setHabilitado(opcaoSelecionada);
-        FilmeDAO filmeDAO = new FilmeDAO(this);
-        filmeDAO.salvar(filme);
+        if(filme.getIdfilme() == 0)
+            filmeDAO.salvar(filme);
+        else
+            filmeDAO.atualizar(filme);
         Intent intentPrincipal= new Intent(this, PrincipalActivity.class);
         navigateUpTo(intentPrincipal);
+    }
+
+    private void inserirDadosInterface(Filme filme){
+        uriImagemSelecionada = Uri.parse(filme.getCartaz());
+        imgCartazFilme.setImageURI(uriImagemSelecionada);
+        edtNome.setText(filme.getNome());
+        edtPais.setText(filme.getPais());
+        spnVersao.setSelection(adapterVersao.getPosition(filme.getVersao()));
+        edtDuracao.setText(String.valueOf(filme.getDuracao()));
+        if(filme.getHabilitado() == 1){
+            rbExibicaoSim.setChecked(true);
+        }else {
+            rbExibicaoNao.setChecked(true);
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

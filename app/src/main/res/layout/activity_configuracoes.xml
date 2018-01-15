@@ -21,7 +21,7 @@
         android:layout_marginRight="20dp"
         android:clickable="true"
         android:elevation="8dp"
-        android:onClick="carregarImagem"
+        android:onClick="irParaCadastroFilmeActivity"
         app:backgroundTint="@android:color/background_dark"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_input_add"
