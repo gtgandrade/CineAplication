@@ -66,7 +66,6 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     }
 
     public void salvarFilme(View view){
-        Toast.makeText(this,"Filme ID: "+filme.getIdfilme(),Toast.LENGTH_SHORT).show();
         filme.setNome(edtNome.getText().toString());
         filme.setCartaz(uriImagemSelecionada.toString());
         filme.setPais(edtPais.getText().toString());
