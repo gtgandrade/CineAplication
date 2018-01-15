@@ -45,10 +45,8 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
-
-        String condicaoWhere = "idfilme=?";
-        String[] parametroWhere = new String[]{String.valueOf(filme.getIdfilme())};
-        salvo = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, parametroWhere);
+        String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
+        salvo = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
 
         return salvo > 0? true : false;
     }
