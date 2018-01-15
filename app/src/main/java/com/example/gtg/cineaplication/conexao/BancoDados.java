@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.gtg.cineaplication.R;
+
 /**
  * Created by gtg on 31/12/17.
  */
@@ -16,6 +18,7 @@ public class BancoDados extends SQLiteOpenHelper {
     public BancoDados(Context context){
         super(context, DB_NAME, null, DB_VERSION);
     }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         comandosql = "CREATE TABLE filme (idfilme    INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL," +
@@ -27,14 +30,23 @@ public class BancoDados extends SQLiteOpenHelper {
                                          "habilitado INTEGER)";
         db.execSQL(comandosql);
 
+        comandosql = "INSERT INTO filme (idfilme, codigo, nome) VALUES (1, "+ R.drawable.liga_justica+", 'Liga da Justiça')";
+        db.execSQL(comandosql);
+
         comandosql = "CREATE TABLE horario (idhorario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                                            "descricao VARCHAR (5))";
+        db.execSQL(comandosql);
+
+        comandosql = "INSERT INTO horario (idhorario, descricao) VALUES (1, '13:00')";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE sessao (idsessao INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                                           "sala INTEGER, " +
                                           "filme_idfilme INTEGER REFERENCES filme (idfilme) NOT NULL, " +
-                                          "horario_idhorario INTEGER REFERENCES horario (idhorario) NOT NULL)";
+                                          "horario_idhorario INTEGER)";
+        db.execSQL(comandosql);
+
+        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (1, 10, 1, 1)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE ingresso (idingresso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +

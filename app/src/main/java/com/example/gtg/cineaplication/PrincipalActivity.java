@@ -22,6 +22,7 @@ public class PrincipalActivity extends AppCompatActivity {
         Intent intentFilme = new Intent(this, FilmeActivity.class);
         startActivity(intentFilme);
     }
+
     public void irParaActivityIngressos(View view){
         Intent intentIngressos = new Intent(this, IngressosActivity.class);
         startActivity(intentIngressos);

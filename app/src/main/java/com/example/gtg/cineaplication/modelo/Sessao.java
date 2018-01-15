@@ -5,10 +5,17 @@ package com.example.gtg.cineaplication.modelo;
  */
 
 public class Sessao {
-    private int idsessao;
+    private int idsessao = 0;
     private int sala;
     private Filme filme;
     private Horario horario;
+
+    public Sessao()
+    {
+        sala = 0;
+        filme = new Filme();
+        horario = new Horario();
+    }
 
     public int getIdsessao() {
         return idsessao;

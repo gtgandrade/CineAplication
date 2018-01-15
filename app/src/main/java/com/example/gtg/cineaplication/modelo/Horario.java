@@ -8,6 +8,12 @@ public class Horario{
     private int idhorario;
     private String descricao;
 
+    public Horario()
+    {
+        idhorario = 0;
+        descricao = "";
+    }
+
     public int getIdhorario() {
         return idhorario;
     }

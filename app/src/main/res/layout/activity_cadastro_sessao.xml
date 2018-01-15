@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvIdSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvSalaSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sala:"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etSalaSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tvLabelHorarioSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Horário:"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvIdHorarioSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvHorarioSessao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="(nenhum)"
+                android:textSize="22sp"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btHorariosSessao"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Horários Disponíveis"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btCadastroSessao"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Salvar"
+                android:onClick="salvarSessao" />
+
+            <Button
+                android:id="@+id/btRemoveSessao"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Remover"
+                android:onClick="removerSessao"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

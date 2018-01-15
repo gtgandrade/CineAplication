@@ -29,6 +29,8 @@
         <activity android:name=".IngressosActivity" />
         <activity android:name=".CadastroFilmeActivity" />
         <activity android:name=".ConfiguracoesActivity" />
+        <activity android:name=".ListaSessaoActivity" />
+        <activity android:name=".CadastroSessaoActivity" />
     </application>
 
 </manifest>
