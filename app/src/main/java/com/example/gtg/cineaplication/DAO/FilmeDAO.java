@@ -20,7 +20,7 @@ public class FilmeDAO{
     }
 
     public boolean salvar(Filme filme){
-        long salvo;
+        long salvou;
 
         ContentValues valoresCampos = new ContentValues();
         valoresCampos.put("nome", filme.getNome());
@@ -29,13 +29,13 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
-        salvo = conexao.getDatabase().insert("filme",null, valoresCampos);
+        salvou = conexao.getDatabase().insert("filme",null, valoresCampos);
 
-        return salvo > 0? true : false;
+        return salvou > 0;
     }
 
     public boolean atualizar(Filme filme){
-        long salvo;
+        long atualizou;
 
         ContentValues valoresCampos = new ContentValues();
         valoresCampos.put("nome", filme.getNome());
@@ -45,10 +45,11 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
-        String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
-        salvo = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
 
-        return salvo > 0? true : false;
+        String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
+        atualizou = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
+
+        return atualizou > 0;
     }
 
     public boolean excluir(Filme filme){
