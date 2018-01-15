@@ -16,8 +16,9 @@
             <ImageView
                 android:id="@+id/cadastroFilme_imgCartazFilme"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/depois_montanha" />
+                android:layout_height="50dp"
+                android:onClick="buscarImagemCartaz"
+                app:srcCompat="@drawable/adicionararquivo" />
 
             <TextView
                 android:id="@+id/textView"
@@ -67,7 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName|numberDecimal" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -102,6 +103,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:onClick="salvarFilme"
                 android:text="Salvar" />
         </LinearLayout>
     </ScrollView>

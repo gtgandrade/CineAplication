@@ -1,6 +1,7 @@
 package com.example.gtg.cineaplication;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,11 +25,11 @@ public class FilmeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_filme);
         lblTituloFilme = findViewById(R.id.filme_lblTituloFilme);
         FilmeDAO fimeBD = new FilmeDAO(this);
-        filmes = fimeBD.procurarTodos();
+        filmes = fimeBD.procurarHabilitados();
         if(filmes.size() > 0) {
             filme = filmes.get(++indiceFilme);
             imgFilme = findViewById(R.id.filme_imgFilme);
-            imgFilme.setImageResource(filme.getCodigo());
+            imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
         }
     }
@@ -37,7 +38,7 @@ public class FilmeActivity extends AppCompatActivity {
         if(filmes.size() > 0) {
             indiceFilme = (indiceFilme + 1) % filmes.size();
             filme = filmes.get(indiceFilme);
-            imgFilme.setImageResource(filme.getCodigo());
+            imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
         }
     }
@@ -47,7 +48,7 @@ public class FilmeActivity extends AppCompatActivity {
                 indiceFilme = filmes.size();
             indiceFilme = (indiceFilme - 1) % filmes.size();
             filme = filmes.get(indiceFilme);
-            imgFilme.setImageResource(filme.getCodigo());
+            imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             lblTituloFilme.setText(filme.getNome());
         }
     }
@@ -56,7 +57,7 @@ public class FilmeActivity extends AppCompatActivity {
             Intent intentSessao = new Intent(this, SessaoActivity.class);
             Bundle parametros = new Bundle();
             parametros.putInt("idfilme", filme.getIdfilme());
-            parametros.putInt("codigo", filme.getCodigo());
+            imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
             parametros.putString("nome", filme.getNome());
             intentSessao.putExtras(parametros);
             startActivity(intentSessao);

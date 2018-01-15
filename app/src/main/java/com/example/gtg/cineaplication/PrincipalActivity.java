@@ -14,18 +14,18 @@ public class PrincipalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_principal);
-        Button btnFilmesCartaz = findViewById(R.id.principal_btnFilmesCartaz);
-        Conexao.getInstance(this);
     }
 
     public void irParaActivityFilme(View view){
         Intent intentFilme = new Intent(this, FilmeActivity.class);
         startActivity(intentFilme);
     }
+
     public void irParaActivityIngressos(View view){
         Intent intentIngressos = new Intent(this, IngressosActivity.class);
         startActivity(intentIngressos);
     }
+
     public void irParaActivityConfiguracoes(View view){
         Intent intentConfiguracoes = new Intent(this, ConfiguracoesActivity.class);
         startActivity(intentConfiguracoes);

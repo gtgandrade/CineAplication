@@ -51,7 +51,7 @@ public class SessaoActivity extends AppCompatActivity {
         horarioBD = new HorarioBD(this );
         filme = new Filme();
         filme.setIdfilme(paramentros.getInt("idfilme"));
-        filme.setCodigo(paramentros.getInt("codigo"));
+        filme.setCartaz(paramentros.getString("cartaz"));
         filme.setNome(paramentros.getString("nome"));
         lblFilmeEscolhido.setText(filme.getNome());
         sessaoBD = new SessaoBD(this);

@@ -1,6 +1,7 @@
 package com.example.gtg.cineaplication.adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,7 +32,7 @@ public class FilmeAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Filme filme = this.filmes.get(position);
         FilmesViewHolder filmesViewHolder = (FilmesViewHolder)holder;
-        filmesViewHolder.imgFilme.setImageResource(filme.getCodigo());
+        filmesViewHolder.imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
     }
 
     @Override

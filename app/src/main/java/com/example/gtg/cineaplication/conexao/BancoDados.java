@@ -19,8 +19,8 @@ public class BancoDados extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         comandosql = "CREATE TABLE filme (idfilme    INTEGER      PRIMARY KEY AUTOINCREMENT NOT NULL," +
-                                         "codigo     INTEGER," +
                                          "nome       VARCHAR (50),"+
+                                         "cartaz     VARCHAR (50),"+
                                          "pais       VARCHAR (30),"+
                                          "versao     VARCHAR (20),"+
                                          "duracao    INTEGER,"+
