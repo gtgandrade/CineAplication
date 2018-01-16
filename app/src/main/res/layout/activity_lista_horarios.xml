@@ -35,6 +35,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:onClick="salvarHorario"
-            android:src="@android:drawable/ic_menu_add" />
+            android:src="@android:drawable/ic_menu_agenda" />
     </LinearLayout>
 </LinearLayout>

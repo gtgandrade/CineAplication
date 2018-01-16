@@ -61,7 +61,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             if ( sessao.getHorario().getIdhorario() == 0 )
             {
                 tvIdHorarioSessao.setText("1");
-                tvHorarioSessao.setText("13:00");
+                tvHorarioSessao.setText("--:--");
             }
             else
             {

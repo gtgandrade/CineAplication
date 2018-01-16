@@ -31,6 +31,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     private RadioButton rbExibicaoSim;
     private RadioButton rbExibicaoNao;
     private Button btCadastroSessao;
+    private Button btExclusaoFilme;
     private Uri uriImagemSelecionada;
     private ArrayAdapter<String> adapterVersao;
 
@@ -50,7 +51,9 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         rbExibicaoSim = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoSim);
         rbExibicaoNao = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoNao);
         btCadastroSessao = (Button) findViewById(R.id.cadastroFilme_btCadastroSessao);
+        btExclusaoFilme = (Button) findViewById(R.id.cadastroFilme_btExclusaoFilme);
         btCadastroSessao.setVisibility(View.GONE);
+        btExclusaoFilme.setVisibility(View.GONE);
         adapterVersao = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.versao));
         spnVersao.setAdapter(adapterVersao);
         Bundle parametrosEntrada = getIntent().getExtras();
@@ -61,6 +64,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
             filme = filmeDAO.procurarPorId(idFilme);
             inserirDadosInterface(filme);
             btCadastroSessao.setVisibility(View.VISIBLE);
+            btExclusaoFilme.setVisibility(View.VISIBLE);
         }
     }
 
@@ -81,8 +85,14 @@ public class CadastroFilmeActivity extends AppCompatActivity {
             filmeDAO.salvar(filme);
         else
             filmeDAO.atualizar(filme);
-        Intent intentPrincipal= new Intent(this, ConfiguracoesActivity.class);
-        navigateUpTo(intentPrincipal);
+        Intent intentConfiguracoes= new Intent(this, ConfiguracoesActivity.class);
+        navigateUpTo(intentConfiguracoes);
+    }
+
+    public void excluirFilme(View view){
+        filmeDAO.excluir(filme);
+        Intent intentConfiguracoes= new Intent(this, ConfiguracoesActivity.class);
+        navigateUpTo(intentConfiguracoes);
     }
 
     private void inserirDadosInterface(Filme filme){

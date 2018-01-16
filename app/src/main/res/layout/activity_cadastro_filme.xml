@@ -113,6 +113,14 @@
                 android:text="Sessões" />
 
             <Button
+                android:id="@+id/cadastroFilme_btExclusaoFilme"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:onClick="excluirFilme"
+                android:text="Remover" />
+
+            <Button
                 android:id="@+id/cadastroFilme_btCadastroFilme"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
