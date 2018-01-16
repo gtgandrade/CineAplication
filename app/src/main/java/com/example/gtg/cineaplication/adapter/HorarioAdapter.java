@@ -1,10 +1,14 @@
 package com.example.gtg.cineaplication.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Horario;
@@ -18,6 +22,8 @@ import java.util.List;
 public class HorarioAdapter extends RecyclerView.Adapter {
     private Context context;
     private List<Horario> horarios;
+    private ItemClickListener itemClickListener;
+
     public HorarioAdapter(Context context, List<Horario> horarios){
         this.context = context;
         this.horarios = horarios;
@@ -35,7 +41,9 @@ public class HorarioAdapter extends RecyclerView.Adapter {
         Horario horario = horarios.get(position);
         HorariosViewHolder horariosViewHolder = (HorariosViewHolder) holder;
         horariosViewHolder.lblDescricao.setText(horario.getDescricao().toString());
-
+        horariosViewHolder.lblDescricao.setOnClickListener(new SelecaoHorarioOnClickListener(position, "SELECAO"));
+        horariosViewHolder.imgbtEditar.setOnClickListener(new SelecaoHorarioOnClickListener(position, "EDICAO"));
+        horariosViewHolder.imgbtExcluir.setOnClickListener(new SelecaoHorarioOnClickListener(position, "EXCLUSAO"));
     }
 
     @Override
@@ -43,17 +51,20 @@ public class HorarioAdapter extends RecyclerView.Adapter {
         return horarios.size();
     }
 
-    private class HorarioOnClickListener implements View.OnClickListener{
-        private List<Horario> horarios;
+    private class SelecaoHorarioOnClickListener implements View.OnClickListener{
         private int position;
-        public  HorarioOnClickListener(Context context, List<Horario> horarios, int position){
-            this.horarios = horarios;
+        private String action;
+        public  SelecaoHorarioOnClickListener(int position, String action){
             this.position = position;
+            this.action = action;
         }
         @Override
         public void onClick(View view) {
-            Horario horario = horarios.get(position);
-
+            itemClickListener.onItemClick(position, action);
         }
+    }
+
+    public void setOnItemClickListener(ItemClickListener itemClickListener){
+        this.itemClickListener = itemClickListener;
     }
 }

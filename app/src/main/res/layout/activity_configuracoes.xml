@@ -21,7 +21,7 @@
         android:layout_marginRight="20dp"
         android:clickable="true"
         android:onClick="irParaCadastroFilmeActivity"
-        app:backgroundTint="@android:color/background_dark"
+        app:backgroundTint="@android:color/secondary_text_light"
         app:fabSize="normal"
         app:srcCompat="@android:drawable/ic_menu_add"
         tools:layout_editor_absoluteX="223dp"

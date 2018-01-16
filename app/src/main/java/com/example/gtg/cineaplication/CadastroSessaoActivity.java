@@ -1,5 +1,6 @@
 package com.example.gtg.cineaplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -152,9 +153,16 @@ public class CadastroSessaoActivity extends AppCompatActivity {
     }
     public void listaHorarios(View view){
         Intent intentListaHorarios = new Intent(this, ListaHorariosActivity.class);
-        Bundle parametros = new Bundle();
-        parametros.putInt("filmeid", filmeid);
-        intentListaHorarios.putExtras(parametros);
-        startActivity(intentListaHorarios);
+        startActivityForResult(intentListaHorarios, 1);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1 ) {
+            if(resultCode == Activity.RESULT_OK){
+                Bundle resposta = data.getExtras();
+                tvIdHorarioSessao.setText(String.valueOf(resposta.getInt("idhorario")));
+                tvHorarioSessao.setText(resposta.getString("descricaohorario"));
+            }
+        }
     }
 }

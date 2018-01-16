@@ -41,7 +41,6 @@ public class HorarioDAO {
         ContentValues valoresCampos = new ContentValues();
         valoresCampos.put("descricao", horario.getDescricao());
 
-
         String condicaoWhere = "idhorario = '"+horario.getIdhorario()+"'";
         atualizou = conexao.getDatabase().update("horario", valoresCampos, condicaoWhere, null);
 
@@ -50,7 +49,7 @@ public class HorarioDAO {
 
     public boolean excluir(Horario horario){
         int excluiu = 0;
-        String condicaoWhere = "idfilme = '"+horario.getIdhorario()+"'";
+        String condicaoWhere = "idhorario = '"+horario.getIdhorario()+"'";
         excluiu = conexao.getDatabase().delete("horario", condicaoWhere, null);
 
         return excluiu > 0;
