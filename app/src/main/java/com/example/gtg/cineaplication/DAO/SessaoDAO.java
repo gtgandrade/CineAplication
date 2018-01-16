@@ -13,12 +13,16 @@ import com.example.gtg.cineaplication.modelo.Sessao;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by gutemberg on 27/11/17.
+ */
+
 public class SessaoDAO extends SQLiteOpenHelper {
     private static final String DB_NAME = "bdcinema.db";
     private static final int DB_VERSION = 1;
     private String comandosql;
     private HorarioDAO horarioDAO;
-    private FilmeDAO filmeDAO;
+    private FilmeDAO filmeBD;
     private Context context;
 
     public SessaoDAO(Context context) {
@@ -48,6 +52,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
                     Sessao sessao = new Sessao();
                     sessao.setIdsessao(cursor.getInt(0));
                     sessao.setSala(cursor.getInt(1));
+                    sessao.setVip(cursor.getInt(4) > 0);
                     sessao.setFilme(filme);
                     Horario h = horarioDAO.procurarPorId(cursor.getInt(3));
                     sessao.setHorario(h);
@@ -71,6 +76,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
             if(cursor.moveToFirst()){
                 sessao.setIdsessao(cursor.getInt(0));
                 sessao.setSala(cursor.getInt(1));
+                sessao.setVip(cursor.getInt(4) > 0);
                 sessao.setFilme(filme);
                 sessao.setHorario(horario);
            }
@@ -83,7 +89,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
         SQLiteDatabase sessaoBD = getReadableDatabase();
         Sessao sessao;
         horarioDAO = new HorarioDAO(this.context);
-        filmeDAO = new FilmeDAO(this.context);
+        filmeBD = new FilmeDAO(this.context);
         try{
             String condicao = "idsessao = '"+idsessao+"'";
             Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
@@ -92,7 +98,8 @@ public class SessaoDAO extends SQLiteOpenHelper {
             if(cursor.moveToFirst()){
                 sessao.setIdsessao(cursor.getInt(0));
                 sessao.setSala(cursor.getInt(1));
-                sessao.setFilme(filmeDAO.procurarPorId(cursor.getInt(2)));
+                sessao.setVip(cursor.getInt(4) > 0);
+                sessao.setFilme(filmeBD.procurarPorId(cursor.getInt(2)));
                 sessao.setHorario(horarioDAO.procurarPorId(cursor.getInt(3)));
 
             }
@@ -111,6 +118,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
             try {
                 ContentValues valores = new ContentValues();
                 valores.put("sala", sessao.getSala());
+                valores.put("vip", sessao.isVip() ? 1 : 0);
                 valores.put("filme_idfilme", sessao.getFilme().getIdfilme());
                 //valores.put("horario_idhorario", sessao.getHorario().getIdhorario());
                 sessaoBD.insert("sessao", "", valores);
@@ -123,6 +131,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
             try {
                 ContentValues valores = new ContentValues();
                 valores.put("sala", sessao.getSala());
+                valores.put("vip", sessao.isVip() ? 1 : 0);
                 valores.put("filme_idfilme", sessao.getFilme().getIdfilme());
                 valores.put("horario_idhorario", sessao.getHorario().getIdhorario());
                 String idsessao = String.valueOf(sessao.getIdsessao());

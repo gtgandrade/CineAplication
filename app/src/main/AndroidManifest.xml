@@ -31,6 +31,7 @@
         <activity android:name=".ConfiguracoesActivity" />
         <activity android:name=".CadastroSessaoActivity" />
         <activity android:name=".ListaSessaoActivity" />
+        <activity android:name=".ListaHorariosActivity"></activity>
     </application>
 
 </manifest>

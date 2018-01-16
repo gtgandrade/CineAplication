@@ -24,7 +24,7 @@
         android:onClick="abrirCadastroSessao"
         app:backgroundTint="@android:color/background_dark"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_input_add"
+        android:src="@android:drawable/ic_menu_add"
         tools:layout_editor_absoluteX="226dp" />
 
 </android.support.design.widget.CoordinatorLayout>
