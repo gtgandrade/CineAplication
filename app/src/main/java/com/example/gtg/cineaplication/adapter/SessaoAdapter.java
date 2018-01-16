@@ -31,6 +31,7 @@ public class SessaoAdapter extends RecyclerView.Adapter{
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         Sessao sessao = this.sessoes.get(position);
         SessoesViewHolder sessoesViewHolder = (SessoesViewHolder) holder;
+        sessoesViewHolder.btnVip.setImageResource( sessao.isVip() ? android.R.drawable.star_big_on : android.R.drawable.star_big_off );
         sessoesViewHolder.lblSala.setText("Sala " + String.valueOf(sessao.getSala()));
         sessoesViewHolder.lblHorario.setText(sessao.getHorario().getDescricao());
         sessoesViewHolder.btnEditar.setTag(sessao);

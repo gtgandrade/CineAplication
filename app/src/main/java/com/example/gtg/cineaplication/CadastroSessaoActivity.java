@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -20,6 +21,7 @@ import com.example.gtg.cineaplication.modelo.Sessao;
 public class CadastroSessaoActivity extends AppCompatActivity {
 
     private EditText etSalaSessao;
+    private CheckBox checkVipSessao;
     private TextView tvIdSessao;
     private TextView tvHorarioSessao;
     private TextView tvIdHorarioSessao;
@@ -37,6 +39,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         btnRemove = (Button) findViewById(R.id.btRemoveSessao);
         btnHorariosSessao = (Button) findViewById(R.id.btHorariosSessao);
         etSalaSessao = (EditText) findViewById(R.id.etSalaSessao);
+        checkVipSessao = (CheckBox) findViewById(R.id.checkVipSessao);
         tvIdSessao = (TextView) findViewById(R.id.tvIdSessao);
         tvHorarioSessao = (TextView) findViewById(R.id.tvHorarioSessao);
         tvIdHorarioSessao = (TextView) findViewById(R.id.tvIdHorarioSessao);
@@ -54,6 +57,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             btnRemove.setTag(sessao);
             tvIdSessao.setText(String.valueOf(sessaoid));
             etSalaSessao.setText(String.valueOf(sessao.getSala()));
+            checkVipSessao.setChecked(sessao.isVip());
 
             tvLabelHorarioSessao.setVisibility(View.VISIBLE);
             if ( sessao.getHorario().getIdhorario() == 0 )
@@ -96,6 +100,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             Sessao sessao = new Sessao();
             sessao.setIdsessao(Integer.parseInt(tvIdSessao.getText().toString()));
             sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
+            sessao.setVip(checkVipSessao.isChecked());
 
             Filme filme = new Filme();
             filme.setIdfilme(filmeid);
@@ -120,6 +125,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
 
             Sessao sessao = new Sessao();
             sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
+            sessao.setVip(checkVipSessao.isChecked());
 
             Filme filme = new Filme();
             filme.setIdfilme(filmeid);

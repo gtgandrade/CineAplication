@@ -9,12 +9,22 @@ public class Sessao {
     private int sala;
     private Filme filme;
     private Horario horario;
+    private boolean vip;
 
     public Sessao()
     {
         sala = 0;
         filme = new Filme();
         horario = new Horario();
+        vip = false;
+    }
+
+    public boolean isVip() {
+        return vip;
+    }
+
+    public void setVip(boolean vip) {
+        this.vip = vip;
     }
 
     public int getIdsessao() {

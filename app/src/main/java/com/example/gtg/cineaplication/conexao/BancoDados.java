@@ -43,10 +43,11 @@ public class BancoDados extends SQLiteOpenHelper {
         comandosql = "CREATE TABLE sessao (idsessao INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                                           "sala INTEGER, " +
                                           "filme_idfilme INTEGER REFERENCES filme (idfilme) NOT NULL, " +
-                                          "horario_idhorario INTEGER)";
+                                          "horario_idhorario INTEGER, " +
+                                          "vip INTEGER)";
         db.execSQL(comandosql);
 
-        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario) VALUES (1, 10, 1, 1)";
+        comandosql = "INSERT INTO sessao (idsessao, sala, filme_idfilme, horario_idhorario, vip) VALUES (1, 10, 1, 1, 0)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE ingresso (idingresso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +

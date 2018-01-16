@@ -53,6 +53,7 @@ public class SessaoBD extends SQLiteOpenHelper {
                     Sessao sessao = new Sessao();
                     sessao.setIdsessao(cursor.getInt(0));
                     sessao.setSala(cursor.getInt(1));
+                    sessao.setVip(cursor.getInt(4) > 0);
                     sessao.setFilme(filme);
                     Horario h = horarioBD.findHorarioBy(cursor.getInt(3));
                     sessao.setHorario(h);
@@ -76,6 +77,7 @@ public class SessaoBD extends SQLiteOpenHelper {
             if(cursor.moveToFirst()){
                 sessao.setIdsessao(cursor.getInt(0));
                 sessao.setSala(cursor.getInt(1));
+                sessao.setVip(cursor.getInt(4) > 0);
                 sessao.setFilme(filme);
                 sessao.setHorario(horario);
            }
@@ -97,6 +99,7 @@ public class SessaoBD extends SQLiteOpenHelper {
             if(cursor.moveToFirst()){
                 sessao.setIdsessao(cursor.getInt(0));
                 sessao.setSala(cursor.getInt(1));
+                sessao.setVip(cursor.getInt(4) > 0);
                 sessao.setFilme(filmeBD.procurarPorId(cursor.getInt(2)));
                 sessao.setHorario(horarioBD.findHorarioBy(cursor.getInt(3)));
 
@@ -116,6 +119,7 @@ public class SessaoBD extends SQLiteOpenHelper {
             try {
                 ContentValues valores = new ContentValues();
                 valores.put("sala", sessao.getSala());
+                valores.put("vip", sessao.isVip() ? 1 : 0);
                 valores.put("filme_idfilme", sessao.getFilme().getIdfilme());
                 //valores.put("horario_idhorario", sessao.getHorario().getIdhorario());
                 sessaoBD.insert("sessao", "", valores);
@@ -128,6 +132,7 @@ public class SessaoBD extends SQLiteOpenHelper {
             try {
                 ContentValues valores = new ContentValues();
                 valores.put("sala", sessao.getSala());
+                valores.put("vip", sessao.isVip() ? 1 : 0);
                 valores.put("filme_idfilme", sessao.getFilme().getIdfilme());
                 valores.put("horario_idhorario", sessao.getHorario().getIdhorario());
                 String idsessao = String.valueOf(sessao.getIdsessao());
