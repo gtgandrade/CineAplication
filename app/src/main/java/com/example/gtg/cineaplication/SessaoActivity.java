@@ -12,8 +12,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DAO.HorarioBD;
-import com.example.gtg.cineaplication.DAO.SessaoBD;
+import com.example.gtg.cineaplication.DAO.HorarioDAO;
+import com.example.gtg.cineaplication.DAO.SessaoDAO;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
@@ -31,8 +31,8 @@ public class SessaoActivity extends AppCompatActivity {
     private RadioGroup rgPipocaRefri;
     private int qtdInteira;
     private int qtdMeia;
-    private HorarioBD horarioBD;
-    private SessaoBD sessaoBD;
+    private HorarioDAO horarioDAO;
+    private SessaoDAO sessaoBD;
     private Sessao sessao;
     private Filme filme;
 
@@ -48,13 +48,13 @@ public class SessaoActivity extends AppCompatActivity {
         chkMeia = findViewById(R.id.sessao_chkMeia);
         rgPipocaRefri = findViewById(R.id.sessao_rgPipocaRefrigerante);
         Bundle paramentros = getIntent().getExtras();
-        horarioBD = new HorarioBD(this );
+        horarioDAO = new HorarioDAO(this );
         filme = new Filme();
         filme.setIdfilme(paramentros.getInt("idfilme"));
         filme.setCartaz(paramentros.getString("cartaz"));
         filme.setNome(paramentros.getString("nome"));
         lblFilmeEscolhido.setText(filme.getNome());
-        sessaoBD = new SessaoBD(this);
+        sessaoBD = new SessaoDAO(this);
         List<Sessao> sessoes = sessaoBD.findSessoes(filme);
         Iterator<Sessao> iteratorSessoes = sessoes.iterator();
         String horarios[] = new String[sessoes.size()+1];
@@ -112,7 +112,7 @@ public class SessaoActivity extends AppCompatActivity {
         if(validaEntradaDeDados()){
             Intent intentResumo = new Intent(this, ResumoActivity.class);
             Bundle parametros = new Bundle();
-            Horario h = horarioBD.findHorarioBy(spnHorarios.getSelectedItem().toString());
+            Horario h = horarioDAO.procurarPorDescricao(spnHorarios.getSelectedItem().toString());
             sessao = new Sessao();
             sessao = sessaoBD.findSessaBy(filme, h);
             parametros.putInt("idfilme", filme.getIdfilme());

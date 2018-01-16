@@ -85,7 +85,7 @@
             <RadioGroup
                 android:id="@+id/cadastroFilme_rgExibicao"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="57dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -103,6 +103,14 @@
                     android:text="Não" />
 
             </RadioGroup>
+
+            <Button
+                android:id="@+id/cadastroFilme_btCadastroSessao"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:onClick="abrirListaSessao"
+                android:text="Sessões" />
 
             <Button
                 android:id="@+id/cadastroFilme_btCadastroFilme"

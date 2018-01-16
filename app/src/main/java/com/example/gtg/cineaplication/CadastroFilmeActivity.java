@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -29,6 +30,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     private RadioGroup rgExibicao;
     private RadioButton rbExibicaoSim;
     private RadioButton rbExibicaoNao;
+    private Button btCadastroSessao;
     private Uri uriImagemSelecionada;
     private ArrayAdapter<String> adapterVersao;
 
@@ -47,7 +49,8 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         rgExibicao = (RadioGroup) findViewById(R.id.cadastroFilme_rgExibicao);
         rbExibicaoSim = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoSim);
         rbExibicaoNao = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoNao);
-
+        btCadastroSessao = (Button) findViewById(R.id.cadastroFilme_btCadastroSessao);
+        btCadastroSessao.setVisibility(View.GONE);
         adapterVersao = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.versao));
         spnVersao.setAdapter(adapterVersao);
         Bundle parametrosEntrada = getIntent().getExtras();
@@ -57,6 +60,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         if(idFilme != 0){
             filme = filmeDAO.procurarPorId(idFilme);
             inserirDadosInterface(filme);
+            btCadastroSessao.setVisibility(View.VISIBLE);
         }
     }
 
@@ -77,7 +81,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
             filmeDAO.salvar(filme);
         else
             filmeDAO.atualizar(filme);
-        Intent intentPrincipal= new Intent(this, PrincipalActivity.class);
+        Intent intentPrincipal= new Intent(this, ConfiguracoesActivity.class);
         navigateUpTo(intentPrincipal);
     }
 
@@ -93,6 +97,14 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         }else {
             rbExibicaoNao.setChecked(true);
         }
+    }
+
+    public void abrirListaSessao(View view){
+        Intent intentCadastroSessao = new Intent(this, ListaSessaoActivity.class);
+        Bundle parametros = new Bundle();
+        parametros.putInt("filmeid", filme.getIdfilme());
+        intentCadastroSessao.putExtras(parametros);
+        startActivity(intentCadastroSessao);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

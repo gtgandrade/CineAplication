@@ -20,7 +20,7 @@ public class IngressoBD extends SQLiteOpenHelper {
     private static final int DB_VERSION = 1;
     private Context context;
     private String comandosql;
-    private SessaoBD sessaoBD;
+    private SessaoDAO sessaoBD;
 
     public IngressoBD(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
@@ -55,7 +55,7 @@ public class IngressoBD extends SQLiteOpenHelper {
     public List<Ingresso> findAll(){
         SQLiteDatabase cineBD = getReadableDatabase();
         List<Ingresso> ingressos = new ArrayList<Ingresso>();
-        sessaoBD = new SessaoBD(this.context);
+        sessaoBD = new SessaoDAO(this.context);
         try{
             Cursor cursor = cineBD.query(false,"ingresso",null,null,null,
                     null, null, null, null);
