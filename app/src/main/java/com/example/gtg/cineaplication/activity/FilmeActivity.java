@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 import java.util.List;

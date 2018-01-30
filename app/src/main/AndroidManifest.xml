@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".PrincipalActivity">
+        <activity android:name=".activity.PrincipalActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,15 +23,15 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".FilmeActivity" />
-        <activity android:name=".SessaoActivity" />
-        <activity android:name=".ResumoActivity" />
-        <activity android:name=".IngressosActivity" />
-        <activity android:name=".CadastroFilmeActivity" />
-        <activity android:name=".ConfiguracoesActivity" />
-        <activity android:name=".CadastroSessaoActivity" />
-        <activity android:name=".ListaSessaoActivity" />
-        <activity android:name=".ListaHorariosActivity"></activity>
+        <activity android:name=".activity.FilmeActivity" />
+        <activity android:name=".activity.SessaoActivity" />
+        <activity android:name=".activity.ResumoActivity" />
+        <activity android:name=".activity.IngressosActivity" />
+        <activity android:name=".activity.CadastroFilmeActivity" />
+        <activity android:name=".activity.ConfiguracoesActivity" />
+        <activity android:name=".activity.CadastroSessaoActivity" />
+        <activity android:name=".activity.ListaSessaoActivity" />
+        <activity android:name=".activity.ListaHorariosActivity"></activity>
     </application>
 
 </manifest>

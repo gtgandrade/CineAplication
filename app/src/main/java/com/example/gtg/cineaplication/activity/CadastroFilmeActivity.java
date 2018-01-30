@@ -1,9 +1,7 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.media.ImageWriter;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -16,9 +14,9 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 public class CadastroFilmeActivity extends AppCompatActivity {

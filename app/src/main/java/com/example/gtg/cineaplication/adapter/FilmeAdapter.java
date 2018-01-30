@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gtg.cineaplication.CadastroFilmeActivity;
+import com.example.gtg.cineaplication.activity.CadastroFilmeActivity;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 

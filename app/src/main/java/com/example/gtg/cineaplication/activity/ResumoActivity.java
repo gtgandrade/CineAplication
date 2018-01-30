@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.gtg.cineaplication.DAO.IngressoBD;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Ingresso;
 import com.example.gtg.cineaplication.modelo.Sessao;

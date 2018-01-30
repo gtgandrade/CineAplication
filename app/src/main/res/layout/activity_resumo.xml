@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.gtg.cineaplication.ResumoActivity">
+    tools:context="com.example.gtg.cineaplication.activity.ResumoActivity">
 
     <TextView
         android:id="@+id/resumo_lblFilmeComprado"

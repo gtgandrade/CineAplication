@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.DAO.SessaoDAO;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.adapter.SessaoAdapter;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Sessao;
