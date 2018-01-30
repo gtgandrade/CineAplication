@@ -54,6 +54,7 @@ public class FilmeDAO{
 
     public boolean excluir(Filme filme){
         int excluiu = 0;
+
         String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
         excluiu = conexao.getDatabase().delete("filme", condicaoWhere, null);
 
@@ -62,6 +63,7 @@ public class FilmeDAO{
 
     public Filme procurarPorId(int idfilme){
         Filme filme = new Filme();
+
         String condicaoWhere = "idfilme = '"+idfilme+"'";
         cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
                     null, null, null, null);
@@ -80,6 +82,7 @@ public class FilmeDAO{
 
     public List<Filme> procurarTodos(){
         List<Filme> filmes = new ArrayList<Filme>();
+
         cursor = conexao.getDatabase().query(false,"filme",null,null,null,
                     null, null, null, null);
         if(cursor.moveToFirst()){
@@ -102,6 +105,7 @@ public class FilmeDAO{
     public List<Filme> procurarHabilitados(){
         List<Filme> filmes = new ArrayList<Filme>();
         String condicaoWhere = "habilitado = 1";
+
         cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
                 null, null, null, null);
         if(cursor.moveToFirst()){
