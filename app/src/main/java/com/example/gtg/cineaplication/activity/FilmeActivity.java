@@ -51,7 +51,7 @@ public class FilmeActivity extends AppCompatActivity {
             lblVersaoFilme.setText(filme.getVersao());
         }
     }
-    public void irParaFilmeAnterior(View view){
+    public  void irParaFilmeAnterior(View view){
         if(filmes.size() > 0) {
             if (indiceFilme == 0)
                 indiceFilme = filmes.size();

@@ -57,7 +57,7 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         }
         @Override
         public void onClick(View view) {
-           Filme filme = this.filmes.get(position);
+            Filme filme = this.filmes.get(position);
             Intent intentEditarFilme = new Intent(context, CadastroFilmeActivity.class);
             Bundle parametros = new Bundle();
             parametros.putInt("idFilme", filme.getIdfilme());

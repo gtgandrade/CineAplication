@@ -11,6 +11,7 @@ import android.view.View;
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.adapter.FilmeAdapter;
+import com.example.gtg.cineaplication.CadastroEscolhaActivity;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 import java.util.List;
@@ -33,11 +34,19 @@ public class ConfiguracoesActivity extends AppCompatActivity {
         recyclerView.setAdapter(filmeAdapter);
     }
 
-    public void irParaCadastroFilmeActivity(View view){
+    public void irParaCadastroFilmeActivity(View view) {
         Intent intentCadastroFilme = new Intent(this, CadastroFilmeActivity.class);
         Bundle parametros = new Bundle();
         parametros.putInt("idFilme", 0);
         intentCadastroFilme.putExtras(parametros);
         startActivity(intentCadastroFilme);
     }
+
+    public void irParaCadastroTelaActivity(View view){
+        Intent intentTelaCadastro = new Intent(this, CadastroEscolhaActivity2.class);
+        //Bundle parametros = new Bundle();
+        //intentTelaCadastro.putExtras(parametros);
+        startActivity(intentTelaCadastro);
+    }
+
 }
