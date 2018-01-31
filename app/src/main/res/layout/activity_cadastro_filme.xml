@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="buscarImagemCartaz"
-                app:srcCompat="@drawable/button_add_imagem" />
+                app:srcCompat="@android:drawable/ic_menu_add"/>
 
             <TextView
                 android:id="@+id/textView"
@@ -77,11 +77,37 @@
                 android:inputType="textPersonName|numberDecimal" />
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/textViewEstreia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Estreia?" />
+
+            <RadioGroup
+                android:id="@+id/cadastroFilme_rgEstreia"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/cadastroFilme_rbEstreiaSim"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sim" />
+
+                <RadioButton
+                    android:id="@+id/cadastroFilme_rbEstreiaNao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Não" />
+
+            </RadioGroup>
+            <TextView
+                android:id="@+id/textViewExibicao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Em exibição?" />
-
             <RadioGroup
                 android:id="@+id/cadastroFilme_rgExibicao"
                 android:layout_width="match_parent"
