@@ -35,7 +35,8 @@ public class BancoDados extends SQLiteOpenHelper {
                                           "sala INTEGER, " +
                                           "filme_idfilme INTEGER REFERENCES filme (idfilme) NOT NULL, " +
                                           "horario_idhorario INTEGER," +
-                                           "vip INTEGER)";
+                                          "vip INTEGER,"+
+                                          "cinema_idcinema INTEGER REFERENCES cinema (idcinema) NOT NULL)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE ingresso (idingresso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -51,22 +52,10 @@ public class BancoDados extends SQLiteOpenHelper {
                                             "nome VARCHAR(30),"+
                                             "endereco VARCHAR(50)," +
                                             "latitude DOUBLE," +
-                                             "longitude DOUBLE";
+                                             "longitude DOUBLE)";
         db.execSQL(comandosql);
 
-        comandosql = "CREATE TABLE cinema_sessao (" +
-            "_idcinema INTEGER REFERENCES  cinema (idcinema) NOT NULL," +
-            "_idsessao INTEGER REFERENCES sessao (idsessao) NOT NULL";
-
-        db.execSQL(comandosql);
-
-        comandosql = "CREATE TABLE cinema_ingresso (" +
-                "_idcinema INTEGER REFERENCES cinema (idcinema) NOT NULL," +
-                "_idingresso INTEGER REFERENCES ingresso (idingresso) NOT NULL";
-
-        db.execSQL(comandosql);
-
-        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Cinépolis',Bairro Jaracaty,-2.510609, -44.285094)");
+        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Cinépolis','Bairro Jaracaty',-2.510609, -44.285094)");
 
         db.execSQL(comandosql);
 
