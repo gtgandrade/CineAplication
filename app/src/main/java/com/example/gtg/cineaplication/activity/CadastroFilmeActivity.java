@@ -1,6 +1,7 @@
 package com.example.gtg.cineaplication.activity;
 
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.R;
@@ -34,6 +36,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     private Button btCadastroSessao;
     private Button btExclusaoFilme;
     private Uri uriImagemSelecionada;
+    private Uri uriImagemPadrao;
     private ArrayAdapter<String> adapterVersao;
 
     private Filme filme;
@@ -56,6 +59,10 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         rbExibicaoNao = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoNao);
         btCadastroSessao = (Button) findViewById(R.id.cadastroFilme_btCadastroSessao);
         btExclusaoFilme = (Button) findViewById(R.id.cadastroFilme_btExclusaoFilme);
+        uriImagemPadrao = Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE +
+                "://" + getResources().getResourcePackageName(R.drawable.icone_adic_imagem)
+                + '/' + getResources().getResourceTypeName(R.drawable.icone_adic_imagem)
+                + '/' + getResources().getResourceEntryName(R.drawable.icone_adic_imagem) );
         btCadastroSessao.setVisibility(View.GONE);
         btExclusaoFilme.setVisibility(View.GONE);
         adapterVersao = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,getResources().getStringArray(R.array.versao));
@@ -78,21 +85,25 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     }
 
     public void salvarFilme(View view){
-        filme.setNome(edtNome.getText().toString());
-        filme.setCartaz(uriImagemSelecionada.toString());
-        filme.setPais(edtPais.getText().toString());
-        filme.setVersao(spnVersao.getSelectedItem().toString());
-        filme.setDuracao(Integer.parseInt(edtDuracao.getText().toString()));
-        int ehEstreia = rgEstreia.getCheckedRadioButtonId() == R.id.cadastroFilme_rbEstreiaSim?1:0;
-        int emExibicao = rgExibicao.getCheckedRadioButtonId() == R.id.cadastroFilme_rbExibicaoSim?1:0;
-        filme.setHabilitado(emExibicao);
-        filme.setEstreia(ehEstreia);
-        if(filme.getIdfilme() == 0)
-            filmeDAO.salvar(filme);
-        else
-            filmeDAO.atualizar(filme);
-        Intent intentConfiguracoes= new Intent(this, ConfiguracoesActivity.class);
-        navigateUpTo(intentConfiguracoes);
+        if(validarCampos()) {
+            filme.setCartaz(uriImagemSelecionada != null ? uriImagemSelecionada.toString() : uriImagemPadrao.toString());
+            filme.setNome(edtNome.getText().toString());
+            filme.setPais(edtPais.getText().toString());
+            filme.setVersao(spnVersao.getSelectedItem().toString());
+            filme.setDuracao(Integer.parseInt(edtDuracao.getText().toString()));
+            int ehEstreia = rgEstreia.getCheckedRadioButtonId() == R.id.cadastroFilme_rbEstreiaSim ? 1 : 0;
+            int emExibicao = rgExibicao.getCheckedRadioButtonId() == R.id.cadastroFilme_rbExibicaoSim ? 1 : 0;
+            filme.setHabilitado(emExibicao);
+            filme.setEstreia(ehEstreia);
+            if (filme.getIdfilme() == 0)
+                filmeDAO.salvar(filme);
+            else
+                filmeDAO.atualizar(filme);
+            Intent intentConfiguracoes = new Intent(this, ConfiguracoesActivity.class);
+            navigateUpTo(intentConfiguracoes);
+        }else{
+            Toast.makeText(this, "Preencha todos os campos.", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void excluirFilme(View view){
@@ -135,5 +146,12 @@ public class CadastroFilmeActivity extends AppCompatActivity {
                 imgCartazFilme.setImageURI(uriImagemSelecionada);
             }
         }
+    }
+
+    private boolean validarCampos(){
+        boolean validou = true;
+        if(edtNome.getText().toString().trim().equals("") || edtDuracao.getText().toString().trim().equals(" ") || edtDuracao.getText().toString().trim().equals("0") || edtPais.getText().toString().trim().equals(""))
+            validou = false;
+        return validou;
     }
 }
