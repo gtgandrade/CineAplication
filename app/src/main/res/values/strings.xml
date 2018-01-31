@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CineAplication</string>
+    <string-array name="versao">
+        <item>LEGENDADO</item>
+        <item>DUBLADO</item>
+        <item>NACIONAL</item>
+    </string-array>
 </resources>

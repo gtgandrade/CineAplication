@@ -18,15 +18,15 @@ import java.util.List;
  * Created by gutemberg on 27/11/17.
  */
 
-public class SessaoBD extends SQLiteOpenHelper {
+public class SessaoDAO extends SQLiteOpenHelper {
     private static final String DB_NAME = "bdcinema.db";
     private static final int DB_VERSION = 1;
     private String comandosql;
-    private HorarioBD horarioBD;
+    private HorarioDAO horarioDAO;
     private FilmeDAO filmeBD;
     private Context context;
 
-    public SessaoBD(Context context) {
+    public SessaoDAO(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
         this.context = context;
     }
@@ -43,7 +43,7 @@ public class SessaoBD extends SQLiteOpenHelper {
     public List<Sessao> findSessoes(Filme filme){
         SQLiteDatabase sessaoBD = getReadableDatabase();
         List<Sessao> sessoes = new ArrayList<Sessao>();
-        horarioBD = new HorarioBD(this.context);
+        horarioDAO = new HorarioDAO(this.context);
         try{
             String condicao = "filme_idfilme= '"+filme.getIdfilme()+"'";
             Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
@@ -55,7 +55,7 @@ public class SessaoBD extends SQLiteOpenHelper {
                     sessao.setSala(cursor.getInt(1));
                     sessao.setVip(cursor.getInt(4) > 0);
                     sessao.setFilme(filme);
-                    Horario h = horarioBD.findHorarioBy(cursor.getInt(3));
+                    Horario h = horarioDAO.procurarPorId(cursor.getInt(3));
                     sessao.setHorario(h);
                     sessoes.add(sessao);
                 }while(cursor.moveToNext());
@@ -68,7 +68,7 @@ public class SessaoBD extends SQLiteOpenHelper {
     public Sessao findSessaBy(Filme filme, Horario horario){
         SQLiteDatabase sessaoBD = getReadableDatabase();
         Sessao sessao;
-        horarioBD = new HorarioBD(this.context);
+        horarioDAO = new HorarioDAO(this.context);
         try{
             String condicao = "filme_idfilme= '"+filme.getIdfilme()+"' AND "+ "horario_idhorario = '"+horario.getIdhorario()+"'";
             Cursor cursor = sessaoBD.query("sessao",null,condicao,null,
@@ -89,7 +89,7 @@ public class SessaoBD extends SQLiteOpenHelper {
     public Sessao findSessaBy(int idsessao){
         SQLiteDatabase sessaoBD = getReadableDatabase();
         Sessao sessao;
-        horarioBD = new HorarioBD(this.context);
+        horarioDAO = new HorarioDAO(this.context);
         filmeBD = new FilmeDAO(this.context);
         try{
             String condicao = "idsessao = '"+idsessao+"'";
@@ -101,7 +101,7 @@ public class SessaoBD extends SQLiteOpenHelper {
                 sessao.setSala(cursor.getInt(1));
                 sessao.setVip(cursor.getInt(4) > 0);
                 sessao.setFilme(filmeBD.procurarPorId(cursor.getInt(2)));
-                sessao.setHorario(horarioBD.findHorarioBy(cursor.getInt(3)));
+                sessao.setHorario(horarioDAO.procurarPorId(cursor.getInt(3)));
 
             }
             return  sessao;

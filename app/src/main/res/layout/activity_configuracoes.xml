@@ -20,11 +20,12 @@
         android:layout_marginBottom="20dp"
         android:layout_marginRight="20dp"
         android:clickable="true"
-        android:elevation="8dp"
-        android:onClick="carregarImagem"
-        app:backgroundTint="@android:color/background_dark"
+        android:onClick="irParaCadastroFilmeActivity"
+        app:backgroundTint="@android:color/black"
         app:fabSize="normal"
-        app:srcCompat="@android:drawable/ic_input_add"
-        tools:layout_editor_absoluteX="226dp" />
+        app:rippleColor="@android:color/white"
+        app:srcCompat="@android:drawable/ic_menu_add"
+        tools:layout_editor_absoluteX="223dp"
+        tools:layout_editor_absoluteY="450dp" />
 
 </android.support.design.widget.CoordinatorLayout>

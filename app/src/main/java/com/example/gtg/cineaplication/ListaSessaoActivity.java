@@ -8,8 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.gtg.cineaplication.DAO.SessaoBD;
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.DAO.SessaoDAO;
 import com.example.gtg.cineaplication.adapter.SessaoAdapter;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Sessao;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public class ListaSessaoActivity extends AppCompatActivity {
     private RecyclerView recyclerViewSessoes;
-    private SessaoBD sessaoBD;
+    private SessaoDAO sessaoDAO;
     private List<Sessao> sessoes;
     private int filmeid = 0;
 
@@ -30,14 +30,14 @@ public class ListaSessaoActivity extends AppCompatActivity {
         recyclerViewSessoes.setLayoutManager(new LinearLayoutManager(this));
         recyclerViewSessoes.setItemAnimator(new DefaultItemAnimator());
         recyclerViewSessoes.setHasFixedSize(true);
-        sessaoBD = new SessaoBD(this);
+        sessaoDAO = new SessaoDAO(this);
 
         Bundle parametros = getIntent().getExtras();
         filmeid = parametros.getInt("filmeid");
         FilmeDAO filmeBD = new FilmeDAO(this);
         Filme filme = filmeBD.procurarPorId(filmeid);
 
-        sessoes = sessaoBD.findSessoes(filme);
+        sessoes = sessaoDAO.findSessoes(filme);
         SessaoAdapter sessaoAdapter = new SessaoAdapter(this, sessoes);
         recyclerViewSessoes.setAdapter(sessaoAdapter);
     }

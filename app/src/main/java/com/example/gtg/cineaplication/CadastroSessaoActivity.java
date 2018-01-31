@@ -1,5 +1,6 @@
 package com.example.gtg.cineaplication;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,13 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DAO.FilmeDAO;
-import com.example.gtg.cineaplication.DAO.SessaoBD;
+import com.example.gtg.cineaplication.DAO.SessaoDAO;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
@@ -50,7 +48,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         if ( getIntent().hasExtra("edit") )
         {
             int sessaoid = getIntent().getExtras().getInt("sessaoid");
-            SessaoBD sessaobd = new SessaoBD(this);
+            SessaoDAO sessaobd = new SessaoDAO(this);
             Sessao sessao = sessaobd.findSessaBy(sessaoid);
 
             editmode = true;
@@ -63,7 +61,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             if ( sessao.getHorario().getIdhorario() == 0 )
             {
                 tvIdHorarioSessao.setText("1");
-                tvHorarioSessao.setText("13:00");
+                tvHorarioSessao.setText("--:--");
             }
             else
             {
@@ -95,7 +93,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             }
 
             int sala = Integer.parseInt( etSalaSessao.getText().toString() );
-            SessaoBD sessaoBD = new SessaoBD(this);
+            SessaoDAO sessaoBD = new SessaoDAO(this);
 
             Sessao sessao = new Sessao();
             sessao.setIdsessao(Integer.parseInt(tvIdSessao.getText().toString()));
@@ -121,7 +119,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             }
 
             int sala = Integer.parseInt( etSalaSessao.getText().toString() );
-            SessaoBD sessaoBD = new SessaoBD(this);
+            SessaoDAO sessaoBD = new SessaoDAO(this);
 
             Sessao sessao = new Sessao();
             sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
@@ -144,7 +142,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
     public void removerSessao(View view)
     {
         Sessao sessao = (Sessao) view.getTag();
-        SessaoBD sessaoBD = new SessaoBD(this);
+        SessaoDAO sessaoBD = new SessaoDAO(this);
         sessaoBD.remove(sessao.getIdsessao());
 
         Bundle parametros = new Bundle();
@@ -152,5 +150,19 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ListaSessaoActivity.class);
         intent.putExtras(parametros);
         navigateUpTo(intent);
+    }
+    public void listaHorarios(View view){
+        Intent intentListaHorarios = new Intent(this, ListaHorariosActivity.class);
+        startActivityForResult(intentListaHorarios, 1);
+    }
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1 ) {
+            if(resultCode == Activity.RESULT_OK){
+                Bundle resposta = data.getExtras();
+                tvIdHorarioSessao.setText(String.valueOf(resposta.getInt("idhorario")));
+                tvHorarioSessao.setText(resposta.getString("descricaohorario"));
+            }
+        }
     }
 }

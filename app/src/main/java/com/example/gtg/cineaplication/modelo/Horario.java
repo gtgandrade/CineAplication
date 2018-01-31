@@ -5,8 +5,8 @@ package com.example.gtg.cineaplication.modelo;
  */
 
 public class Horario{
-    private int idhorario;
-    private String descricao;
+    private int idhorario = 0;
+    private String descricao = null;
 
     public Horario()
     {

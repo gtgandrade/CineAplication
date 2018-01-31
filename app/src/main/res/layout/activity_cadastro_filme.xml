@@ -16,8 +16,15 @@
             <ImageView
                 android:id="@+id/cadastroFilme_imgCartazFilme"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="buscarImagemCartaz"/>
+
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/depois_montanha" />
+                android:onClick="buscarImagemCartaz"
+                app:srcCompat="@drawable/button_add_imagem" />
 
             <TextView
                 android:id="@+id/textView"
@@ -67,7 +74,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"/>
+                android:inputType="textPersonName|numberDecimal" />
 
             <TextView
                 android:id="@+id/textView5"
@@ -78,7 +85,7 @@
             <RadioGroup
                 android:id="@+id/cadastroFilme_rgExibicao"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="57dp"
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -98,18 +105,27 @@
             </RadioGroup>
 
             <Button
-                android:id="@+id/cadastroFilme_btSessoes"
+                android:id="@+id/cadastroFilme_btCadastroSessao"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
-                android:onClick="verSessoes"
+                android:onClick="abrirListaSessao"
                 android:text="Sessões" />
+
+            <Button
+                android:id="@+id/cadastroFilme_btExclusaoFilme"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:onClick="excluirFilme"
+                android:text="Remover" />
 
             <Button
                 android:id="@+id/cadastroFilme_btCadastroFilme"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
+                android:onClick="salvarFilme"
                 android:text="Salvar" />
         </LinearLayout>
     </ScrollView>
