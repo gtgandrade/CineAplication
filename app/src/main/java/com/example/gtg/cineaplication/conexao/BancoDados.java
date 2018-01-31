@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by gtg on 31/12/17.
- */
 
 public class BancoDados extends SQLiteOpenHelper {
     private static final String DB_NAME = "bdcinema.db";
@@ -24,7 +21,8 @@ public class BancoDados extends SQLiteOpenHelper {
                                          "pais       VARCHAR (30),"+
                                          "versao     VARCHAR (20),"+
                                          "duracao    INTEGER,"+
-                                         "habilitado INTEGER)";
+                                         "habilitado INTEGER,"+
+                                         "estreia    INTEGER)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE horario (idhorario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
