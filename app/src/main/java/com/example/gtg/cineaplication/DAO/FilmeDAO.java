@@ -29,6 +29,7 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
+        valoresCampos.put("estreia", filme.getEstreia());
         salvou = conexao.getDatabase().insert("filme",null, valoresCampos);
 
         return salvou > 0;
@@ -45,6 +46,7 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
+        valoresCampos.put("estreia", filme.getEstreia());
 
         String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
         atualizou = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
@@ -57,7 +59,7 @@ public class FilmeDAO{
         String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
         excluiu = conexao.getDatabase().delete("filme", condicaoWhere, null);
 
-        return excluiu > 0? true: false;
+        return excluiu > 0;
     }
 
     public Filme procurarPorId(int idfilme){
@@ -73,6 +75,7 @@ public class FilmeDAO{
             filme.setVersao(cursor.getString(4));
             filme.setDuracao(cursor.getInt(5));
             filme.setHabilitado(cursor.getInt(6));
+            filme.setEstreia(cursor.getInt(7));
         }
 
         return  filme;
@@ -92,6 +95,7 @@ public class FilmeDAO{
                 filme.setVersao(cursor.getString(4));
                 filme.setDuracao(cursor.getInt(5));
                 filme.setHabilitado(cursor.getInt(6));
+                filme.setEstreia(cursor.getInt(7));
                 filmes.add(filme);
             }while(cursor.moveToNext());
         }
@@ -114,6 +118,7 @@ public class FilmeDAO{
                 filme.setVersao(cursor.getString(4));
                 filme.setDuracao(cursor.getInt(5));
                 filme.setHabilitado(cursor.getInt(6));
+                filme.setEstreia(cursor.getInt(7));
                 filmes.add(filme);
             }while(cursor.moveToNext());
         }

@@ -1,9 +1,5 @@
 package com.example.gtg.cineaplication.modelo;
 
-/**
- * Created by gutemberg on 26/11/17.
- */
-
 public class Filme {
     private int idfilme = 0;
     private String nome = null;
@@ -12,6 +8,7 @@ public class Filme {
     private String versao = null;
     private int duracao = 0;
     private int habilitado = 0;
+    private int estreia = 0;
 
     public int getIdfilme() {
         return idfilme;
@@ -67,5 +64,13 @@ public class Filme {
 
     public void setHabilitado(int habilitado) {
         this.habilitado = habilitado;
+    }
+
+    public int getEstreia() {
+        return estreia;
+    }
+
+    public void setEstreia(int estreia) {
+        this.estreia = estreia;
     }
 }
