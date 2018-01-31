@@ -25,7 +25,10 @@ public class CadastroFilmeActivity extends AppCompatActivity {
     private EditText edtPais;
     private Spinner spnVersao;
     private EditText edtDuracao;
+    private RadioGroup rgEstreia;
     private RadioGroup rgExibicao;
+    private RadioButton rbEstreiaSim;
+    private RadioButton rbEstreiaNao;
     private RadioButton rbExibicaoSim;
     private RadioButton rbExibicaoNao;
     private Button btCadastroSessao;
@@ -45,6 +48,9 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         edtNome = (EditText) findViewById(R.id.cadastroFilme_edtNome);
         edtPais = (EditText) findViewById(R.id.cadastroFilme_edtPais);
         edtDuracao = (EditText) findViewById(R.id.cadastroFilme_edtDuracao);
+        rgEstreia = (RadioGroup) findViewById(R.id.cadastroFilme_rgEstreia);
+        rbEstreiaSim = (RadioButton) findViewById(R.id.cadastroFilme_rbEstreiaSim);
+        rbEstreiaNao = (RadioButton) findViewById(R.id.cadastroFilme_rbEstreiaNao);
         rgExibicao = (RadioGroup) findViewById(R.id.cadastroFilme_rgExibicao);
         rbExibicaoSim = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoSim);
         rbExibicaoNao = (RadioButton) findViewById(R.id.cadastroFilme_rbExibicaoNao);
@@ -68,7 +74,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 
     public void buscarImagemCartaz(View view){
         Intent intentImagemCartaz = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-        startActivityForResult(Intent.createChooser(intentImagemCartaz, "Selecione uma imagem"), 1);
+        startActivityForResult(Intent.createChooser(intentImagemCartaz, "Selecione o poster do filme"), 1);
     }
 
     public void salvarFilme(View view){
@@ -77,8 +83,10 @@ public class CadastroFilmeActivity extends AppCompatActivity {
         filme.setPais(edtPais.getText().toString());
         filme.setVersao(spnVersao.getSelectedItem().toString());
         filme.setDuracao(Integer.parseInt(edtDuracao.getText().toString()));
-        int opcaoSelecionada = rgExibicao.getCheckedRadioButtonId() == R.id.cadastroFilme_rbExibicaoSim?1:0;
-        filme.setHabilitado(opcaoSelecionada);
+        int ehEstreia = rgEstreia.getCheckedRadioButtonId() == R.id.cadastroFilme_rbEstreiaSim?1:0;
+        int emExibicao = rgExibicao.getCheckedRadioButtonId() == R.id.cadastroFilme_rbExibicaoSim?1:0;
+        filme.setHabilitado(emExibicao);
+        filme.setEstreia(ehEstreia);
         if(filme.getIdfilme() == 0)
             filmeDAO.salvar(filme);
         else
@@ -104,6 +112,11 @@ public class CadastroFilmeActivity extends AppCompatActivity {
             rbExibicaoSim.setChecked(true);
         }else {
             rbExibicaoNao.setChecked(true);
+        }
+        if(filme.getEstreia() == 1){
+            rbEstreiaSim.setChecked(true);
+        }else {
+            rbEstreiaNao.setChecked(true);
         }
     }
 

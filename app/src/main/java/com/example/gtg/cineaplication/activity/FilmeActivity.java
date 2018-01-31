@@ -15,6 +15,7 @@ import com.example.gtg.cineaplication.modelo.Filme;
 import java.util.List;
 
 public class FilmeActivity extends AppCompatActivity {
+    private TextView lblEstreiaFilme;
     private TextView lblTituloFilme;
     private TextView lblVersaoFilme;
     private ImageView imgFilme;
@@ -25,14 +26,16 @@ public class FilmeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filme);
-        lblTituloFilme = findViewById(R.id.filme_lblTituloFilme);
-        lblVersaoFilme = findViewById(R.id.filme_lblVersaoFilme);
+        lblEstreiaFilme = (TextView) findViewById(R.id.filme_lblEstreiaFilme);
+        lblTituloFilme = (TextView) findViewById(R.id.filme_lblTituloFilme);
+        lblVersaoFilme = (TextView) findViewById(R.id.filme_lblVersaoFilme);
         FilmeDAO fimeBD = new FilmeDAO(this);
         filmes = fimeBD.procurarHabilitados();
         if(filmes.size() > 0) {
             filme = filmes.get(++indiceFilme);
             imgFilme = findViewById(R.id.filme_imgFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
+            lblEstreiaFilme.setText(filme.getEstreia() == 1?"ESTREIA":"");
             lblTituloFilme.setText(filme.getNome());
             lblVersaoFilme.setText(filme.getVersao());
         }
@@ -43,6 +46,7 @@ public class FilmeActivity extends AppCompatActivity {
             indiceFilme = (indiceFilme + 1) % filmes.size();
             filme = filmes.get(indiceFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
+            lblEstreiaFilme.setText(filme.getEstreia() == 1?"ESTREIA":"");
             lblTituloFilme.setText(filme.getNome());
             lblVersaoFilme.setText(filme.getVersao());
         }
@@ -54,6 +58,7 @@ public class FilmeActivity extends AppCompatActivity {
             indiceFilme = (indiceFilme - 1) % filmes.size();
             filme = filmes.get(indiceFilme);
             imgFilme.setImageURI(Uri.parse(filme.getCartaz()));
+            lblEstreiaFilme.setText(filme.getEstreia() == 1?"ESTREIA":"");
             lblTituloFilme.setText(filme.getNome());
             lblVersaoFilme.setText(filme.getVersao());
         }
