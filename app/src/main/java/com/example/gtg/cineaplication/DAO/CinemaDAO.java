@@ -55,10 +55,22 @@ public class CinemaDAO {
         else return false;
     }
 
-    public Cursor carregarcinemas(){
+    public List<Cinema> carregarcinemas(){
+        List<Cinema> cinemas = new ArrayList<Cinema>();
         cursor = conexao.getDatabase().query("cinema",null,null,null,null,null,null);
-        cursor.moveToFirst();
-        return cursor;
+        if(cursor.moveToFirst()){
+            do{
+                Cinema cinema = new Cinema();
+                cinema.setId(cursor.getInt(0));
+                cinema.setEndereco(cursor.getString(1));
+                cinema.setNome(cursor.getString(2));
+                cinema.setLongitude(cursor.getFloat(3));
+                cinema.setLatitude(cursor.getFloat(4));
+
+                cinemas.add(cinema);
+            }while (cursor.moveToNext());
+        }
+        return cinemas;
     }
 
     public Cinema procurarPorId(int idCine) {

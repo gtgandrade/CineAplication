@@ -41,32 +41,6 @@
                 android:ems="10"
                 android:inputType="textPersonName|numberDecimal" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/cadastroCinema_btListarCinemas"
-                android:text="CINEMAS"
-                android:layout_weight="1"
-                android:onClick="listarCinemas"
-                />
-
-            <Button
-                android:id="@+id/cadastroCinema_btCadastroCinema"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:layout_weight="1"
-                android:onClick="salvarCinema"
-                android:text="SALVAR" />
-            
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:id="@+id/cadastroCinema_btRemoverCinema"
-                android:text="Remover"
-                android:layout_weight="1"
-                android:onClick="removerCinema"
-                />
-
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

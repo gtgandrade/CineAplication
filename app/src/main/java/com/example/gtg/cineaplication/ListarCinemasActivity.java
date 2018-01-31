@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.gtg.cineaplication.DAO.CinemaDAO;
+import com.example.gtg.cineaplication.modelo.Cinema;
+
+import com.example.gtg.cineaplication.adapter.CinemaAdapter;
+
+import java.util.List;
 
 /**
  * Created by leo_b on 29/01/2018.
@@ -15,7 +20,8 @@ import com.example.gtg.cineaplication.DAO.CinemaDAO;
 
 public class ListarCinemasActivity extends AppCompatActivity {
     private RecyclerView rclListar;
-    private CinemaDAO dao;
+    private CinemaDAO cinemadao;
+    private List<Cinema> cinemas;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,13 +29,19 @@ public class ListarCinemasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_listar_cinemas);
 
         rclListar = (RecyclerView)findViewById(R.id.rcl_listarCinema);
-        rclListar.setLayoutManager(new LinearLayoutManager(this));
 
-        dao = new CinemaDAO(getBaseContext());
+        cinemadao = new CinemaDAO(getBaseContext());
+        CinemaAdapter cineAdapter = new CinemaAdapter(this,cinemadao.carregarcinemas());
+        rclListar.setAdapter(cineAdapter);
+
+        LinearLayoutManager lmn = new LinearLayoutManager(this);
+        rclListar.setLayoutManager(lmn);
 
     }
 
-    public void ListarCinemas(View view) {
 
-    }
+
+    //public void ListarCinemas(View view) {
+
+    //}
 }

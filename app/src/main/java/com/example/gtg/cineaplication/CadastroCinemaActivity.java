@@ -65,7 +65,7 @@ public class CadastroCinemaActivity extends AppCompatActivity {
 
         CinemaDAO daocinema = new CinemaDAO(this);
         if( id==0 ){
-            daocinema.salvar(cinema);
+            daocinema.adicionar(cinema);
         }
         else{
             daocinema.atualizar(cinema);
