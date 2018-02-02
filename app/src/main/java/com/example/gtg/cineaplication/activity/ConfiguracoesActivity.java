@@ -11,7 +11,6 @@ import android.view.View;
 import com.example.gtg.cineaplication.DAO.FilmeDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.adapter.FilmeAdapter;
-import com.example.gtg.cineaplication.CadastroEscolhaActivity;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 import java.util.List;

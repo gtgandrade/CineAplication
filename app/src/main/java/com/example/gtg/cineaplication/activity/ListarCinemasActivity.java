@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.example.gtg.cineaplication.DAO.CinemaDAO;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Cinema;
 
 import com.example.gtg.cineaplication.adapter.CinemaAdapter;

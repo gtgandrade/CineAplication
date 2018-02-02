@@ -1,9 +1,12 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
+import com.example.gtg.cineaplication.R;
+import com.example.gtg.cineaplication.activity.CadastroCinemaActivity;
 
 /**
  * Created by leo_b on 27/01/2018.
