@@ -31,6 +31,10 @@
         <activity android:name=".activity.ConfiguracoesActivity" />
         <activity android:name=".activity.CadastroSessaoActivity" />
         <activity android:name=".activity.ListaSessaoActivity" />
+        <activity android:name=".activity.CadastroCinemaActivity" />
+        <activity android:name=".activity.CadastroEscolhaActivity" />
+        <activity android:name=".activity.CadastroEscolhaActivity2" />
+        <activity android:name=".activity.ListarCinemasActivity" />
         <activity android:name=".activity.ListaHorariosActivity"></activity>
     </application>
 
