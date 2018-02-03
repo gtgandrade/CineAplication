@@ -31,7 +31,7 @@ public class ListarCinemasActivity extends AppCompatActivity {
     private List<Cinema> cinemas;
     private ImageView imageView;
     private Uri uriImagemPadrao;
-    private Uri uriImagemSelecionada;
+    private Uri uriImagemSelecionada=null;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -52,17 +52,18 @@ public class BancoDados extends SQLiteOpenHelper {
                                             "nome VARCHAR(30),"+
                                             "endereco VARCHAR(50)," +
                                             "latitude DOUBLE," +
-                                             "longitude DOUBLE)";
+                                            "longitude DOUBLE," +
+                                            "cartaz STRING)";
         db.execSQL(comandosql);
 
-        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude) VALUES(1,'Cinépolis','Bairro Jaracaty',-2.510609, -44.285094)";
+        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude,cartaz) VALUES(1,'Cinépolis','Bairro Jaracaty',-2.510609, -44.285094,'')";
 
         db.execSQL(comandosql);
 
-        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude) VALUES(2,'Rio Anil Shopping','Av.São Luís Rei de França,Turu',-2.533553, -44.224921)";
+        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude,cartaz) VALUES(2,'Rio Anil Shopping','Av.São Luís Rei de França,Turu',-2.533553, -44.224921,'')";
         db.execSQL(comandosql);
 
-        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude) VALUES(3,'Shopping da Ilha','Avenida Daniel de la Touche - Cohama',-2.527092, -44.255182)";
+        comandosql = "INSERT INTO cinema(id,nome,endereco,latitude,longitude,cartaz) VALUES(3,'Shopping da Ilha','Avenida Daniel de la Touche - Cohama',-2.527092, -44.255182,'')";
         db.execSQL(comandosql);
     }
 

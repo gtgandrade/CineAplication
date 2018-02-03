@@ -8,8 +8,8 @@ public class Cinema {
     private int id;
     private String nome;
     private String endereco;
-    private double longitude;
     private double latitude;
+    private double longitude;
     private String cartaz=null;
 
     private List<Filme> filmes = new ArrayList<>();
