@@ -50,7 +50,7 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         private List<Filme> filmes;
         private int position;
 
-        public FilmeOnClickListener(Context context, List<Filme> filmes, int position) {
+        FilmeOnClickListener(Context context, List<Filme> filmes, int position) {
             this.filmes = filmes;
             this.position = position;
         }

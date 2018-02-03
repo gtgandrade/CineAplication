@@ -5,11 +5,9 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,21 +23,22 @@ public class SessaoDAO extends SQLiteOpenHelper {
     private FilmeDAO filmeBD;
     private Context context;
 
-    public SessaoDAO(Context context) {
-        super(context, DB_NAME, null, DB_VERSION);
-        this.context = context;
-    }
+	public SessaoDAO(Context context) {
+		super(context, DB_NAME, null, DB_VERSION);
+		this.context = context;
+	}
 
-    @Override
-    public void onCreate(SQLiteDatabase db) {
+	@Override
+	public void onCreate(SQLiteDatabase db) {
 
-    }
+	}
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+	@Override
+	public void onUpgrade(SQLiteDatabase db, int i, int i1) {
 
-    }
-    public List<Sessao> findSessoes(Filme filme){
+	}
+
+	public List<Sessao> findSessoes(Filme filme){
         SQLiteDatabase sessaoBD = getReadableDatabase();
         List<Sessao> sessoes = new ArrayList<Sessao>();
         horarioDAO = new HorarioDAO(this.context);
@@ -109,7 +108,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
         }
     }
 
-    public void save(Sessao sessao)
+    public void save(Sessao sessao, final int idCinema)
     {
         SQLiteDatabase sessaoBD = getWritableDatabase();
 
@@ -120,6 +119,7 @@ public class SessaoDAO extends SQLiteOpenHelper {
                 valores.put("sala", sessao.getSala());
                 valores.put("vip", sessao.isVip() ? 1 : 0);
                 valores.put("filme_idfilme", sessao.getFilme().getIdfilme());
+                valores.put("cinema_idcinema ", idCinema);
                 //valores.put("horario_idhorario", sessao.getHorario().getIdhorario());
                 sessaoBD.insert("sessao", "", valores);
             } finally {

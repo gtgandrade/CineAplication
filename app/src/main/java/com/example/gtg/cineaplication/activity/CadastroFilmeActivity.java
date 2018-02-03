@@ -21,25 +21,26 @@ import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 
 public class CadastroFilmeActivity extends AppCompatActivity {
-    private ImageView imgCartazFilme;
-    private EditText edtNome;
-    private EditText edtPais;
-    private Spinner spnVersao;
-    private EditText edtDuracao;
-    private RadioGroup rgEstreia;
-    private RadioGroup rgExibicao;
-    private RadioButton rbEstreiaSim;
-    private RadioButton rbEstreiaNao;
-    private RadioButton rbExibicaoSim;
-    private RadioButton rbExibicaoNao;
-    private Button btCadastroSessao;
-    private Button btExclusaoFilme;
-    private Uri uriImagemSelecionada;
-    private Uri uriImagemPadrao;
-    private ArrayAdapter<String> adapterVersao;
+	private int idCinema;
+	private ImageView imgCartazFilme;
+	private EditText edtNome;
+	private EditText edtPais;
+	private Spinner spnVersao;
+	private EditText edtDuracao;
+	private RadioGroup rgEstreia;
+	private RadioGroup rgExibicao;
+	private RadioButton rbEstreiaSim;
+	private RadioButton rbEstreiaNao;
+	private RadioButton rbExibicaoSim;
+	private RadioButton rbExibicaoNao;
+	private Button btCadastroSessao;
+	private Button btExclusaoFilme;
+	private Uri uriImagemSelecionada;
+	private Uri uriImagemPadrao;
+	private ArrayAdapter<String> adapterVersao;
 
-    private Filme filme;
-    private  FilmeDAO filmeDAO;
+	private Filme filme;
+	private FilmeDAO filmeDAO;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 
 		Bundle parametrosEntrada = getIntent().getExtras();
 		int idFilme = parametrosEntrada.getInt("idFilme");
+		idCinema = parametrosEntrada.getInt("cinema");
 		filme = new Filme();
 		filmeDAO = new FilmeDAO(this);
 		if (idFilme != 0) {
@@ -139,6 +141,7 @@ public class CadastroFilmeActivity extends AppCompatActivity {
 		Intent intentCadastroSessao = new Intent(this, ListaSessaoActivity.class);
 		Bundle parametros = new Bundle();
 		parametros.putInt("filmeid", filme.getIdfilme());
+		parametros.putInt("cinemaid", idCinema);
 		intentCadastroSessao.putExtras(parametros);
 		startActivity(intentCadastroSessao);
 	}

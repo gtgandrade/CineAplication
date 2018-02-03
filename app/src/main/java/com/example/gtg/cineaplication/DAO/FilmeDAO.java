@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class FilmeDAO{
+public class FilmeDAO {
     private Conexao conexao;
     private Cursor cursor;
 

@@ -19,69 +19,71 @@ import com.example.gtg.cineaplication.modelo.Sessao;
 
 public class CadastroSessaoActivity extends AppCompatActivity {
 
-    private EditText etSalaSessao;
-    private CheckBox checkVipSessao;
-    private TextView tvIdSessao;
-    private TextView tvHorarioSessao;
-    private TextView tvIdHorarioSessao;
-    private TextView tvLabelHorarioSessao;
-    private Button btnRemove;
-    private Button btnHorariosSessao;
-    private boolean editmode;
-    private int filmeid;
+	private EditText etSalaSessao;
+	private CheckBox checkVipSessao;
+	private TextView tvIdSessao;
+	private TextView tvHorarioSessao;
+	private TextView tvIdHorarioSessao;
+	private TextView tvLabelHorarioSessao;
+	private Button btnRemove;
+	private Button btnHorariosSessao;
+	private boolean editmode;
+	private int filmeid;
+	private int cinemaId;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_sessao);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_cadastro_sessao);
 
-        btnRemove = (Button) findViewById(R.id.btRemoveSessao);
-        btnHorariosSessao = (Button) findViewById(R.id.btHorariosSessao);
-        etSalaSessao = (EditText) findViewById(R.id.etSalaSessao);
-        checkVipSessao = (CheckBox) findViewById(R.id.checkVipSessao);
-        tvIdSessao = (TextView) findViewById(R.id.tvIdSessao);
-        tvHorarioSessao = (TextView) findViewById(R.id.tvHorarioSessao);
-        tvIdHorarioSessao = (TextView) findViewById(R.id.tvIdHorarioSessao);
-        tvLabelHorarioSessao = (TextView) findViewById(R.id.tvLabelHorarioSessao);
+		btnRemove = (Button) findViewById(R.id.btRemoveSessao);
+		btnHorariosSessao = (Button) findViewById(R.id.btHorariosSessao);
+		etSalaSessao = (EditText) findViewById(R.id.etSalaSessao);
+		checkVipSessao = (CheckBox) findViewById(R.id.checkVipSessao);
+		tvIdSessao = (TextView) findViewById(R.id.tvIdSessao);
+		tvHorarioSessao = (TextView) findViewById(R.id.tvHorarioSessao);
+		tvIdHorarioSessao = (TextView) findViewById(R.id.tvIdHorarioSessao);
+		tvLabelHorarioSessao = (TextView) findViewById(R.id.tvLabelHorarioSessao);
 
-        this.filmeid = getIntent().getExtras().getInt("filmeid");
+	    this.filmeid = getIntent().getExtras().getInt("filmeid");
+	    this.cinemaId = getIntent().getExtras().getInt("cinemaid");
 
-        if ( getIntent().hasExtra("edit") )
-        {
-            int sessaoid = getIntent().getExtras().getInt("sessaoid");
-            SessaoDAO sessaobd = new SessaoDAO(this);
-            Sessao sessao = sessaobd.findSessaBy(sessaoid);
+		if ( getIntent().hasExtra("edit") )
+		{
+			int sessaoid = getIntent().getExtras().getInt("sessaoid");
+			SessaoDAO sessaobd = new SessaoDAO(this);
+			Sessao sessao = sessaobd.findSessaBy(sessaoid);
 
-            editmode = true;
-            btnRemove.setTag(sessao);
-            tvIdSessao.setText(String.valueOf(sessaoid));
-            etSalaSessao.setText(String.valueOf(sessao.getSala()));
-            checkVipSessao.setChecked(sessao.isVip());
+			editmode = true;
+			btnRemove.setTag(sessao);
+			tvIdSessao.setText(String.valueOf(sessaoid));
+			etSalaSessao.setText(String.valueOf(sessao.getSala()));
+			checkVipSessao.setChecked(sessao.isVip());
 
-            tvLabelHorarioSessao.setVisibility(View.VISIBLE);
-            if ( sessao.getHorario().getIdhorario() == 0 )
-            {
-                tvIdHorarioSessao.setText("1");
-                tvHorarioSessao.setText("--:--");
-            }
-            else
-            {
-                tvIdHorarioSessao.setText(String.valueOf(sessao.getHorario().getIdhorario()));
-                tvHorarioSessao.setText(String.valueOf(sessao.getHorario().getDescricao()));
-            }
-            tvHorarioSessao.setVisibility(View.VISIBLE);
-            btnHorariosSessao.setVisibility(View.VISIBLE);
-            btnRemove.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            editmode = false;
-            tvLabelHorarioSessao.setVisibility(View.INVISIBLE);
-            tvHorarioSessao.setVisibility(View.INVISIBLE);
-            btnHorariosSessao.setVisibility(View.INVISIBLE);
-            btnRemove.setVisibility(View.INVISIBLE);
-        }
-    }
+			tvLabelHorarioSessao.setVisibility(View.VISIBLE);
+			if ( sessao.getHorario().getIdhorario() == 0 )
+			{
+				tvIdHorarioSessao.setText("1");
+				tvHorarioSessao.setText("--:--");
+			}
+			else
+			{
+				tvIdHorarioSessao.setText(String.valueOf(sessao.getHorario().getIdhorario()));
+				tvHorarioSessao.setText(String.valueOf(sessao.getHorario().getDescricao()));
+			}
+			tvHorarioSessao.setVisibility(View.VISIBLE);
+			btnHorariosSessao.setVisibility(View.VISIBLE);
+			btnRemove.setVisibility(View.VISIBLE);
+		}
+		else
+		{
+			editmode = false;
+			tvLabelHorarioSessao.setVisibility(View.INVISIBLE);
+			tvHorarioSessao.setVisibility(View.INVISIBLE);
+			btnHorariosSessao.setVisibility(View.INVISIBLE);
+			btnRemove.setVisibility(View.INVISIBLE);
+		}
+	}
 
     public void salvarSessao(View view)
     {
@@ -109,11 +111,11 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             horario.setIdhorario(Integer.parseInt(tvIdHorarioSessao.getText().toString()));
             sessao.setHorario(horario);
 
-            sessaoBD.save(sessao);
+            sessaoBD.save(sessao, cinemaId);
         }
         else
         {
-            if ( etSalaSessao.getText().toString().equals("") )
+            if ( etSalaSessao.getText().toString().isEmpty() )
             {
                 Toast.makeText(this,"Informe a sala!",Toast.LENGTH_SHORT).show();
                 return;
@@ -123,14 +125,14 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             SessaoDAO sessaoBD = new SessaoDAO(this);
 
             Sessao sessao = new Sessao();
-            sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
+            sessao.setSala(sala);
             sessao.setVip(checkVipSessao.isChecked());
 
             Filme filme = new Filme();
             filme.setIdfilme(filmeid);
             sessao.setFilme(filme);
 
-            sessaoBD.save(sessao);
+            sessaoBD.save(sessao, cinemaId);
         }
 
         Bundle parametros = new Bundle();

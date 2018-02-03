@@ -66,13 +66,13 @@ public class BancoDados extends SQLiteOpenHelper {
         comandosql = "INSERT INTO cinema(nome,endereco,latitude,longitude,cartaz) VALUES('Shopping da Ilha','Avenida Daniel de la Touche - Cohama',-2.527092, -44.255182,'2')";
         db.execSQL(comandosql);
 
-	    comandosql = "CREATE TABLE cinema_sessao (" +
-		    "_idcinema INTEGER REFERENCES cinema(idcinema) NOT NULL," +
-		    "_idsessao INTEGER REFERENCES sessao(idsessao) NOT NULL)";
-
-	    comandosql = "CREATE TABLE cinema_ingresso (" +
-		    "_idcinema INTEGER REFERENCES cinema(idcinema) NOT NULL," +
-		    "_idingresso INTEGER REFERENCES ingresso(idingresso) NOT NULL)";
+//	    comandosql = "CREATE TABLE cinema_sessao (" +
+//		    "_idcinema INTEGER REFERENCES cinema(idcinema) NOT NULL," +
+//		    "_idsessao INTEGER REFERENCES sessao(idsessao) NOT NULL)";
+//
+//	    comandosql = "CREATE TABLE cinema_ingresso (" +
+//		    "_idcinema INTEGER REFERENCES cinema(idcinema) NOT NULL," +
+//		    "_idingresso INTEGER REFERENCES ingresso(idingresso) NOT NULL)";
     }
 
     @Override
