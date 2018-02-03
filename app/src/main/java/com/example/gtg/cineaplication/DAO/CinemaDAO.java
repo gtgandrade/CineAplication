@@ -4,11 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-
 import com.example.gtg.cineaplication.conexao.Conexao;
 import com.example.gtg.cineaplication.modelo.Cinema;
 import com.example.gtg.cineaplication.modelo.Sessao;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,11 +56,11 @@ public class CinemaDAO {
         else return false;
     }
 
-    public List<Cinema> carregarcinemas(){
+    public List<Cinema> carregarcinemas() {
         List<Cinema> cinemas = new ArrayList<Cinema>();
-        cursor = conexao.getDatabase().query("cinema",null,null,null,null,null,null);
-        if(cursor.moveToFirst()){
-            do{
+        cursor = conexao.getDatabase().query("cinema", null, null, null, null, null, null);
+        if (cursor.moveToFirst()) {
+            do {
                 Cinema cinema = new Cinema();
                 cinema.setId(cursor.getInt(0));
                 cinema.setNome(cursor.getString(1));
@@ -72,9 +70,9 @@ public class CinemaDAO {
                 cinema.setCartaz(cursor.getString(5));
 
                 cinemas.add(cinema);
-            }while (cursor.moveToNext());
+            } while (cursor.moveToNext());
         }
-        return cinemas;
+        return (cinemas);
     }
 
     public Cinema procurarPorId(int idCine) {

@@ -136,7 +136,8 @@
                 android:layout_height="60dp"
                 android:layout_weight="1"
                 android:onClick="abrirListaSessao"
-                android:text="Sessões" />
+                android:text="Sessões"
+               />
 
             <Button
                 android:id="@+id/cadastroFilme_btExclusaoFilme"

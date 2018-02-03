@@ -89,7 +89,7 @@ public class FilmeDAO{
         cursor = conexao.getDatabase().query(false,"filme",null,null,null,
                     null, null, null, null);
         if(cursor.moveToFirst()){
-            do{
+            do {
                 Filme filme = new Filme();
                 filme.setIdfilme(cursor.getInt(0));
                 filme.setNome(cursor.getString(1));
@@ -100,7 +100,7 @@ public class FilmeDAO{
                 filme.setHabilitado(cursor.getInt(6));
                 filme.setEstreia(cursor.getInt(7));
                 filmes.add(filme);
-            }while(cursor.moveToNext());
+            } while(cursor.moveToNext());
         }
 
         return  filmes;

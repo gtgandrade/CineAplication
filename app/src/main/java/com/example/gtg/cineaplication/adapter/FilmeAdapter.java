@@ -8,11 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.example.gtg.cineaplication.activity.CadastroFilmeActivity;
 import com.example.gtg.cineaplication.R;
+import com.example.gtg.cineaplication.activity.CadastroFilmeActivity;
 import com.example.gtg.cineaplication.modelo.Filme;
-
 import java.util.List;
 
 public class FilmeAdapter extends RecyclerView.Adapter{
@@ -48,13 +46,15 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         return this.filmes.size();
     }
 
-    private class FilmeOnClickListener implements View.OnClickListener{
+    private class FilmeOnClickListener implements View.OnClickListener {
         private List<Filme> filmes;
         private int position;
-        public FilmeOnClickListener(Context context, List<Filme> filmes, int position){
+
+        public FilmeOnClickListener(Context context, List<Filme> filmes, int position) {
             this.filmes = filmes;
             this.position = position;
         }
+
         @Override
         public void onClick(View view) {
             Filme filme = this.filmes.get(position);
