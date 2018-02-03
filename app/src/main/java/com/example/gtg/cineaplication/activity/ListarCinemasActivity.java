@@ -1,23 +1,17 @@
 package com.example.gtg.cineaplication.activity;
 
 import android.content.ContentResolver;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import com.example.gtg.cineaplication.DAO.CinemaDAO;
 import com.example.gtg.cineaplication.R;
-import com.example.gtg.cineaplication.modelo.Cinema;
-
 import com.example.gtg.cineaplication.adapter.CinemaAdapter;
-
+import com.example.gtg.cineaplication.modelo.Cinema;
 import java.util.List;
 
 /**
@@ -52,7 +46,7 @@ public class ListarCinemasActivity extends AppCompatActivity {
 
         cinemadao = new CinemaDAO(getBaseContext());
 
-        cinemadao.adicionar(cinema);
+//        cinemadao.adicionar(cinema);
 
         CinemaAdapter cineAdapter = new CinemaAdapter(this, cinemadao.carregarcinemas());
         rclListar.setAdapter(cineAdapter);

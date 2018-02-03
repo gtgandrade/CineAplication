@@ -1,37 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.gtg.cineaplication">
+<manifest
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	package="com.example.gtg.cineaplication"
+	>
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
-    <application
-        android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".activity.ListarCinemasActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@mipmap/ic_launcher_round"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.AppCompat.NoActionBar"
+		>
+		<activity
+			android:name=".activity.ListarCinemasActivity"
+			>
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="CINEAPPLICATION" />
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+			<intent-filter>
+				<action android:name="CINEAPPLICATION"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".activity.FilmeActivity" />
-        <activity android:name=".activity.SessaoActivity" />
-        <activity android:name=".activity.ResumoActivity" />
-        <activity android:name=".activity.IngressosActivity" />
-        <activity android:name=".activity.CadastroFilmeActivity" />
-        <activity android:name=".activity.ConfiguracoesActivity" />
-        <activity android:name=".activity.CadastroSessaoActivity" />
-        <activity android:name=".activity.ListaSessaoActivity" />
-        <activity android:name=".activity.ListaHorariosActivity"></activity>
-    </application>
+				<category android:name="android.intent.category.DEFAULT"/>
+			</intent-filter>
+		</activity>
+		<activity android:name=".activity.PrincipalActivity"/>
+
+		<activity android:name=".activity.FilmeActivity"/>
+
+		<activity android:name=".activity.SessaoActivity"/>
+
+		<activity android:name=".activity.ResumoActivity"/>
+
+		<activity android:name=".activity.IngressosActivity"/>
+
+		<activity android:name=".activity.CadastroFilmeActivity"/>
+
+		<activity android:name=".activity.ConfiguracoesActivity"/>
+
+		<activity android:name=".activity.CadastroSessaoActivity"/>
+
+		<activity android:name=".activity.ListaSessaoActivity"/>
+
+		<activity android:name=".activity.ListaHorariosActivity"/>
+	</application>
 
 </manifest>
