@@ -32,6 +32,9 @@ public class CinemaDAO {
         ContentValues content = new ContentValues();
         content.put("Nome", cinema.getNome());
         content.put("Endereco", cinema.getEndereco());
+        content.put("Latitude",cinema.getLatitude());
+        content.put("Longitude",cinema.getLongitude());
+        content.put("Cartaz",cinema.getCartaz());
 
         resultado = conexao.getDatabase().insert("cinema", null, content);
         if (resultado > 0)
@@ -62,10 +65,11 @@ public class CinemaDAO {
             do{
                 Cinema cinema = new Cinema();
                 cinema.setId(cursor.getInt(0));
-                cinema.setEndereco(cursor.getString(1));
-                cinema.setNome(cursor.getString(2));
-                cinema.setLongitude(cursor.getFloat(3));
-                cinema.setLatitude(cursor.getFloat(4));
+                cinema.setNome(cursor.getString(1));
+                cinema.setEndereco(cursor.getString(2));
+                cinema.setLongitude(cursor.getDouble(3));
+                cinema.setLatitude(cursor.getDouble(4));
+                cinema.setCartaz(cursor.getString(5));
 
                 cinemas.add(cinema);
             }while (cursor.moveToNext());

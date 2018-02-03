@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.gtg.cineaplication.DAO.CinemaDAO;
-import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Cinema;
-import com.example.gtg.cineaplication.modelo.Filme;
 
 /**
  * Created by leo_b on 27/01/2018.

@@ -6,10 +6,11 @@ import java.util.List;
 /** Created by Leoman on 27/01/2018. */
 public class Cinema {
     private int id;
-    private String endereco;
     private String nome;
-    private float longitude;
-    private float latitude;
+    private String endereco;
+    private double longitude;
+    private double latitude;
+    private String cartaz=null;
 
     private List<Filme> filmes = new ArrayList<>();
 
@@ -45,19 +46,27 @@ public class Cinema {
         this.nome = nome;
     }
 
-    public float getLongitude() {
-        return longitude;
+    public double getLongitude() {
+        return this.longitude;
     }
 
-    public void setLongitude(float longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public float getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(float latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public String getCartaz(){
+        return this.cartaz;
+    }
+
+    public void setCartaz(String cartaz){
+        this.cartaz = cartaz;
     }
 }
