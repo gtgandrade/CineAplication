@@ -5,4 +5,5 @@
         <item>DUBLADO</item>
         <item>NACIONAL</item>
     </string-array>
+    <string name="title_activity_map">Cinemas próximos</string>
 </resources>

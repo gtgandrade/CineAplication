@@ -26,4 +26,9 @@ public class PrincipalActivity extends AppCompatActivity {
         Intent intentConfiguracoes = new Intent(this, ConfiguracoesActivity.class);
         startActivity(intentConfiguracoes);
     }
+
+    public void irParaActivityMap(View view){
+        Intent intent = new Intent(this, MapActivity.class);
+        startActivity(intent);
+    }
 }
