@@ -34,6 +34,18 @@
                 android:ems="10"
                 android:inputType="number" />
 
+            <TextView
+                android:id="@+id/tvSessaoCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cinema:"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/spnSessaoCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
             <CheckBox
                 android:id="@+id/checkVipSessao"
                 android:layout_width="match_parent"

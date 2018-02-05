@@ -60,4 +60,10 @@ public class Cinema {
     public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
+
+    public String toString()
+    {
+        return nome;
+    }
+
 }

@@ -4,22 +4,30 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.gtg.cineaplication.DAO.CinemaDAO;
 import com.example.gtg.cineaplication.DAO.SessaoDAO;
 import com.example.gtg.cineaplication.R;
+import com.example.gtg.cineaplication.modelo.Cinema;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 import com.example.gtg.cineaplication.modelo.Sessao;
 
+import java.util.List;
+
 public class CadastroSessaoActivity extends AppCompatActivity {
 
     private EditText etSalaSessao;
+    private Spinner spnCinemaSessao;
     private CheckBox checkVipSessao;
     private TextView tvIdSessao;
     private TextView tvHorarioSessao;
@@ -38,6 +46,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         btnRemove = (Button) findViewById(R.id.btRemoveSessao);
         btnHorariosSessao = (Button) findViewById(R.id.btHorariosSessao);
         etSalaSessao = (EditText) findViewById(R.id.etSalaSessao);
+        spnCinemaSessao = (Spinner) findViewById(R.id.spnSessaoCinema);
         checkVipSessao = (CheckBox) findViewById(R.id.checkVipSessao);
         tvIdSessao = (TextView) findViewById(R.id.tvIdSessao);
         tvHorarioSessao = (TextView) findViewById(R.id.tvHorarioSessao);
@@ -45,6 +54,12 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         tvLabelHorarioSessao = (TextView) findViewById(R.id.tvLabelHorarioSessao);
 
         this.filmeid = getIntent().getExtras().getInt("filmeid");
+
+        CinemaDAO cinemas = new CinemaDAO(this);
+        List<Cinema> lista = cinemas.carregarcinemas();
+
+        ArrayAdapter<Cinema> adapterCS = new ArrayAdapter<Cinema>(this,android.R.layout.simple_list_item_1,lista);
+        spnCinemaSessao.setAdapter(adapterCS);
 
         if ( getIntent().hasExtra("edit") )
         {
@@ -56,6 +71,14 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             btnRemove.setTag(sessao);
             tvIdSessao.setText(String.valueOf(sessaoid));
             etSalaSessao.setText(String.valueOf(sessao.getSala()));
+            for (Cinema item : lista)
+            {
+                if (item.getId() == sessao.getCinema().getId())
+                {
+                    spnCinemaSessao.setSelection(lista.indexOf(item));
+                    break;
+                }
+            }
             checkVipSessao.setChecked(sessao.isVip());
 
             tvLabelHorarioSessao.setVisibility(View.VISIBLE);
@@ -89,7 +112,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         {
             if ( etSalaSessao.getText().equals("") || tvIdHorarioSessao.getText().equals("0") )
             {
-                Toast.makeText(this,"Informe a sala e o horário!",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"Informe os dados corretamente!",Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -99,6 +122,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
             Sessao sessao = new Sessao();
             sessao.setIdsessao(Integer.parseInt(tvIdSessao.getText().toString()));
             sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
+            sessao.setCinema( (Cinema)spnCinemaSessao.getSelectedItem() );
             sessao.setVip(checkVipSessao.isChecked());
 
             Filme filme = new Filme();
@@ -124,6 +148,7 @@ public class CadastroSessaoActivity extends AppCompatActivity {
 
             Sessao sessao = new Sessao();
             sessao.setSala(Integer.parseInt(etSalaSessao.getText().toString()));
+            sessao.setCinema( (Cinema)spnCinemaSessao.getSelectedItem() );
             sessao.setVip(checkVipSessao.isChecked());
 
             Filme filme = new Filme();

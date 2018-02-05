@@ -62,10 +62,10 @@ public class CinemaDAO {
             do{
                 Cinema cinema = new Cinema();
                 cinema.setId(cursor.getInt(0));
-                cinema.setEndereco(cursor.getString(1));
-                cinema.setNome(cursor.getString(2));
-                cinema.setLongitude(cursor.getFloat(3));
-                cinema.setLatitude(cursor.getFloat(4));
+                cinema.setNome(cursor.getString(1));
+                cinema.setEndereco(cursor.getString(2));
+                cinema.setLatitude(cursor.getFloat(3));
+                cinema.setLongitude(cursor.getFloat(4));
 
                 cinemas.add(cinema);
             }while (cursor.moveToNext());
@@ -79,9 +79,11 @@ public class CinemaDAO {
 
         cursor = conexao.getDatabase().query("cinema", null, whereProcurar, null, null, null, null, null);
         if (cursor.moveToFirst()) {
-            cinema.setEndereco(cursor.getString(0));
-            cinema.setId(cursor.getInt(1));
-            cinema.setNome(cursor.getString(2));
+            cinema.setEndereco(cursor.getString(2));
+            cinema.setId(cursor.getInt(0));
+            cinema.setNome(cursor.getString(1));
+            cinema.setLatitude(cursor.getFloat(3));
+            cinema.setLongitude(cursor.getFloat(4));
         }
         return cinema;
     }

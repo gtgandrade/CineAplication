@@ -33,6 +33,7 @@ public class SessaoAdapter extends RecyclerView.Adapter{
         SessoesViewHolder sessoesViewHolder = (SessoesViewHolder) holder;
         sessoesViewHolder.btnVip.setImageResource( sessao.isVip() ? android.R.drawable.star_big_on : android.R.drawable.star_big_off );
         sessoesViewHolder.lblSala.setText("Sala " + String.valueOf(sessao.getSala()));
+        sessoesViewHolder.lblCinema.setText(String.valueOf(sessao.getCinema().getNome()));
         sessoesViewHolder.lblHorario.setText(sessao.getHorario().getDescricao());
         sessoesViewHolder.btnEditar.setTag(sessao);
     }

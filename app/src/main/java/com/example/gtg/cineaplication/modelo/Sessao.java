@@ -7,6 +7,7 @@ package com.example.gtg.cineaplication.modelo;
 public class Sessao {
     private int idsessao = 0;
     private int sala;
+    private Cinema cinema;
     private Filme filme;
     private Horario horario;
     private boolean vip;
@@ -40,6 +41,14 @@ public class Sessao {
 
     public void setSala(int sala) {
         this.sala = sala;
+    }
+
+    public Cinema getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(Cinema cinema) {
+        this.cinema = cinema;
     }
 
     public Filme getFilme() {
