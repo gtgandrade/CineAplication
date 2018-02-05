@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication.DAO;
+package com.example.gtg.cineaplication.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.gtg.cineaplication.modelo.Cinema;
 import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
-import com.example.gtg.cineaplication.modelo.Ingresso;
 import com.example.gtg.cineaplication.modelo.Sessao;
 
 import java.util.ArrayList;

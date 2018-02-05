@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DAO.HorarioDAO;
+import com.example.gtg.cineaplication.dao.HorarioDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.adapter.HorarioAdapter;
 import com.example.gtg.cineaplication.adapter.ItemClickListener;

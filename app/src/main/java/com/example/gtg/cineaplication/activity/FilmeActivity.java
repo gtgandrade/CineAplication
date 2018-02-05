@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.dao.FilmeDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 

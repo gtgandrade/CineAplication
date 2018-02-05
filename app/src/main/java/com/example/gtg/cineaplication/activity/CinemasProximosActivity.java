@@ -8,11 +8,9 @@ import android.location.Location;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DAO.CinemaDAO;
+import com.example.gtg.cineaplication.dao.CinemaDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Cinema;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -30,7 +28,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.maps.android.SphericalUtil;
 import com.google.maps.android.ui.IconGenerator;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class CinemasProximosActivity extends FragmentActivity implements OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {

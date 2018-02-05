@@ -7,7 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import com.example.gtg.cineaplication.R;
 
-import com.example.gtg.cineaplication.DAO.IngressoBD;
+import com.example.gtg.cineaplication.dao.IngressoBD;
 import com.example.gtg.cineaplication.adapter.IngressoAdapter;
 import com.example.gtg.cineaplication.modelo.Ingresso;
 

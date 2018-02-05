@@ -8,8 +8,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.gtg.cineaplication.DAO.FilmeDAO;
-import com.example.gtg.cineaplication.DAO.SessaoDAO;
+import com.example.gtg.cineaplication.dao.FilmeDAO;
+import com.example.gtg.cineaplication.dao.SessaoDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.adapter.SessaoAdapter;
 import com.example.gtg.cineaplication.modelo.Filme;

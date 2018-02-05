@@ -17,7 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.gtg.cineaplication.DAO.FilmeDAO;
+import com.example.gtg.cineaplication.dao.FilmeDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 

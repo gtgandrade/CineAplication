@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.gtg.cineaplication.DAO.CinemaDAO;
+import com.example.gtg.cineaplication.dao.CinemaDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Cinema;
 

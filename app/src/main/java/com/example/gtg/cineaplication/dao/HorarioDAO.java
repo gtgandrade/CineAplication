@@ -1,11 +1,10 @@
-package com.example.gtg.cineaplication.DAO;
+package com.example.gtg.cineaplication.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
 import com.example.gtg.cineaplication.conexao.Conexao;
-import com.example.gtg.cineaplication.modelo.Filme;
 import com.example.gtg.cineaplication.modelo.Horario;
 
 import java.util.ArrayList;

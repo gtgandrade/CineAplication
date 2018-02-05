@@ -1,4 +1,4 @@
-package com.example.gtg.cineaplication.DAO;
+package com.example.gtg.cineaplication.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
