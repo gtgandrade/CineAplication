@@ -24,11 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-                <action android:name="CINEAPPLICATION" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
         </activity>
         <activity android:name=".activity.FilmeActivity" />
         <activity android:name=".activity.SessaoActivity" />
@@ -61,6 +56,16 @@
         <activity
             android:name=".activity.CinemaLocalActivity"
             android:label="@string/title_activity_cinema_local"></activity>
+        <receiver android:name=".broadcast.EstreiaFilmeBroadcast">
+            <intent-filter>
+                <action android:name="CINEAPPLICATION_ESTREIA" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:authorities="com.example.gtg.cineaplication" android:exported="true"
+            android:name=".provider.FilmeProvider"/>
     </application>
 
 </manifest>
