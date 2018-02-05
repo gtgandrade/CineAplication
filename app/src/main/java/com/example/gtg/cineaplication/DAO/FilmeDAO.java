@@ -29,6 +29,7 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
+        valoresCampos.put("estreia", filme.getEstreia());
         salvou = conexao.getDatabase().insert("filme",null, valoresCampos);
 
         return salvou > 0;
@@ -45,6 +46,7 @@ public class FilmeDAO{
         valoresCampos.put("versao", filme.getVersao());
         valoresCampos.put("duracao", filme.getDuracao());
         valoresCampos.put("habilitado", filme.getHabilitado());
+        valoresCampos.put("estreia", filme.getEstreia());
 
         String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
         atualizou = conexao.getDatabase().update("filme", valoresCampos, condicaoWhere, null);
@@ -54,14 +56,16 @@ public class FilmeDAO{
 
     public boolean excluir(Filme filme){
         int excluiu = 0;
+
         String condicaoWhere = "idfilme = '"+filme.getIdfilme()+"'";
         excluiu = conexao.getDatabase().delete("filme", condicaoWhere, null);
 
-        return excluiu > 0? true: false;
+        return excluiu > 0;
     }
 
     public Filme procurarPorId(int idfilme){
         Filme filme = new Filme();
+
         String condicaoWhere = "idfilme = '"+idfilme+"'";
         cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
                     null, null, null, null);
@@ -73,6 +77,7 @@ public class FilmeDAO{
             filme.setVersao(cursor.getString(4));
             filme.setDuracao(cursor.getInt(5));
             filme.setHabilitado(cursor.getInt(6));
+            filme.setEstreia(cursor.getInt(7));
         }
 
         return  filme;
@@ -80,6 +85,7 @@ public class FilmeDAO{
 
     public List<Filme> procurarTodos(){
         List<Filme> filmes = new ArrayList<Filme>();
+
         cursor = conexao.getDatabase().query(false,"filme",null,null,null,
                     null, null, null, null);
         if(cursor.moveToFirst()){
@@ -92,6 +98,7 @@ public class FilmeDAO{
                 filme.setVersao(cursor.getString(4));
                 filme.setDuracao(cursor.getInt(5));
                 filme.setHabilitado(cursor.getInt(6));
+                filme.setEstreia(cursor.getInt(7));
                 filmes.add(filme);
             }while(cursor.moveToNext());
         }
@@ -102,6 +109,7 @@ public class FilmeDAO{
     public List<Filme> procurarHabilitados(){
         List<Filme> filmes = new ArrayList<Filme>();
         String condicaoWhere = "habilitado = 1";
+
         cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
                 null, null, null, null);
         if(cursor.moveToFirst()){
@@ -114,6 +122,7 @@ public class FilmeDAO{
                 filme.setVersao(cursor.getString(4));
                 filme.setDuracao(cursor.getInt(5));
                 filme.setHabilitado(cursor.getInt(6));
+                filme.setEstreia(cursor.getInt(7));
                 filmes.add(filme);
             }while(cursor.moveToNext());
         }

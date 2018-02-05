@@ -1,9 +1,11 @@
-package com.example.gtg.cineaplication;
+package com.example.gtg.cineaplication.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.example.gtg.cineaplication.R;
 
 public class PrincipalActivity extends AppCompatActivity {
     @Override

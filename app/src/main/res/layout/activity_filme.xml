@@ -5,8 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.gtg.cineaplication.FilmeActivity">
+    tools:context="com.example.gtg.cineaplication.activity.FilmeActivity">
 
+    <TextView
+        android:id="@+id/filme_lblEstreiaFilme"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="16dp" />
 
     <ImageView
         android:id="@+id/filme_imgFilme"
@@ -17,14 +24,14 @@
     <TextView
         android:id="@+id/filme_lblTituloFilme"
         android:layout_width="match_parent"
-        android:layout_height="44dp"
+        android:layout_height="30dp"
         android:textAlignment="center"
         android:textSize="24sp" />
 
     <TextView
         android:id="@+id/filme_lblVersaoFilme"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="30dp"
         android:textAlignment="center"
         android:textSize="16dp" />
 

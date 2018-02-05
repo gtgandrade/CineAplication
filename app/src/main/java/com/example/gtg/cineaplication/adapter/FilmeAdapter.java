@@ -9,7 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.gtg.cineaplication.CadastroFilmeActivity;
+import com.example.gtg.cineaplication.activity.CadastroFilmeActivity;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Filme;
 
@@ -57,7 +57,7 @@ public class FilmeAdapter extends RecyclerView.Adapter{
         }
         @Override
         public void onClick(View view) {
-           Filme filme = this.filmes.get(position);
+            Filme filme = this.filmes.get(position);
             Intent intentEditarFilme = new Intent(context, CadastroFilmeActivity.class);
             Bundle parametros = new Bundle();
             parametros.putInt("idFilme", filme.getIdfilme());

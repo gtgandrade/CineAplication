@@ -4,9 +4,6 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-/**
- * Created by gtg on 31/12/17.
- */
 
 public class BancoDados extends SQLiteOpenHelper {
     private static final String DB_NAME = "bdcinema.db";
@@ -24,7 +21,8 @@ public class BancoDados extends SQLiteOpenHelper {
                                          "pais       VARCHAR (30),"+
                                          "versao     VARCHAR (20),"+
                                          "duracao    INTEGER,"+
-                                         "habilitado INTEGER)";
+                                         "habilitado INTEGER,"+
+                                         "estreia    INTEGER)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE horario (idhorario INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -37,7 +35,8 @@ public class BancoDados extends SQLiteOpenHelper {
                                           "sala INTEGER, " +
                                           "filme_idfilme INTEGER REFERENCES filme (idfilme) NOT NULL, " +
                                           "horario_idhorario INTEGER," +
-                                           "vip INTEGER)";
+                                          "vip INTEGER,"+
+                                          "cinema_idcinema INTEGER REFERENCES cinema (idcinema) NOT NULL)";
         db.execSQL(comandosql);
 
         comandosql = "CREATE TABLE ingresso (idingresso INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
@@ -47,6 +46,23 @@ public class BancoDados extends SQLiteOpenHelper {
                                             "qtdlanche INTEGER, " +
                                             "precolanche DOUBLE, " +
                                             "sessao_idsesso INTEGER REFERENCES sessao (idsessao) NOT NULL)";
+        db.execSQL(comandosql);
+
+        comandosql = "CREATE TABLE cinema (idcinema INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+                                            "nome VARCHAR(30),"+
+                                            "endereco VARCHAR(50)," +
+                                            "latitude DOUBLE," +
+                                             "longitude DOUBLE)";
+        db.execSQL(comandosql);
+
+        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Cinépolis','Bairro Jaracaty',-2.510609, -44.285094)");
+
+        db.execSQL(comandosql);
+
+        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Rio Anil Shopping','Av.São Luís Rei de França,Turu',-2.533553, -44.224921)");
+        db.execSQL(comandosql);
+
+        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Shopping da Ilha','Avenida Daniel de la Touche - Cohama',-2.527092, -44.255182)");
         db.execSQL(comandosql);
     }
 
@@ -59,6 +75,8 @@ public class BancoDados extends SQLiteOpenHelper {
         comandosql = "DROP TABLE IF EXISTS filme";
         db.execSQL(comandosql);
         comandosql = "DROP TABLE IF EXISTS horario";
+        db.execSQL(comandosql);
+        comandosql = "DROP TABLE IF EXISTS cinema";
         db.execSQL(comandosql);
         onCreate(db);
     }

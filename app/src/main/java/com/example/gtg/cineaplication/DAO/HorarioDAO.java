@@ -11,10 +11,7 @@ import com.example.gtg.cineaplication.modelo.Horario;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by gtg on 15/01/18.
- */
-
+/** Created by gtg on 15/01/18. */
 public class HorarioDAO {
     private Conexao conexao;
     private Cursor cursor;
@@ -86,7 +83,7 @@ public class HorarioDAO {
         cursor = conexao.getDatabase().query(false,"horario",null,null,null,
                 null, null, null, null);
         if(cursor.moveToFirst()){
-            do{
+            do {
                 Horario horario = new Horario();
                 horario.setIdhorario(cursor.getInt(0));
                 horario.setDescricao(cursor.getString(1));

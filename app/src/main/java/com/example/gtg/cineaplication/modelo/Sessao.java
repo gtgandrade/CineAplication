@@ -11,8 +11,7 @@ public class Sessao {
     private Horario horario;
     private boolean vip;
 
-    public Sessao()
-    {
+    public Sessao() {
         sala = 0;
         filme = new Filme();
         horario = new Horario();

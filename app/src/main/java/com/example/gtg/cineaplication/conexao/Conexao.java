@@ -3,10 +3,7 @@ package com.example.gtg.cineaplication.conexao;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-/**
- * Created by gtg on 31/12/17.
- */
-
+/** Created by gtg on 31/12/17. */
 public class Conexao {
     private static Conexao conexao;
     private SQLiteDatabase db;
