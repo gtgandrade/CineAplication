@@ -18,11 +18,9 @@ import java.util.List;
 public class CinemaDAO {
     private Conexao conexao;
     private Cursor cursor;
-    private SessaoDAO sessaoDAO;
 
     public CinemaDAO(Context ctx) {
         this.conexao = Conexao.getInstance(ctx);
-        this.sessaoDAO = new SessaoDAO(ctx);
     }
 
     public boolean adicionar(Cinema cinema) {
@@ -30,29 +28,34 @@ public class CinemaDAO {
         long resultado;
 
         ContentValues content = new ContentValues();
-        content.put("Nome", cinema.getNome());
-        content.put("Endereco", cinema.getEndereco());
+        content.put("nome", cinema.getNome());
+        content.put("endereco", cinema.getEndereco());
+        content.put("latitude", cinema.getLatitude());
+        content.put("longitude", cinema.getLongitude());
 
         resultado = conexao.getDatabase().insert("cinema", null, content);
         if (resultado > 0)
             return true;
         else return false;
-
     }
 
     public boolean atualizar(Cinema cinema) {
         String condicaoWhere;
         long resultado;
 
-        ContentValues valores = new ContentValues();
-        valores.put("Nome", cinema.getNome());
-        valores.put("Endereco", cinema.getEndereco());
+        ContentValues content = new ContentValues();
+        content.put("nome", cinema.getNome());
+        content.put("endereco", cinema.getEndereco());
+        content.put("latitude", cinema.getLatitude());
+        content.put("longitude", cinema.getLongitude());
 
-        condicaoWhere = "idCinema = '" + cinema.getId() + "' ";
-        resultado = conexao.getDatabase().update("cinema", valores, condicaoWhere, null);
+        condicaoWhere = "idcinema = '" + cinema.getId() + "' ";
+        resultado = conexao.getDatabase().update("cinema", content, condicaoWhere, null);
 
-        if (resultado > 0) return true;
-        else return false;
+        if (resultado > 0)
+            return true;
+        else
+            return false;
     }
 
     public List<Cinema> carregarcinemas(){
@@ -75,7 +78,7 @@ public class CinemaDAO {
 
     public Cinema procurarPorId(int idCine) {
         Cinema cinema = new Cinema();
-        String whereProcurar = "idCinema= '" + idCine + "' ";
+        String whereProcurar = "idcinema= '" + idCine + "' ";
 
         cursor = conexao.getDatabase().query("cinema", null, whereProcurar, null, null, null, null, null);
         if (cursor.moveToFirst()) {
@@ -88,51 +91,12 @@ public class CinemaDAO {
         return cinema;
     }
 
-    public boolean excluir(Cinema cinema) {
+    public boolean excluir(int idCine) {
         long resultado;
-        String whereExcluir = "idCinema= '" + cinema.getId() + "' ";
+        String whereExcluir = "idcinema= '" +idCine + "' ";
 
         resultado = conexao.getDatabase().delete("cinema", whereExcluir, null);
         if (resultado > 0) return true;
         else return false;
-    }
-
-    /**
-     * Método para adicionar <b>sessão</b> ao cinema
-     *
-     * @param id     ID do cinema
-     * @param sessao instancia de sessao a salvar
-     * @return <b>Verdadeiro</b> se adicionou, <b>False</b> caso contrário
-     */
-    public boolean adicionarSessao(int id, Sessao sessao) {
-        long resultado;
-
-        ContentValues valores = new ContentValues();
-        valores.put("_idcinema", id);
-        valores.put("_idsessao", sessao.getIdsessao());
-
-        resultado = conexao.getDatabase().insert("cinema_sessao", null, valores);
-        return resultado > 0;
-    }
-
-    public List<Sessao> carregarSessoes(int id) {
-        ContentValues cv = new ContentValues();
-        String[] campos = {"_idsessao"};
-        String where = "_idcinema = " + id;
-
-        SQLiteDatabase db = conexao.getDatabase();
-        cursor = db.query("cinema_sessao", campos, where, null, null, null, null);
-
-        List<Sessao> sessoes = new ArrayList<>();
-
-        if (cursor.moveToFirst()){
-            do {
-            //while (cursor.moveToNext()) {
-                final int s = cursor.getInt(0);
-                sessoes.add(sessaoDAO.findSessaBy(s));
-            }while (cursor.moveToNext());
-        }
-//        db.close();
-        return (sessoes);
     }
 }

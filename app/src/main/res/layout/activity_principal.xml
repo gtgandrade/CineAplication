@@ -43,9 +43,17 @@
         android:text="Cinemas próximos" />
 
     <Button
+        android:id="@+id/principal_btnCinemas"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:onClick="irParaActivityCinemas"
+        android:text="Cinemas" />
+
+    <Button
         android:id="@+id/principal_btnConfiguracoes"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="40dp"
         android:onClick="irParaActivityConfiguracoes"
         android:text="Configurações" />
+
 </LinearLayout>

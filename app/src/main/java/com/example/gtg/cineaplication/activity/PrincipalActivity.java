@@ -36,6 +36,11 @@ public class PrincipalActivity extends AppCompatActivity implements ActivityComp
         startActivity(intentConfiguracoes);
     }
 
+    public void irParaActivityCinemas(View view){
+        Intent intentCinemas = new Intent(this, ListaCinemaActivity.class);
+        startActivity(intentCinemas);
+    }
+
     public void irParaActivityMap(View view){
         ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCAL_GRANT);
     }
