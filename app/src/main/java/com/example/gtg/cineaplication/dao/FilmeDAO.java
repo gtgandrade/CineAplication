@@ -19,7 +19,7 @@ public class FilmeDAO{
         this.conexao = Conexao.getInstance(context);
     }
 
-    public boolean salvar(Filme filme){
+    public long salvar(Filme filme){
         long salvou;
 
         ContentValues valoresCampos = new ContentValues();
@@ -32,7 +32,7 @@ public class FilmeDAO{
         valoresCampos.put("estreia", filme.getEstreia());
         salvou = conexao.getDatabase().insert("filme",null, valoresCampos);
 
-        return salvou > 0;
+        return salvou;
     }
 
     public boolean atualizar(Filme filme){
@@ -81,6 +81,27 @@ public class FilmeDAO{
         }
 
         return  filme;
+    }
+
+    public List<Filme> procurarPorCinemaId(int idcinema){
+        List<Filme> filmes = new ArrayList<Filme>();
+        String query = "SELECT * FROM filme WHERE habilitado = 1 AND idfilme IN (SELECT filme_idfilme FROM sessao WHERE cinema_idcinema = ?)";
+        cursor = conexao.getDatabase().rawQuery(query, new String[] { String.valueOf(idcinema)});
+        if(cursor.moveToFirst()){
+            do{
+                Filme filme = new Filme();
+                filme.setIdfilme(cursor.getInt(0));
+                filme.setNome(cursor.getString(1));
+                filme.setCartaz(cursor.getString(2));
+                filme.setPais(cursor.getString(3));
+                filme.setVersao(cursor.getString(4));
+                filme.setDuracao(cursor.getInt(5));
+                filme.setHabilitado(cursor.getInt(6));
+                filme.setEstreia(cursor.getInt(7));
+                filmes.add(filme);
+            }while(cursor.moveToNext());
+        }
+        return filmes;
     }
 
     public List<Filme> procurarTodos(){

@@ -5,11 +5,13 @@ import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.UriMatcher;
 import android.database.Cursor;
+import android.database.SQLException;
 import android.net.Uri;
 import android.provider.BaseColumns;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.example.gtg.cineaplication.conexao.Conexao;
 import com.example.gtg.cineaplication.dao.FilmeDAO;
 import com.example.gtg.cineaplication.modelo.Filme;
 
@@ -19,6 +21,7 @@ import java.util.HashMap;
 public class FilmeProvider extends ContentProvider{
     private FilmeDAO filmeDAO;
     private UriMatcher uriFilme;
+    private Conexao conexao;
     private static HashMap<String, String> colunas;
     private static final int FILMES = 1;
     private static final int FILMES_ID = 2;
@@ -34,7 +37,7 @@ public class FilmeProvider extends ContentProvider{
         uriFilme.addURI(getAuthority(), "filme", FILMES);
         uriFilme.addURI(getAuthority(), "filme/#", FILMES_ID);
         filmeDAO = new FilmeDAO(getContext());
-
+        conexao = Conexao.getInstance(getContext());
         colunas = new HashMap<String, String>();
         colunas.put(Filmes._ID, Filmes._ID);
         colunas.put(Filmes.NOME, Filmes.NOME);
@@ -51,7 +54,11 @@ public class FilmeProvider extends ContentProvider{
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        return null;
+        Cursor cursor = conexao.getDatabase().query(false,"filme",null,null,null,
+                null, null, null, null);
+        cursor.setNotificationUri(getContext().getContentResolver(), uri);
+
+        return cursor;
     }
 
     @Nullable
@@ -86,8 +93,14 @@ public class FilmeProvider extends ContentProvider{
         filme.setHabilitado(Integer.parseInt(valores.getAsString("habilitado")));
         filme.setEstreia(Integer.parseInt(valores.getAsString("estreia")));
 
-        filmeDAO.salvar(filme);
-        return null;
+        long id = filmeDAO.salvar(filme);
+
+        if(id > 0){
+            Uri uriFilme = Filmes.getUriID(id);
+            getContext().getContentResolver().notifyChange(uriFilme, null);
+            return uriFilme;
+        }
+        throw new SQLException("Falha durante inserção de dados");
     }
 
     @Override

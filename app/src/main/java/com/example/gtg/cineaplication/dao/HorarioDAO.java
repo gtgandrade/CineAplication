@@ -65,11 +65,12 @@ public class HorarioDAO {
     }
 
     public Horario procurarPorDescricao(String descricao){
-        Horario horario = new Horario();
+        Horario horario = null;
         String condicaoWhere = "descricao = '"+descricao+"'";
         cursor = conexao.getDatabase().query("horario",null, condicaoWhere,null,
                 null, null, null, null);
         if(cursor.moveToFirst()){
+            horario = new Horario();
             horario.setIdhorario(cursor.getInt(0));
             horario.setDescricao(cursor.getString(1));
         }

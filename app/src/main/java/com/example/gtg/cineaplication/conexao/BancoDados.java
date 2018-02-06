@@ -64,6 +64,9 @@ public class BancoDados extends SQLiteOpenHelper {
 
         comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Shopping da Ilha','Avenida Daniel de la Touche - Cohama',-2.527092, -44.255182)");
         db.execSQL(comandosql);
+
+        comandosql = ("INSERT INTO cinema(nome,endereco,latitude,longitude) VALUES('Pátio Norte Shopping','MA 201 - Ribamar',-2.5496784, -44.1001236)");
+        db.execSQL(comandosql);
     }
 
     @Override

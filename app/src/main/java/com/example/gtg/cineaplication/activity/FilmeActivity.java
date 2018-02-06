@@ -30,7 +30,12 @@ public class FilmeActivity extends AppCompatActivity {
         lblTituloFilme = (TextView) findViewById(R.id.filme_lblTituloFilme);
         lblVersaoFilme = (TextView) findViewById(R.id.filme_lblVersaoFilme);
         FilmeDAO fimeBD = new FilmeDAO(this);
-        filmes = fimeBD.procurarHabilitados();
+        Bundle parametros = getIntent().getExtras();
+        if(parametros != null){
+            int idcinema = parametros.getInt("idcinema");
+            filmes = fimeBD.procurarPorCinemaId(idcinema);
+        }else
+            filmes = fimeBD.procurarHabilitados();
         if(filmes.size() > 0) {
             filme = filmes.get(++indiceFilme);
             imgFilme = findViewById(R.id.filme_imgFilme);

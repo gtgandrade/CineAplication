@@ -33,12 +33,14 @@ public class ListaHorariosActivity extends AppCompatActivity {
         horarioAdapter.setOnItemClickListener(new SelecaoHorarioClickListener());
         rvHorarios.setLayoutManager(new LinearLayoutManager(this));
         rvHorarios.setAdapter(horarioAdapter);
+        horarioSelecionado = null;
         Bundle parametros = getIntent().getExtras();
     }
 
     public void salvarHorario(View view){
         Horario horario = horarioDAO.procurarPorDescricao(edtHorario.getText().toString());
-        if(horario.getDescricao() == null && horarioSelecionado == null) {
+        if(horario == null && horarioSelecionado == null) {
+            horario = new Horario();
             horario.setDescricao(edtHorario.getText().toString());
             horarioDAO.salvar(horario);
             Toast.makeText(this,"Horário cadastrado.",Toast.LENGTH_SHORT).show();

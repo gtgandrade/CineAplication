@@ -15,6 +15,8 @@ import java.util.List;
 /**
  * Created by leo_b on 27/01/2018.
  */
+
+
 public class CinemaDAO {
     private Conexao conexao;
     private Cursor cursor;
