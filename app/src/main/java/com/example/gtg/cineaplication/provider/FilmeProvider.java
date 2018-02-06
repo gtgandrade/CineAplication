@@ -68,6 +68,7 @@ public class FilmeProvider extends ContentProvider{
 
                 break;
         }
+
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         return cursor;
