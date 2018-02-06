@@ -24,7 +24,7 @@ public class FilmeProvider extends ContentProvider{
     private Conexao conexao;
     private static HashMap<String, String> colunas;
     private static final int FILMES = 1;
-    private static final int FILMES_ID = 2;
+    private static final int FILME_ID = 2;
     private static final String AUTHORITY = "com.example.gtg.cineaplication";
 
     private static String getAuthority() {
@@ -35,7 +35,7 @@ public class FilmeProvider extends ContentProvider{
     public boolean onCreate() {
         uriFilme = new UriMatcher(UriMatcher.NO_MATCH);
         uriFilme.addURI(getAuthority(), "filme", FILMES);
-        uriFilme.addURI(getAuthority(), "filme/#", FILMES_ID);
+        uriFilme.addURI(getAuthority(), "filme/#", FILME_ID);
         filmeDAO = new FilmeDAO(getContext());
         conexao = Conexao.getInstance(getContext());
         colunas = new HashMap<String, String>();
@@ -54,8 +54,20 @@ public class FilmeProvider extends ContentProvider{
     @Nullable
     @Override
     public Cursor query(@NonNull Uri uri, @Nullable String[] strings, @Nullable String s, @Nullable String[] strings1, @Nullable String s1) {
-        Cursor cursor = conexao.getDatabase().query(false,"filme",null,null,null,
-                null, null, null, null);
+        Cursor cursor = null;
+        switch (uriFilme.match(uri)){
+            case FILMES:cursor = conexao.getDatabase().query(false,"filme",null,null,null,
+                    null, null, null, null);
+
+                break;
+            case FILME_ID:
+                int idfilme = Integer.parseInt(uri.getPathSegments().get(1));
+                String condicaoWhere = "idfilme = '"+idfilme+"'";
+                cursor = conexao.getDatabase().query("filme",null, condicaoWhere,null,
+                        null, null, null, null);
+
+                break;
+        }
         cursor.setNotificationUri(getContext().getContentResolver(), uri);
 
         return cursor;
@@ -67,7 +79,7 @@ public class FilmeProvider extends ContentProvider{
         switch (uriFilme.match(uri)){
             case FILMES:
                 return Filmes.CONTENT_TYPE;
-            case FILMES_ID:
+            case FILME_ID:
                 return Filmes.CONTENT_ITEM_TYPE;
             default:
                 throw new IllegalArgumentException("URI Inválida: "+uri);
@@ -110,7 +122,31 @@ public class FilmeProvider extends ContentProvider{
 
     @Override
     public int update(@NonNull Uri uri, @Nullable ContentValues contentValues, @Nullable String s, @Nullable String[] strings) {
-        return 0;
+        if(uriFilme.match(uri)!= FILMES){
+            throw new IllegalArgumentException("URI Inválida: "+uri);
+        }
+        ContentValues valores = null;
+        if(contentValues != null){
+            valores = new ContentValues(contentValues);
+        }
+        Filme filme = new Filme();
+        filme.setIdfilme(Integer.parseInt(valores.getAsString("idfilme")));
+        filme.setNome(valores.getAsString("nome"));
+        filme.setCartaz(valores.getAsString("cartaz"));
+        filme.setPais(valores.getAsString("pais"));
+        filme.setVersao(valores.getAsString("versao"));
+        filme.setDuracao(Integer.parseInt(valores.getAsString("duracao")));
+        filme.setHabilitado(Integer.parseInt(valores.getAsString("habilitado")));
+        filme.setEstreia(Integer.parseInt(valores.getAsString("estreia")));
+
+        int id = filmeDAO.atualizar(filme);
+
+        if(id > 0){
+            Uri uriFilme = Filmes.getUriID(id);
+            getContext().getContentResolver().notifyChange(uriFilme, null);
+            return id;
+        }
+        throw new SQLException("Falha durante inserção de dados");
     }
 
     public static final class Filmes implements BaseColumns{
