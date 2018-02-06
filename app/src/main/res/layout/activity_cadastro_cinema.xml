@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -15,31 +14,76 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/tvIdCinema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                tools:text="Nome" />
-
-            <EditText
-                android:id="@+id/cadastroCinema_edtNome"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName" />
+                android:textSize="18sp"
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/tvNomeCinema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Endereço" />
+                android:text="Nome:"
+                android:textSize="18sp" />
 
             <EditText
-                android:id="@+id/cadastroCinema_edtEndereco"
+                android:id="@+id/etNomeCinema"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:inputType="textPersonName|numberDecimal" />
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/tvEnderecoCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Endereço:"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/etEnderecoCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+
+            <TextView
+                android:id="@+id/tvLatCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Latitude?"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/tvLngCinema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Longitude?"
+                android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btLocalCinema"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="Localizar"
+                android:onClick="localizarCinema" />
+
+            <Button
+                android:id="@+id/btCadastroCinema"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:onClick="salvarCinema"
+                android:text="Salvar" />
+
+            <Button
+                android:id="@+id/btRemoveCinema"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_weight="1"
+                android:text="Remover"
+                android:onClick="removerCinema"
+                android:visibility="gone" />
 
         </LinearLayout>
     </ScrollView>

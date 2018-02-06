@@ -67,7 +67,7 @@ public class CinemaLocalActivity extends FragmentActivity implements OnMapReadyC
         params.putString("lat",String.valueOf(marker.getPosition().latitude));
         params.putString("lng",String.valueOf(marker.getPosition().longitude));
         it.putExtras(params);
-        setResult(1,it);
+        setResult(3,it);
         finish();
     }
 }

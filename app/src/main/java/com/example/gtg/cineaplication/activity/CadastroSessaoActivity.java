@@ -176,10 +176,12 @@ public class CadastroSessaoActivity extends AppCompatActivity {
         intent.putExtras(parametros);
         navigateUpTo(intent);
     }
+
     public void listaHorarios(View view){
         Intent intentListaHorarios = new Intent(this, ListaHorariosActivity.class);
         startActivityForResult(intentListaHorarios, 1);
     }
+
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (requestCode == 1 ) {

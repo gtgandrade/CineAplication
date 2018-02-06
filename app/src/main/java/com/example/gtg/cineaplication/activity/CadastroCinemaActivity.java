@@ -1,90 +1,164 @@
 package com.example.gtg.cineaplication.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.gtg.cineaplication.dao.CinemaDAO;
+import com.example.gtg.cineaplication.dao.SessaoDAO;
 import com.example.gtg.cineaplication.R;
 import com.example.gtg.cineaplication.modelo.Cinema;
+import com.example.gtg.cineaplication.modelo.Filme;
+import com.example.gtg.cineaplication.modelo.Horario;
+import com.example.gtg.cineaplication.modelo.Sessao;
 
-/**
- * Created by leo_b on 27/01/2018.
- */
+import java.util.List;
 
 public class CadastroCinemaActivity extends AppCompatActivity {
-    private EditText edtNome;
-    private EditText edtEndereco;
-    private Button btnListar;
-    private Button btnRemover;
-    private Cinema cinema;
-    private CinemaDAO cinemaDAO;
+
+    private TextView tvIdCinema;
+    private TextView tvNomeCinema;
+    private EditText etNomeCinema;
+    private TextView tvEnderecoCinema;
+    private EditText etEnderecoCinema;
+    private TextView tvLatCinema;
+    private TextView tvLngCinema;
+    private Button btnLocalizaCinema;
+    private Button btnRemove;
+    private Button btnSalva;
+    private boolean editmode;
+    private final int REQUEST_CINEMA_LOCAL = 3;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_cinema);
 
-        edtNome = (EditText)findViewById(R.id.cadastroCinema_edtNome);
-        edtEndereco = (EditText)findViewById(R.id.cadastroCinema_edtEndereco);
-        btnListar.setVisibility(View.GONE);
-        btnRemover.setVisibility(View.GONE);
+        btnRemove = (Button) findViewById(R.id.btRemoveCinema);
+        btnSalva = (Button) findViewById(R.id.btCadastroCinema);
+        btnLocalizaCinema = (Button) findViewById(R.id.btLocalCinema);
+        tvIdCinema = (TextView) findViewById(R.id.tvIdCinema);
+        tvNomeCinema = (TextView) findViewById(R.id.tvNomeCinema);
+        etNomeCinema = (EditText) findViewById(R.id.etNomeCinema);
+        tvEnderecoCinema = (TextView) findViewById(R.id.tvEnderecoCinema);
+        etEnderecoCinema = (EditText) findViewById(R.id.etEnderecoCinema);
 
-        Bundle parametrosEntradaC = getIntent().getExtras();
-        int idCine = parametrosEntradaC.getInt("idCinema");
-        cinema = new Cinema();
-        cinemaDAO = new CinemaDAO(this);
-        if(idCine!=0){
-            cinema = cinemaDAO.procurarPorId(idCine);
-            inserirCinemaExistente(cinema);
-            btnListar.setVisibility(View.VISIBLE);
-            btnRemover.setVisibility(View.VISIBLE);
+        tvLatCinema = (TextView) findViewById(R.id.tvLatCinema);
+        tvLngCinema = (TextView) findViewById(R.id.tvLngCinema);
+
+        if ( getIntent().hasExtra("edit") )
+        {
+            int cinemaid = getIntent().getExtras().getInt("cinemaid");
+            CinemaDAO cinemaDAO = new CinemaDAO(this);
+            Cinema cinema = cinemaDAO.procurarPorId(cinemaid);
+
+            editmode = true;
+
+            Log.d("Teste",String.valueOf(cinema.getId()));
+
+            btnRemove.setVisibility(View.VISIBLE);
+            btnRemove.setTag(cinema);
+            tvIdCinema.setText(String.valueOf(cinemaid));
+            etNomeCinema.setText(String.valueOf(cinema.getNome()));
+            etEnderecoCinema.setText(String.valueOf(cinema.getEndereco()));
+            tvLatCinema.setText(String.valueOf(cinema.getLatitude()));
+            tvLngCinema.setText(String.valueOf(cinema.getLongitude()));
+        }
+        else
+        {
+            editmode = false;
+            btnRemove.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void inserirCinemaExistente(Cinema cinema) {
-        edtNome.setText(cinema.getNome());
-        edtEndereco.setText(cinema.getEndereco());
+    public void salvarCinema(View view)
+    {
+        if ( editmode )
+        {
+            if ( tvIdCinema.getText().equals("0") ||
+                    etNomeCinema.getText().equals("") ||
+                    etEnderecoCinema.getText().equals("") ||
+                    tvLatCinema.getText().equals("") ||
+                    tvLngCinema.getText().equals("")
+                    )
+            {
+                Toast.makeText(this,"Informe os dados corretamente!",Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-    }
+            CinemaDAO cinemaDAO = new CinemaDAO(this);
 
-    public void salvarCinema(View view) {
-        String endereco="";
-        int id=0;
+            Cinema cinema = new Cinema();
+            cinema.setId(Integer.parseInt(tvIdCinema.getText().toString()));
+            cinema.setNome(etNomeCinema.getText().toString());
+            cinema.setEndereco(etEnderecoCinema.getText().toString());
+            cinema.setLatitude(Float.parseFloat(tvLatCinema.getText().toString()));
+            cinema.setLongitude(Float.parseFloat(tvLngCinema.getText().toString()));
 
-        endereco = edtEndereco.getText().toString();
-
-        Cinema cinema = new Cinema();
-        cinema.setEndereco(endereco);
-
-        id = cinema.getId();
-
-        CinemaDAO daocinema = new CinemaDAO(this);
-        if( id==0 ){
-            daocinema.adicionar(cinema);
+            cinemaDAO.atualizar(cinema);
         }
-        else{
-            daocinema.atualizar(cinema);
+        else
+        {
+            if ( etNomeCinema.getText().equals("") ||
+                    etEnderecoCinema.getText().equals("") ||
+                    tvLatCinema.getText().equals("") ||
+                    tvLngCinema.getText().equals("")
+                    )
+            {
+                Toast.makeText(this,"Informe os dados corretamente!",Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            CinemaDAO cinemaDAO = new CinemaDAO(this);
+
+            Cinema cinema = new Cinema();
+            cinema.setNome(etNomeCinema.getText().toString());
+            cinema.setEndereco(etEnderecoCinema.getText().toString());
+            cinema.setLatitude(Float.parseFloat(tvLatCinema.getText().toString()));
+            cinema.setLongitude(Float.parseFloat(tvLngCinema.getText().toString()));
+
+            cinemaDAO.adicionar(cinema);
         }
-        Intent intentConfiguracoes = new Intent(this, ConfiguracoesActivity.class);
-        navigateUpTo(intentConfiguracoes);
+
+        Intent intent = new Intent(this, ListaCinemaActivity.class);
+        navigateUpTo(intent);
     }
 
-    public void removerCinema(View view) {
-        cinemaDAO.excluir(cinema);
-        Intent intentConfiguracoes = new Intent(this,ConfiguracoesActivity.class);
-        startActivity(intentConfiguracoes);
+    public void removerCinema(View view)
+    {
+        Cinema cinema = (Cinema) view.getTag();
+        CinemaDAO cinemaDAO = new CinemaDAO(this);
+        cinemaDAO.excluir(cinema.getId());
+
+        Intent intent = new Intent(this, ListaCinemaActivity.class);
+        navigateUpTo(intent);
     }
 
+    public void localizarCinema(View view)
+    {
+        Intent intent = new Intent(this, CinemaLocalActivity.class);
+        startActivityForResult(intent,REQUEST_CINEMA_LOCAL);
+    }
 
-    public void listarCinemas(View view) {
-        Intent intentListarCinemas = new Intent(this,ListarCinemasActivity.class);
-        Bundle parametros = new Bundle();
-        parametros.putInt("idcinema",cinema.getId());
-        intentListarCinemas.putExtras(parametros);
-        startActivity(intentListarCinemas);
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode,resultCode,data);
+
+        if (requestCode == REQUEST_CINEMA_LOCAL ) {
+            Bundle resposta = data.getExtras();
+            tvLatCinema.setText(resposta.getString("lat"));
+            tvLngCinema.setText(resposta.getString("lng"));
+            Toast.makeText(this, resposta.getString("lat")+","+resposta.getString("lng"), Toast.LENGTH_SHORT).show();
+        }
     }
 }
